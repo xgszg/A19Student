@@ -155,6 +155,19 @@ export const asyncRoutes = [
   },
 
   {
+    path: '/kypt',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Kypt',
+        component: () => import('@/views/form/index'),
+        meta: { title: '科研平台', icon: 'form' }
+      }
+    ]
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [

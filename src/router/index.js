@@ -162,7 +162,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Kypt',
         component: () => import('@/views/form/index'),
-        meta: { title: '科研平台', icon: 'form' }
+        meta: { title: '科研平台', icon: 'form', roles: ['admin'] }
       }
     ]
   },

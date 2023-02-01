@@ -11,9 +11,7 @@
     <!--代办-->
     <el-row :gutter="20">
       <el-col :xs="24" :sm="8">
-        <el-card class="card-container">
-
-        </el-card>
+        <el-card class="card-container" />
       </el-col>
       <el-col :xs="24" :sm="16">
         <el-card class="card-container">
@@ -30,7 +28,7 @@ import Todos from './components/Todos.vue'
 
 export default {
   name: 'Dashboard',
-  components:{Todos},
+  components: { Todos },
   data() {
     return {
       welcome: {

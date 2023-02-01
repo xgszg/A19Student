@@ -17,7 +17,7 @@
       >
         <template slot-scope="scope">
           {{ scope.row.name }}
-          <el-tag style="margin-left: 5px" v-for="(label,index) in scope.row.labels" :key="index" type="info" size="small">{{ label }}</el-tag>
+          <el-tag v-for="(label,index) in scope.row.labels" :key="index" style="margin-left: 5px" type="info" size="small">{{ label }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column

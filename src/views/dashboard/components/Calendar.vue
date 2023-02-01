@@ -1,15 +1,14 @@
 <template>
-<div>
-  <el-calendar v-model="value">
-  </el-calendar>
-</div>
+  <div>
+    <el-calendar v-model="value" class="cal" />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Calendar',
-  data(){
-    return{
+  data() {
+    return {
       value: new Date()
     }
   }
@@ -17,5 +16,7 @@ export default {
 </script>
 
 <style scoped>
-
+.cal /deep/ .el-calendar-table .el-calendar-day{
+  height: 40px;
+}
 </style>

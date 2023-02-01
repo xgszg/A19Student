@@ -8,16 +8,20 @@
         <span class="welcome">{{ welcome.tips2 }}</span>
       </el-card>
     </el-row>
-    <!--代办-->
     <el-row :gutter="20">
       <el-col :xs="24" :sm="8">
         <el-card class="card-container">
-
+          <!--日历-->
+          <Calendar />
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="16">
+        <!--代办事项-->
         <el-card class="card-container">
           <Todos />
+        </el-card>
+        <el-card class="card-container">
+          <Logs />
         </el-card>
       </el-col>
     </el-row>
@@ -27,10 +31,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import Todos from './components/Todos.vue'
+import Calendar from './components/Calendar.vue'
+import Logs from './components/Logs.vue'
 
 export default {
   name: 'Dashboard',
-  components:{Todos},
+  components: { Todos, Calendar, Logs },
   data() {
     return {
       welcome: {

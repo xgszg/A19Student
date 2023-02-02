@@ -7,18 +7,18 @@
           <span v-for="(item, index) in classInfo.classrooms" :key="index">{{ item }} </span>
         </div>
         <div class="people">已加入 86人</div>
-        <div class="classcode"><i class="el-icon-copy-document"></i> 课程码 {{ classInfo.code }}</div>
-        <span><el-button type="primary" style="float: right" icon="el-icon-video-play" :disabled='true' round>加入课堂</el-button></span>
+        <div class="classcode"><i class="el-icon-copy-document" /> 课程码 {{ classInfo.code }}</div>
+        <span><el-button type="primary" style="float: right" icon="el-icon-video-play" :disabled="true" round>加入课堂</el-button></span>
       </div>
       <template>
-  <el-tabs v-model="tabs" class="tabs">
-    <el-tab-pane label="目录" name="catalogue">目录</el-tab-pane>
-    <el-tab-pane label="互动课件" name="courseware">互动课件</el-tab-pane>
-    <el-tab-pane label="作业" name="task">作业</el-tab-pane>
-    <el-tab-pane label="测试" name="test">测试</el-tab-pane>
-    <el-tab-pane label="资料" name="data">资料</el-tab-pane>
-    <el-tab-pane label="公告" name="notice">公告</el-tab-pane>
-  </el-tabs>
+        <el-tabs v-model="tabs" class="tabscss">
+          <el-tab-pane label="目录" name="catalogue">目录</el-tab-pane>
+          <el-tab-pane label="互动课件" name="courseware">互动课件</el-tab-pane>
+          <el-tab-pane label="作业" name="task">作业</el-tab-pane>
+          <el-tab-pane label="测试" name="test">测试</el-tab-pane>
+          <el-tab-pane label="资料" name="data">资料</el-tab-pane>
+          <el-tab-pane label="公告" name="notice">公告</el-tab-pane>
+        </el-tabs>
       </template>
     </el-card>
   </div>
@@ -73,7 +73,22 @@ export default {
 </script>
 
 <style>
-
+.container{
+  margin:20px
+}
+.tabscss{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.el-tabs__item {
+  font-size: 18px !important;
+}
+.box-card{
+  width: 80%;
+  margin-left: 10%;
+}
 #name{
   color: #ffffff;
   font-size: 40px;
@@ -81,17 +96,17 @@ export default {
 }
 .classroom{
   color: #ffffff;
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 25px;
+  margin-top: 10px;
 }
 .classcode{
   color: #ffffff;
-  font-size: 16px;
+  font-size: 17px;
   margin-top: 10px;
 }
 .people{
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 10px;
 }
 .manager{

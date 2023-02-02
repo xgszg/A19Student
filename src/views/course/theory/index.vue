@@ -72,28 +72,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.tabs{
-  margin-left:20px;
-  margin-top:10px;
-  margin-bottom:20px;
-  margin-right:20px;
-}
-.container{
-  margin:20px;
-  margin-left: 10%;
-}
-.image-box{
-  background-image: url("http://lsky.jujuh.top/i/2022/04/03/62497a4626769.png");
-  height: 200px;
-  background-size: cover;
-  padding:30px;
-  width: 100%;
-}
-
-.box-card{
-  width: 80%;
-}
+<style>
 
 #name{
   color: #ffffff;

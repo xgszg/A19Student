@@ -1,4 +1,5 @@
 export default {
+  // 课程数据
   classrooms: [{
     id: 1,
     date: '2021-2022第二学期',
@@ -52,6 +53,17 @@ export default {
     code: 'fd4f8w4',
     teacher: '张强',
     classification: '理论',
+    url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")'
+  }],
+  // 实验数据
+  investigation: [{
+    id: 2,
+    date: '2021-2022第二学期',
+    name: '操作系统',
+    classrooms: ['软工201', '软工202'],
+    code: '4da15rd',
+    teacher: '刘红林',
+    classification: '实训',
     url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")'
   }]
 }

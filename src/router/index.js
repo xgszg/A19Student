@@ -73,6 +73,22 @@ export const asyncRoutes = [
         name: 'Course',
         component: () => import('@/views/course/index.vue'),
         meta: { title: '我的课程', icon: 'table' }
+      },
+      // 实训界面
+      {
+        path: '/course/experiment',
+        name: 'experiment',
+        hidden: true,
+        meta: { title: '实训课程' },
+        component: () => import('@/views/course/experiment/index.vue')
+      },
+      // 理论界面
+      {
+        path: '/course/theory',
+        name: 'theory',
+        hidden: true,
+        meta: { title: '理论课程' },
+        component: () => import('@/views/course/theory/index.vue')
       }
     ]
   },
@@ -134,18 +150,7 @@ export const asyncRoutes = [
       }
     ]
   },
-  // 实训界面
-  {
-    path: '/experiment',
-    hidden: false,
-    component: () => import('@/views/course/experiment/index.vue')
-  },
-  // 理论界面
-  {
-    path: '/theory',
-    hidden: false,
-    component: () => import('@/views/course/theory/index.vue')
-  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

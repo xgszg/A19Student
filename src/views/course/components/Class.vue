@@ -2,7 +2,7 @@
   <div>
     <el-card class="box-card" :body-style="{padding:'0px'}" shadow="hover">
       <span><el-tag id="classification" :type="classificationtype(classInfo.classification)" style="float: right;">{{ classInfo.classification }}</el-tag></span>
-      <div :style="imageClass" @click="Classcontent(classInfo.classification)">
+      <div :style="imageClass" @click="Classcontent(classInfo)">
         <div id="term">{{ classInfo.date }}</div>
         <div id="name">{{ classInfo.name }}</div>
         <div class="classroom">
@@ -76,11 +76,21 @@ export default {
         })
       })
     },
-    Classcontent(k) {
-      if(k==='实训')
-      this.$router.push({ path: '/experiment' })
-      else{
-      this.$router.push({ path: '/theory' })
+    Classcontent(classInfo) {
+      if (classInfo.classification === '实训') {
+        this.$router.push({
+          path: '/course/experiment',
+          name: 'experiment',
+          params: {
+            classInfo: classInfo }
+        })
+      } else {
+        this.$router.push({
+          path: '/course/theory',
+          name: 'theory',
+          params: {
+            classInfo: classInfo }
+        })
       }
     },
     classificationtype(k) {

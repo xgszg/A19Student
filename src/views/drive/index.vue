@@ -51,7 +51,7 @@
             prop="operation"
             label="操作"
             min-width="10%">
-            <template slot-scope="scope">
+            <template>
               <el-button
                 type="primary"
                 size="mini"
@@ -66,6 +66,7 @@
 
 <script>
 export default {
+  name: 'Drive',
   data() {
     return {
       tableData: [{
@@ -133,3 +134,4 @@ export default {
   font-size: 14px;
 }
 </style>
+

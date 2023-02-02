@@ -88,6 +88,20 @@ export const constantRoutes = [
         meta: { title: 'Form', icon: 'form' }
       }
     ]
+  },
+
+  {
+    path: '/cloud',
+    component: Layout,
+    name: 'cloud',
+    children: [
+      {
+        path: 'index',
+        name: 'Cloud',
+        component: () => import('@/views/cloud/index'),
+        meta: { title: '我的云盘', icon: 'cloud4' }
+      }
+    ]
   }
 ]
 

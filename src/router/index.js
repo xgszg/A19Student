@@ -134,6 +134,18 @@ export const asyncRoutes = [
       }
     ]
   },
+  // 实训界面
+  {
+    path: '/experiment',
+    hidden: false,
+    component: () => import('@/views/course/experiment/index.vue')
+  },
+  // 理论界面
+  {
+    path: '/theory',
+    hidden: false,
+    component: () => import('@/views/course/theory/index.vue')
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

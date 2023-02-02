@@ -9,13 +9,13 @@
       </el-card>
     </el-row>
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="8">
+      <el-col :xs="24" :sm="24" :md="8">
         <el-card class="card-container">
           <!--日历-->
           <Calendar />
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="16">
+      <el-col :xs="24" :sm="24" :md="16">
         <!--代办事项-->
         <el-card class="card-container">
           <Todos />

@@ -5,7 +5,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-
+import Experiment from '@/layout/experiment.vue'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -92,6 +92,7 @@ export const asyncRoutes = [
       }
     ]
   },
+  // 考试管理
   {
     path: '/exam',
     component: Layout,
@@ -107,6 +108,7 @@ export const asyncRoutes = [
       }
     ]
   },
+  // 实验管理
   {
     path: '/investigation',
     component: Layout,
@@ -119,6 +121,20 @@ export const asyncRoutes = [
         name: 'Investigation',
         component: () => import('@/views/investigation/index.vue'),
         meta: { title: '我的实验', icon: 'el-icon-data-analysis' }
+      }
+    ]
+  },
+  // 实验页面
+  {
+    path: '/experiment',
+    component: Experiment,
+    redirect: '/experiment/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Experiment',
+        component: () => import('@/views/investigation/experiment/index.vue'),
+        meta: { title: '实验', icon: 'el-icon-data-analysis' }
       }
     ]
   },

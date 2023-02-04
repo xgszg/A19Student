@@ -12,12 +12,17 @@
       </div>
       <template>
         <el-tabs v-model="tabs" class="tabscss">
-          <el-tab-pane label="目录" name="catalogue">目录</el-tab-pane>
-          <el-tab-pane label="互动课件" name="courseware">互动课件</el-tab-pane>
+          <el-tab-pane label="目录" name="catalogue">
+            <Catalogue />
+          </el-tab-pane>
+          <el-tab-pane label="互动课件" name="courseware">
+            <Courseware />
+          </el-tab-pane>
           <el-tab-pane label="作业" name="task">作业</el-tab-pane>
           <el-tab-pane label="测试" name="test">测试</el-tab-pane>
           <el-tab-pane label="资料" name="data">资料</el-tab-pane>
           <el-tab-pane label="公告" name="notice">公告</el-tab-pane>
+          <el-tab-pane label="成员" name="people">成员</el-tab-pane>
         </el-tabs>
       </template>
     </el-card>
@@ -25,8 +30,12 @@
 </template>
 
 <script>
+import Catalogue from './components/catalogue.vue'
+import Courseware from './components/courseware.vue'
+
 export default {
   name: 'Class',
+  components: { Catalogue, Courseware },
   props: {
     classInfo: {
       type: Object,
@@ -72,7 +81,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container{
   margin:20px
 }
@@ -82,8 +91,11 @@ export default {
   margin-right: 20px;
   margin-bottom: 20px;
 }
-.el-tabs__item {
-  font-size: 18px !important;
+.tabscss /deep/ .el-tabs__item{
+  font-size: 18px;
+}
+.el-tabs__nav-scroll{
+  font-size: 18px;
 }
 .box-card{
   width: 80%;

@@ -18,7 +18,9 @@
           <el-tab-pane label="互动课件" name="courseware">
             <Courseware />
           </el-tab-pane>
-          <el-tab-pane label="作业" name="task">作业</el-tab-pane>
+          <el-tab-pane label="作业" name="task">
+            <Homework />
+          </el-tab-pane>
           <el-tab-pane label="测试" name="test">测试</el-tab-pane>
           <el-tab-pane label="资料" name="data">资料</el-tab-pane>
           <el-tab-pane label="公告" name="notice">公告</el-tab-pane>
@@ -32,10 +34,11 @@
 <script>
 import Catalogue from './components/catalogue.vue'
 import Courseware from './components/courseware.vue'
+import Homework from './components/homework.vue'
 
 export default {
   name: 'Class',
-  components: { Catalogue, Courseware },
+  components: { Catalogue, Courseware, Homework },
   props: {
     classInfo: {
       type: Object,

@@ -89,7 +89,7 @@ function openTerminal(options) {
 
   term.open(document.getElementById('terminal'))
   // 在页面上显示连接中...
-  term.writeln('Connecting...')
+  term.writeln('正在连接......\r\n')
 
   term.onData(function(key) {
     var order = {
@@ -115,7 +115,7 @@ function openTerminal(options) {
     onClose: function() {
       // 连接关闭回调
       term.writeln('')
-      term.writeln('\rconnection closed')
+      term.writeln('\r连接关闭')
     },
     onData: function(data) {
       // 收到数据时回调
@@ -123,11 +123,12 @@ function openTerminal(options) {
     },
     onReconnect: function(times) {
       // 重连回调
-      term.writeln(ordinal_suffix_of(times) + ' reconnecting....')
+      term.writeln(ordinal_suffix_of(times) + ' 重新连接')
       term.writeln('')
     },
     onOverReconnect: function(times) {
-      alert('Reconnection failed more than ' + times + ' times.')
+      // alert('Reconnection failed more than ' + times + ' times.')
+      connectFail(times)
     }
   })
   function ordinal_suffix_of(i) {
@@ -160,16 +161,19 @@ export default {
     }
   },
   mounted() {
-    openTerminal({
-      operate: 'connect',
-      host: '192.168.3.248', // IP
-      port: '22', // 端口号
-      username: 'zerolouis', // 用户名
-      password: 'wxj20020322'// 密码
-    })
+    openTerminal(this.options)
   },
   methods: {
-
+     connectFail(times){
+      this.$notify({
+        title: '连接失败!',
+        type: 'error',
+        message: '重新连接超过' + times + '次'
+      })
+    }
+  },
+  created() {
+    window.connectFail = this.connectFail
   }
 }
 </script>

@@ -1,70 +1,61 @@
 <template>
   <div>
-    <el-card class="box-card" shadow="never">
-      <div class="name">
-        <el-avatar class="el-icon-collection" />
-        <span style="margin-left: 2%;margin-top:4px">互动课件</span>
-        <el-button class="downloadpan" type="primary" size="small" plain>保存云盘</el-button>
-        <el-button class="download" type="primary" size="small">下载</el-button>
+    <div class="name">
+      <el-avatar class="el-icon-collection" />
+      <div style="width: 24%;margin-top: 8px">
+        <span class="coursewarename">互动课件</span>
       </div>
-      <div style="margin-top:5px">
-        <span class="tips">互动课件</span>
+      <div class="bottoncss">
+        <el-button style="margin-right: 10px;" type="primary" size="medium" plain @click="Saveclouddisk">保存云盘</el-button>
+        <el-button style="margin-right: 10px;" type="primary" size="medium">下载</el-button>
       </div>
-    </el-card>
-    <el-card class="box-card" shadow="never">
-      <div class="name">
-        <el-avatar class="el-icon-collection" />
-        <span style="margin-left: 2%;margin-top:4px">互动课件</span>
-        <el-button class="downloadpan" type="primary" size="small" plain>保存云盘</el-button>
-        <el-button class="download" type="primary" size="small">下载</el-button>
-      </div>
-      <div style="margin-top:5px">
-        <span class="tips">互动课件</span>
-      </div>
-    </el-card>
-    <el-card class="box-card" shadow="never">
-      <div class="name">
-        <el-avatar class="el-icon-collection" />
-        <span style="margin-left: 2%;margin-top:4px">互动课件</span>
-        <el-button class="downloadpan" type="primary" size="small" plain>保存云盘</el-button>
-        <el-button class="download" type="primary" size="small">下载</el-button>
-      </div>
-      <div style="margin-top:5px">
-        <span class="tips">互动课件</span>
-      </div>
-    </el-card>
+    </div>
+    <span class="coursewaretips">互动课件</span>
+    <el-divider />
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    Saveclouddisk() {
+      this.$message({
+        message: '保存云盘成功',
+        type: 'success'
+      })
+    }
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-.download{
-    margin-left:1%;
-    margin-top:5px;
-}
-.downloadpan{
-    margin-left:74%;
-    margin-top:5px;
-}
-.box-card{
+<style scoped>
+.coursewaretips{
     margin-top: 10px;
+    margin-left: 3px;
+    font-size: 14px;
 }
 .el-icon-collection{
-    font-size: 30px;
-    margin-left: 8px;
-    background: #31b943;
+    font-size: 20px;
 }
-.tips{
-    font-size: 14px;
+.el-divider--horizontal{
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+.el-avatar{
+    margin: 10px;
+    background: #7be447;
+}
+.coursewarename{
+    white-space:nowrap;
+    font-size: 18px;
+    margin-left: 5%;
 }
 .name{
     display:flex;
-    font-size: 18px;
-    height: 40px;
+}
+.bottoncss{
+    width: 70%;
+    margin-top: 15px;
+    text-align: right;
 }
 </style>

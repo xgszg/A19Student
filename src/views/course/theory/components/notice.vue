@@ -1,14 +1,17 @@
 <template>
   <div>
     <div class="name">
-      <el-avatar class="el-icon-edit" />
+      <el-avatar class="el-icon-bell" />
       <div style="width:24%">
-        <span class="homename">作业一</span><br>
-        <span class="hometime">提交截至时间：22/12/31 00:00 | 已结束 | 个人作业</span><br>
-        <span class="homestate">已提交</span>
+        <div style="margin-top:5px">
+          <span class="testname">公告一</span>
+        </div>
+        <div style="margin-top:10px">
+          <span class="testtime">发布时间：2022/12/31 10:30</span>
+        </div>
       </div>
       <div class="bottoncss">
-        <el-button style="margin-right: 10px;" type="primary" size="medium">提交</el-button>
+        <el-button style="margin-right: 10px;font-size: 18px;" type="text" size="small">查看</el-button>
       </div>
     </div>
     <el-divider />
@@ -22,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-.el-icon-edit{
+.el-icon-bell{
     font-size: 20px;
 }
 .el-divider--horizontal{
@@ -31,26 +34,24 @@ export default {
 }
 .el-avatar{
     margin: 10px;
-    background: #3fe0e6;
+    background:#934fff;
 }
-.homename{
+.testname{
     white-space:nowrap;
     font-size: 18px;
     margin-left: 2%;
     margin-top:4px
 }
-.hometime{
+.testtime{
     white-space:nowrap;
     font-size: 14px;
     margin-left: 2%;
     color: #646464;
 }
-.homestate{
+.teststate{
     white-space:nowrap;
     font-size: 14px;
     margin-left: 2%;
-    color: #67c23a;
-    font-weight: bold;
 }
 .name{
     display:flex;
@@ -58,7 +59,7 @@ export default {
 }
 .bottoncss{
     width: 70%;
-    margin-top: 15px;
+    margin-top: 10px;
     text-align:right;
 }
 </style>

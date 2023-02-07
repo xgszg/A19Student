@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="name">
-      <el-avatar class="el-icon-edit" />
+      <el-avatar class="el-icon-document" />
       <div style="width:24%">
-        <span class="homename">作业一</span><br>
-        <span class="hometime">提交截至时间：22/12/31 00:00 | 已结束 | 个人作业</span><br>
-        <span class="homestate">已提交</span>
+        <span class="testname">测试一</span><br>
+        <span class="testtime">截至时间：2022/12/31 10:30 | 已结束 | 考试</span><br>
+        <span class="teststate">限时：120分钟</span>
       </div>
       <div class="bottoncss">
-        <el-button style="margin-right: 10px;" type="primary" size="medium">提交</el-button>
+        <el-button style="margin-right: 10px;" size="medium">查看成绩</el-button>
       </div>
     </div>
     <el-divider />
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.el-icon-edit{
+.el-icon-document{
     font-size: 20px;
 }
 .el-divider--horizontal{
@@ -31,26 +31,24 @@ export default {
 }
 .el-avatar{
     margin: 10px;
-    background: #3fe0e6;
+    background:#f8916b;
 }
-.homename{
+.testname{
     white-space:nowrap;
     font-size: 18px;
     margin-left: 2%;
     margin-top:4px
 }
-.hometime{
+.testtime{
     white-space:nowrap;
     font-size: 14px;
     margin-left: 2%;
     color: #646464;
 }
-.homestate{
+.teststate{
     white-space:nowrap;
     font-size: 14px;
     margin-left: 2%;
-    color: #67c23a;
-    font-weight: bold;
 }
 .name{
     display:flex;

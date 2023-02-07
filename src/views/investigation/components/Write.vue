@@ -19,7 +19,7 @@
           <svg-icon icon-class="write2" /> 步骤
         </span>
         <div class="markdown-container" :style="{height: height+30+'px'}">
-          <Read />
+          <ReadMarkDown />
         </div>
       </el-tab-pane>
       <el-tab-pane>
@@ -36,13 +36,14 @@
 import Title from '@/views/investigation/components/Title.vue'
 import Chapter from '@/views/investigation/components/Chapter.vue'
 import Read from '@/views/investigation/components/Read.vue'
+import ReadMarkDown from '@/views/investigation/components/ReadMarkDown.vue'
 
 export default {
   name: 'Write',
   components: {
     Title,
     Chapter,
-    Read
+    ReadMarkDown
   },
   data() {
     return {

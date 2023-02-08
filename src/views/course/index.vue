@@ -46,7 +46,7 @@ export default {
             message: '正在加入...'
           })
           /* this.classrooms=ClassInfo.newclassrooms */
-          var l = { id: this.classrooms.length + 1, date: '2021-2022第二学期', name: '大学英语（四）', classrooms: ['软嵌201', '软嵌202'], code: value, teacher: '方慧敏', url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")' }
+          var l = { id: this.classrooms.length + 1, date: '2021-2022第二学期', name: '大学英语（四）', classrooms: ['软嵌201', '软嵌202'], code: value, teacher: '方慧敏', classification: '理论', url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")' }
           this.classrooms.push(l)
           /* this.classrooms[6].code=value */
         } else {

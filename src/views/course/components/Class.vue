@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-card class="box-card" :body-style="{padding:'0px'}" shadow="hover">
-      <span><el-tag type="warning" style="float: right;" @click="Classdetail">混合</el-tag></span>
-      <div :style="imageClass">
+      <span><el-tag id="classification" :type="classificationtype(classInfo.classification)" style="float: right;">{{ classInfo.classification }}</el-tag></span>
+      <div :style="imageClass" @click="Classcontent(classInfo)">
         <div id="term">{{ classInfo.date }}</div>
         <div id="name">{{ classInfo.name }}</div>
         <div class="classroom">
@@ -31,6 +31,7 @@ export default {
           classrooms: ['班级1', '班级2'],
           code: '课程码',
           teacher: '教师名称',
+          classification: '课程分类',
           url: 'url("https://lsky-picture.stdcdn.com/uploads/2022/04/eb5c30a0ce1ac0429ceb43dd6103814a.png")'
         }
       }
@@ -75,8 +76,29 @@ export default {
         })
       })
     },
-    Classdetail() {
-      this.$router.push({ path: '/Classdetail' })
+    Classcontent(classInfo) {
+      if (classInfo.classification === '实训') {
+        this.$router.push({
+          path: '/course/experiment',
+          name: 'experiment',
+          params: {
+            classInfo: classInfo }
+        })
+      } else {
+        this.$router.push({
+          path: '/course/theory',
+          name: 'theory',
+          params: {
+            classInfo: classInfo }
+        })
+      }
+    },
+    classificationtype(k) {
+      if (k === '实训') {
+        return 'warning'
+      } else {
+        return 'success'
+      }
     }
   }
 }
@@ -116,7 +138,7 @@ export default {
   padding: 20px;
   width: 100%;
 }
-#in{
-  color: white;
+#classification{
+  font-size: 16px;
 }
 </style>

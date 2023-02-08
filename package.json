@@ -14,16 +14,21 @@
     "test:ci": "npm run lint && npm run test:unit"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^1.7.11",
     "axios": "0.18.1",
     "core-js": "3.6.5",
     "element-ui": "2.13.2",
+    "highlight.js": "^11.7.0",
     "js-cookie": "2.2.0",
+    "marked": "^4.2.12",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
-    "vue": "2.6.10",
+    "vditor": "^3.9.0",
+    "vue": "^2.6.11",
     "vue-router": "3.0.6",
-    "vuex": "3.1.0"
+    "vuex": "3.1.0",
+    "xterm": "^4.19.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.4.4",
@@ -48,7 +53,7 @@
     "serve-static": "1.13.2",
     "svg-sprite-loader": "4.1.3",
     "svgo": "1.2.2",
-    "vue-template-compiler": "2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
     "> 1%",

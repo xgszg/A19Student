@@ -8,7 +8,7 @@
         </div>
         <div class="people">已加入 86人</div>
         <div class="classcode"><i class="el-icon-copy-document" /> 课程码 {{ classInfo.code }}</div>
-        <span><el-button type="primary" style="float: right" icon="el-icon-video-play" :disabled="true" round>加入课堂</el-button></span>
+        <span><el-button @click="gotoroom()" type="primary" style="float: right" icon="el-icon-video-play" round>加入课堂</el-button></span>
       </div>
       <template>
         <el-tabs v-model="tabs" v-loading="loading" class="tabscss" @tab-click="openFullScreen1">
@@ -122,6 +122,9 @@ export default {
       setTimeout(() => {
         this.loading = false
       }, 1000)
+    },
+    gotoroom() {
+      this.$router.push("/course/theory/liveroom")
     }
   }
 }

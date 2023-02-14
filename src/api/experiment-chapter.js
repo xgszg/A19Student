@@ -384,5 +384,363 @@ export default {
    \`\`\`
 
    这些都和上面打出的参数吻合，表示此次实验是成功的。`
+  }],
+  // 实验报告演示
+  reports: [{
+    id: '1',
+    content: `# 操作系统的引导实验
+
+> 实验日期-：2022年3月11日
+>
+> 班级： 软嵌202
+>
+> 姓名： 汪星聚
+>
+> 学号： 2030110778
+
+## 1. 实验目的
+
+- 熟悉 \`hit-oslab\` 实验环境；
+- 建立对操作系统引导过程的深入认识；
+- 掌握操作系统的基本开发过程；
+- 能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱
+
+## 2. 实验内容
+
+此次实验的基本内容是：
+
+1. 阅读《Linux 内核完全注释》的第 6 章，对计算机和 Linux 0.11 的引导过程进行初步的了解；
+2. 按照下面的要求改写 0.11 的引导程序 \`bootsect.s\`
+3. 有兴趣同学可以做做进入保护模式前的设置程序 \`setup.s\`
+
+## 3. 实验步骤
+
+### 3.1 bootsect.s 的屏幕输出功能
+
+1. 修改\`bootsect.s\`文件
+
+   \`\`\`
+   entry _start
+   _start:
+       mov ah,#0x03
+       xor bh,bh
+       int 0x10
+       mov cx,#27
+       mov bx,#0x0007
+       mov bp,#msg1
+       mov ax,#0x07c0
+       mov es,ax
+       mov ax,#0x1301
+       int 0x10
+   inf_loop:
+       jmp inf_loop
+   msg1:
+       .byte   13,10
+       .ascii  "Hello, my name is WXJ"
+       .byte   13,10,13,10
+   .org 508
+   boot_flag:
+       .word   0xAA55
+   \`\`\`
+
+2. 重新编译链接
+
+   \`\`\`shell
+   as86 -0 -a -o bootsect.o bootsect.s
+   ld86 -0 -s -o bootsect bootsect.o
+   \`\`\`
+
+3. 清除头部32字节
+
+   \`\`\`shell
+   dd bs=1 if=bootsect of=Image skip=32
+   \`\`\`
+
+4. 拷贝到\`~/oslab/linux-0.11\`并重命名为\`Image\`
+
+5. 运行测试
+
+   ![image-20220307131320907](https://snz04pap001files.storage.live.com/y4m9Y-LmHqUqjM05cqonGS37xhmAxS_po7BfKR7Bo2wRGBG0DV4_GxsPWfOjfFWkApf4ozzty1h6cxScd9rXHv7EI_JBAGvymPJHv4ntK--LowWlY2SG-08_H6J5ea8D2on9BV_d8nMMYHSmMg4UJzodpy2NAoF1k-c0yZewjIVYrKjrMZg5jjTstrKH7ItBvha?width=1522&height=1238&cropmode=none)
+
+### 3.2 bootsect.s 读入 setup.s
+
+1. 修改\`setup.s\`
+
+   \`\`\`
+   .globl begtext, begdata, begbss, endtext, enddata, endbss
+   .text
+   begtext:
+   .data
+   begdata:
+   .bss
+   begbss:
+   .text
+
+   BOOTSEG  = 0x07c0           ! original address of boot-sector
+   INITSEG  = 0x9000           ! we move boot here - out of the way
+   SETUPSEG = 0x9020           ! setup starts here
+
+   entry _start
+   _start:
+
+   !设置cs=ds=es
+       mov ax,cs
+       mov ds,ax
+       mov es,ax
+
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+
+       mov cx,#28
+       mov bx,#0x000c      ! page 0, attribute c
+       mov bp,#msg1
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   !死循环
+   l:  jmp l
+
+   msg1:
+       .byte 13,10
+       .ascii "Now we are in setup..."
+       .byte 13,10,13,10
+
+   .text
+   endtext:
+   .data
+   enddata:
+   .bss
+   endbss:
+
+   \`\`\`
+
+2. 修改\`build.c\`，忽略所有与 system 有关的工作
+
+   ![image-20220307135313860](https://snz04pap001files.storage.live.com/y4m2AuCK7BW-M8fENr9a15rlT_r7D3ns-PDC7ilxNfSlmtw7w8JUl4ntTHfT5NfX7ptOrB8cisxP6l-RzO24Da2nU0S4wFyw0K0xgMnYi6Tyj9wBW0TyYrWDO9jyWbiUIsW86sqMrInf8JmxH7mXi7_HCHxzEDUfrYCnRLOLudoLiPUgVSLEergwow2Nz7zSYt1?width=540&height=266&cropmode=none)
+
+3. 重新生成镜像
+
+   \`\`\`shell
+   make BootImage
+   \`\`\`
+
+4. 运行测试
+
+   ![image-20220307135611846](https://snz04pap001files.storage.live.com/y4m-brO16RuCOyP44BeAAZn00hUFc-h8hFCqFU4nAHYKK4EfPZMdfpGtTjPuoGhYvEII5CTG_EnkGG-pIpm_7Ar_460slrDDgkD9CjCESdI25N7fo-JtdclbylYLyRL7GNLhJ8gtWQ2ui_kU32-Vn7cywHqine6wB03bA1HIE-Fh2kFOjsO_gtpBA4Z5h9ZeWrv?width=1521&height=1236&cropmode=none)
+
+### 3.3 显示其他信息
+
+1. 重新修改\`setup.s\`
+
+   \`\`\`
+   .globl begtext, begdata, begbss, endtext, enddata, endbss
+   .text
+   begtext:
+   .data
+   begdata:
+   .bss
+   begbss:
+   .text
+
+   BOOTSEG  = 0x07c0           ! original address of boot-sector
+   INITSEG  = 0x9000           ! we move boot here - out of the way
+   SETUPSEG = 0x9020           ! setup starts here
+
+   entry _start
+   _start:
+
+   !设置cs=ds=es
+       mov ax,cs
+       mov ds,ax
+       mov es,ax
+
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+
+       mov cx,#28
+       mov bx,#0x000c      ! page 0, attribute c
+       mov bp,#msg1
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   ! ok, the read went well so we get current cursor position and save it for
+   ! posterity.
+   ! 获取光标位置 =>  0x9000:0
+       mov ax,#INITSEG ! this is done in bootsect already, but...
+       mov ds,ax
+       mov ah,#0x03    ! read cursor pos
+       xor bh,bh
+       int 0x10        ! save it in known place, con_init fetches
+       mov [0],dx      ! it from 0x90000.
+
+   ! Get memory size (extended mem, kB)
+   ! 获取拓展内存大小 => 0x9000:2
+       mov ah,#0x88
+       int 0x15
+       mov [2],ax
+
+   ! Get hd0 data
+   ! 获取硬盘参数 => 0x9000:80  大小：16B
+       mov ax,#0x0000
+       mov ds,ax
+       lds si,[4*0x41]
+       mov ax,#INITSEG
+       mov es,ax
+       mov di,#0x0080
+       mov cx,#0x10
+       rep
+       movsb
+
+   ! 前面修改了ds寄存器，这里将其设置为0x9000
+       mov ax,#INITSEG
+       mov ds,ax
+       mov ax,#SETUPSEG
+       mov es,ax
+
+   !显示 Cursor POS: 字符串
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+       mov cx,#11
+       mov bx,#0x0007      ! page 0, attribute c
+       mov bp,#cur
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   !调用 print_hex 显示具体信息
+       mov ax,[0]
+       call print_hex
+       call print_nl
+
+   !显示 Memory SIZE: 字符串
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+       mov cx,#12
+       mov bx,#0x0007      ! page 0, attribute c
+       mov bp,#mem
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   !显示 具体信息
+       mov ax,[2]
+       call print_hex
+
+   !显示相应 提示信息
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+       mov cx,#25
+       mov bx,#0x0007      ! page 0, attribute c
+       mov bp,#cyl
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   !显示具体信息
+       mov ax,[0x80]
+       call print_hex
+       call print_nl
+
+   ！显示 提示信息
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+       mov cx,#8
+       mov bx,#0x0007      ! page 0, attribute c
+       mov bp,#head
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   ！显示 具体信息
+       mov ax,[0x80+0x02]
+       call print_hex
+       call print_nl
+
+   ！显示 提示信息
+       mov ah,#0x03        ! read cursor pos
+       xor bh,bh
+       int 0x10
+       mov cx,#8
+       mov bx,#0x0007      ! page 0, attribute c
+       mov bp,#sect
+       mov ax,#0x1301      ! write string, move cursor
+       int 0x10
+
+   ！显示 具体信息
+       mov ax,[0x80+0x0e]
+       call print_hex
+       call print_nl
+
+   !死循环
+   l:  jmp l
+
+   !以16进制方式打印ax寄存器里的16位数
+   print_hex:
+       mov cx,#4   ! 4个十六进制数字
+       mov dx,ax   ! 将ax所指的值放入dx中，ax作为参数传递寄存器
+   print_digit:
+       rol dx,#4  ! 循环以使低4比特用上 !! 取dx的高4比特移到低4比特处。
+       mov ax,#0xe0f  ! ah = 请求的功能值,al = 半字节(4个比特)掩码。
+       and al,dl ! 取dl的低4比特值。
+       add al,#0x30  ! 给al数字加上十六进制0x30
+       cmp al,#0x3a
+       jl outp  !是一个不大于十的数字
+       add al,#0x07  !是a~f,要多加7
+   outp:
+       int 0x10
+       loop print_digit
+       ret
+
+   !打印回车换行
+   print_nl:
+       mov ax,#0xe0d
+       int 0x10
+       mov al,#0xa
+       int 0x10
+       ret
+
+   msg1:
+       .byte 13,10
+       .ascii "Now we are in setup..."
+       .byte 13,10,13,10
+   cur:
+       .ascii "Cursor POS:"
+   mem:
+       .ascii "Memory SIZE:"
+   cyl:
+       .ascii "KB"
+       .byte 13,10,13,10
+       .ascii "HD Info"
+       .byte 13,10
+       .ascii "Cylinders:"
+   head:
+       .ascii "Headers:"
+   sect:
+       .ascii "Secotrs:"
+
+   .text
+   endtext:
+   .data
+   enddata:
+   .bss
+   endbss:
+   \`\`\`
+
+2. 生成镜像
+
+3. 运行测试
+
+   ![image-20220307140427890](https://snz04pap001files.storage.live.com/y4mvz8TLJJx4dPCH65LgznaS2z_eeEFATEuXOhuirNaKxt8nHiiCzGNH46rJ2jFkH8w7nnyegeYnRfKi8OnwriWZ9fnwENaPIByJqiY-daebJJ8ueFohSxKcNpF7WCvWuIeqTnJmEpWJAABE51U5P-TwsSp-ZtNsFiZXppUWe6g2FhQhlMwYAz6h7NoXD0EK9Bs?width=1539&height=1167&cropmode=none)
+
+## 4. 总结
+
+问题：有时，继承传统意味着别手蹩脚。x86 计算机为了向下兼容，导致启动过程比较复杂。请找出 x86 计算机启动过程中，被硬件强制，软件必须遵守的两个“多此一举”的步骤（多找几个也无妨），说说它们为什么多此一举，并设计更简洁的替代方案。
+
+> 80826，系统的地址总线由原理啊的20根发展为24根，这样能够访问呢的内存可以达到16M，但在设计80826时目标是向下兼容，也就是说在实模式下80386以及后续系列应该和8086/8088完全兼容仍然使用A20总线。所以高级芯片不得不保留实模式。
+> 如果程序员访问100000H-10FFEFH之间的内存，系统将实际访问这块内存。进入实模式多此一举，可以直接进入保护模式
+> 解决方案：不向下兼容直接进入32位的保护模式
+`
   }]
 }

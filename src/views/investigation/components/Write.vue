@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <el-tabs tab-position="left" type="border-card" class="tab">
-      <el-tab-pane style="overflow-y:auto;overflow-x:hidden;">
+    <el-tabs v-model="currentTab" tab-position="left" type="border-card" class="tab">
+      <el-tab-pane name="course" style="overflow-y:auto;overflow-x:hidden;">
         <span slot="label">
           <svg-icon icon-class="write3" /> 课程
         </span>
@@ -14,19 +14,30 @@
           <Chapter />
         </div>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="step">
         <span slot="label">
           <svg-icon icon-class="write2" /> 步骤
         </span>
-        <div class="markdown-container" :style="{height: height+30+'px'}">
+        <!--控制高度-->
+        <div class="markdown-container" :style="{height: height + 30 +'px'}">
+          <!--步骤页-->
           <ReadMarkDown />
         </div>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="report">
         <span slot="label">
           <svg-icon icon-class="write1" /> 报告
         </span>
-        实验报告
+        <!--控制高度-->
+        <div :style="{height: height+30+'px'}">
+          <!--MarkDown编辑器，使用Vditor-->
+          <Markdown />
+          <!--按钮区域-->
+          <div class="markdown-button">
+            <el-button size="middle" type="primary" plain round>保存</el-button>
+            <el-button id="submit-button" size="middle" type="primary" round>提交</el-button>
+          </div>
+        </div>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -35,33 +46,50 @@
 <script>
 import Title from '@/views/investigation/components/Title.vue'
 import Chapter from '@/views/investigation/components/Chapter.vue'
-import Read from '@/views/investigation/components/Read.vue'
+// import Read from '@/views/investigation/components/Read.vue'
 import ReadMarkDown from '@/views/investigation/components/ReadMarkDown.vue'
+import Markdown from '@/views/investigation/components/Markdown.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Write',
   components: {
     Title,
     Chapter,
-    ReadMarkDown
+    ReadMarkDown,
+    Markdown
   },
   data() {
     return {
-      height: 900
+      height: 900,
+      currentTab: 'course'
+    }
+  },
+  computed: {
+    ...mapState('chapter', ['tab', 'chapter'])
+  },
+  watch: {
+    tab(newValue) {
+      this.currentTab = newValue
     }
   },
   mounted() {
     const that = this
-    window.onresize = function() {
+    window.onload = function() {
       that.heightResize()
     }
+    window.addEventListener('resize', () => { this.heightResize() })
+  },
+  destroyed() {
+    window.onresize = null
   },
   methods: {
     heightResize() {
-      console.log(document.body.clientHeight - 50)
-      this.height = document.body.clientHeight - 80
+      console.log(document.body.clientHeight)
+      this.height = document.body.clientHeight - 80 // 调整窗口高度
     }
   }
+
 }
 </script>
 
@@ -84,11 +112,19 @@ export default {
 .course-container{
   margin: 15px;
 }
+.markdown-container{
+  overflow-y:auto;
+  width: 100%;
+  padding: 0px;
+  overflow-x: hidden;
+}
 
-  .markdown-container{
-    overflow-y:auto;
-    width: 100%;
-    padding: 0px;
-    overflow-x: hidden;
+.markdown-button{
+  float: right;
+  margin-top: 5px;
+
+  #submit-button{
+    margin-right: 10px;
   }
+}
 </style>

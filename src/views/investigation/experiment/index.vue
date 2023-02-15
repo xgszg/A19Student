@@ -6,7 +6,8 @@
       </div>
       <div class="resize" title="关闭侧边栏" />
       <div class="right-container">
-        <WebSSH />
+        <Start />
+        <WebSSH v-if="false" />
       </div>
     </div>
   </div>
@@ -15,12 +16,14 @@
 <script>
 import Write from '@/views/investigation/components/Write.vue'
 import WebSSH from '@/views/investigation/components/WebSSH.vue'
+import Start from '@/views/investigation/components/Start.vue'
 
 export default {
   name: 'Experiment',
   components: {
     Write,
-    WebSSH
+    WebSSH,
+    Start
   },
   mounted() {
     // 初始化拖拽宽度

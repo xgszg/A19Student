@@ -161,9 +161,9 @@ export default {
         return i + 'th'
       }
     }
-    window.onresize = function() {
+    window.addEventListener('resize',()=>{
       document.getElementById('outerDiv').style.height = (document.body.clientHeight - 50) + 'px'
-    }
+    })
     document.getElementById('outerDiv').style.height = (document.body.clientHeight - 50) + 'px'
     openTerminal(this.options)
   },

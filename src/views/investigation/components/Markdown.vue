@@ -1,24 +1,28 @@
 <template>
-  <!--2.这里id对应new Vditor('vditor',{...})的第一个参数vidtor-->
-  <div id="vditor"/>
+  <div v-loading="!show" style="min-height: 400px;height: 100%">
+    <!--2.这里id对应new Vditor('vditor',{...})的第一个参数vidtor-->
+    <div id="vditor" />
+  </div>
 </template>
 
 <script>
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 import experimentChapter from '@/api/experiment-chapter'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Markdown',
   data() {
     return {
-      contentEditor: {}// 3.声明一个变量
+      contentEditor: {}, // 3.声明一个变量,
+      currentChapter: 0,
+      show: true
     }
   },
   mounted() {
-    var height = document.body.clientHeight - 100
     this.contentEditor = new Vditor('vditor', { // 4.刚刚声明的变量contentEditor被赋值为一个Vditor实例,
-      height: height,
+      height: '100%',
       placeholder: '此处为话题内容……',
       theme: 'classic',
       counter: {
@@ -83,9 +87,22 @@ export default {
           ]
         }],
       after: () => {
-        this.contentEditor.setValue(experimentChapter.reports[0].content)
+        this.contentEditor.setValue(experimentChapter.reports[this.currentChapter].content)
       }
     })
+  },
+  computed: {
+    ...mapState('chapter', ['chapter'])
+  },
+  watch: {
+    chapter(newValue) {
+      this.show = false
+      this.currentChapter = parseInt(newValue) - 1
+      this.contentEditor.setValue(experimentChapter.reports[this.currentChapter].content)
+      setTimeout(() => {
+        this.show = true
+      }, 1000)
+    }
   }
 }
 </script>

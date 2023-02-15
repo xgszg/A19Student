@@ -29,14 +29,14 @@
           <svg-icon icon-class="write1" /> 报告
         </span>
         <!--控制高度-->
-        <div :style="{height: height+30+'px'}">
+        <div :style="{height: height - 30 +'px'}">
           <!--MarkDown编辑器，使用Vditor-->
           <Markdown />
-          <!--按钮区域-->
-          <div class="markdown-button">
-            <el-button size="middle" type="primary" plain round>保存</el-button>
-            <el-button id="submit-button" size="middle" type="primary" round>提交</el-button>
-          </div>
+        </div>
+        <!--按钮区域-->
+        <div class="markdown-button">
+          <el-button size="middle" type="primary" plain round @click="handleSave">保存</el-button>
+          <el-button id="submit-button" size="middle" type="primary" round @click="handleSubmit">提交</el-button>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -61,14 +61,24 @@ export default {
   },
   data() {
     return {
-      height: 900,
-      currentTab: 'course'
+      height: 900
     }
   },
   computed: {
-    ...mapState('chapter', ['tab', 'chapter'])
+    ...mapState('chapter', ['tab', 'chapter']),
+    currentTab: {
+      get() {
+        return this.$store.state.chapter.tab
+      },
+      set(newValue) {
+        this.$store.commit('chapter/CHANGE_TAB', newValue)
+      }
+    }
   },
   watch: {
+    // currentTab(newValue) {
+    //   this.$store.commit('chapter/CHANGE_TAB', newValue)
+    // },
     tab(newValue) {
       this.currentTab = newValue
     }
@@ -87,6 +97,12 @@ export default {
     heightResize() {
       console.log(document.body.clientHeight)
       this.height = document.body.clientHeight - 80 // 调整窗口高度
+    },
+    handleSave() {
+
+    },
+    handleSubmit() {
+
     }
   }
 

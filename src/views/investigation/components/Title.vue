@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row :gutter="10">
+    <el-row :gutter="10" style="max-height: 150px">
       <el-col :span="10">
-        <img :src="image.url" :alt="image.name" style="max-height: 150px;border-radius: 10px">
+        <img :src="image.url" :alt="image.name" style="width:100%;max-height: 150px;border-radius: 10px">
       </el-col>
       <el-col :span="12" :offset="2">
         <div id="image-name">

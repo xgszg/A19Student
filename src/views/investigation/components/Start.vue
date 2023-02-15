@@ -1,16 +1,24 @@
 <template>
   <div>
-    <el-row type="flex" justify="center" align="middle" class="start-container">
-      <el-col :span="24" >
+    <el-row id="title" type="flex" justify="center" class="start-container">
+      <el-col :span="24" class="tips">
         点击下方开启实验环境
       </el-col>
     </el-row>
-    <el-row>
+    <el-row id="card" type="flex" justify="center" class="start-container">
       <el-col :span="6">
-        <el-card :body-style="{padding:'0px'}">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+        <el-card :body-style="{padding:'0px'}" @click.native="handleSSH">
+          <img src="@/assets/course_images/ssh-big.png" class="image">
           <div style="padding: 14px;text-align: center">
             <span>终端</span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6" :offset="1">
+        <el-card :body-style="{padding:'0px'}" @click.native="handleVNC">
+          <img src="@/assets/course_images/vnc.png" class="image">
+          <div style="padding: 14px;text-align: center">
+            <span>VNC</span>
           </div>
         </el-card>
       </el-col>
@@ -20,7 +28,16 @@
 
 <script>
 export default {
-  name: 'Start' // 准备界面
+  name: 'Start', // 准备界面
+  methods: {
+    handleSSH() {
+      this.$store.commit('chapter/CHANGE_ENV', 'ssh')
+    },
+    handleVNC() {
+      this.$store.commit('chapter/CHANGE_ENV', 'vnc')
+    }
+
+  }
 }
 </script>
 
@@ -28,7 +45,22 @@ export default {
 .start-container{
   height: 100%;
   width: 100%;
-  background: #20a0ff;
-  margin: 0 auto
+  text-align: center;
+}
+
+.image{
+  width: 100%;
+}
+
+.tips{
+  font-size: 30px;
+}
+
+#title{
+  margin-top: 18%;
+}
+
+#card{
+  margin-top: 10%;
 }
 </style>

@@ -15,11 +15,12 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-import VMdPreview from '@kangc/v-md-editor/lib/preview'
-import '@kangc/v-md-editor/lib/style/preview.css'
+import VMdPreview from '@kangc/v-md-editor/lib/preview' // v-md-preview markdown组件
+import '@kangc/v-md-editor/lib/style/preview.css' // markdown组件样式
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
 import '@kangc/v-md-editor/lib/theme/style/github.css'
 import hljs from 'highlight.js'
+import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn' // katex语法支持
 
 /**
  * If you don't want to use mock-server
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
+VMdPreview.use(createKatexPlugin())
 VMdPreview.use(githubTheme, {
   Hljs: hljs
 })

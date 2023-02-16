@@ -2,22 +2,24 @@
   <div>
     <div ref="box" class="box">
       <div class="left-container">
-
+        <CodeLeftContainer />
       </div>
       <div class="resize" title="关闭侧边栏" />
       <div class="right-container">
-
+        <CodeRightContainer />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import CodeLeftContainer from '@/views/investigation/code/components/CodeLeftContainer.vue'
+import CodeRightContainer from '@/views/investigation/code/components/CodeRightContainer.vue'
 export default {
   name: 'Experiment',
   components: {
-
+    CodeLeftContainer,
+    CodeRightContainer
   },
   mounted() {
     // 初始化拖拽宽度

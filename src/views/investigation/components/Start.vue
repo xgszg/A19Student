@@ -6,22 +6,18 @@
       </el-col>
     </el-row>
     <el-row id="card" type="flex" justify="center" class="start-container">
-      <el-col :span="6">
-        <el-card :body-style="{padding:'0px'}" @click.native="handleSSH">
-          <img src="@/assets/course_images/ssh-big.png" class="image">
-          <div style="padding: 14px;text-align: center">
-            <span>终端</span>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6" :offset="1">
-        <el-card :body-style="{padding:'0px'}" @click.native="handleVNC">
-          <img src="@/assets/course_images/vnc.png" class="image">
-          <div style="padding: 14px;text-align: center">
-            <span>VNC</span>
-          </div>
-        </el-card>
-      </el-col>
+      <el-card :body-style="{padding:'0px'}" class="card" @click.native="handleSSH">
+        <img src="@/assets/course_images/ssh-big.png" class="image">
+        <div style="padding: 14px;text-align: center">
+          <span>终端</span>
+        </div>
+      </el-card>
+      <el-card :body-style="{padding:'0px'}" class="card" @click.native="handleVNC">
+        <img src="@/assets/course_images/vnc.png" class="image">
+        <div style="padding: 14px;text-align: center">
+          <span>VNC</span>
+        </div>
+      </el-card>
     </el-row>
   </div>
 </template>
@@ -50,6 +46,7 @@ export default {
 
 .image{
   width: 100%;
+
 }
 
 .tips{
@@ -61,6 +58,11 @@ export default {
 }
 
 #card{
-  margin-top: 10%;
+  margin-top: 5%;
+}
+
+.card{
+  max-width: 200px;
+  margin: 10px;
 }
 </style>

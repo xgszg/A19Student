@@ -42,8 +42,9 @@
             <div style="height:30px">
               <span>共2个资料</span>
             </div>
-            <Data />
-            <Data />
+            <div v-for="(item,index) in datafile" :key="index">
+              <Data :datafile="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="公告" name="notice">
             <div style="height:30px">
@@ -71,7 +72,7 @@ import Data from './components/data.vue'
 import Notice from './components/notice.vue'
 import People from './components/people.vue'
 import testInfo from '@/api/test-info'
-import noticedata from '@/api/class-info'
+import classdata from '@/api/class-info'
 export default {
   name: 'Class',
   components: { Catalogue, Courseware, Homework, Test, Notice, Data, People },
@@ -94,7 +95,8 @@ export default {
   data() {
     return {
       testdata: testInfo.test,
-      noticedata: noticedata.notice,
+      noticedata: classdata.notice,
+      datafile: classdata.data,
       loading: false,
       tabs: 'catalogue',
       imageClass: {

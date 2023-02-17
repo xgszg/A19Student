@@ -56,6 +56,7 @@ export default {
           this.$alert('考试还未结束，无法查看成绩', '提示', {
             confirmButtonText: '确定',
             callback: action => {
+              // testdata.state='已结束'预留的状态转化
               this.buttonloading = false
             }
           })

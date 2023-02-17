@@ -3,12 +3,12 @@
     <div class="name">
       <el-avatar class="el-icon-document" />
       <div style="width:24%">
-        <span class="testname">测试一</span><br>
-        <span class="testtime">截至时间：2022/12/31 10:30 | 已结束 | 考试</span><br>
-        <span class="teststate">限时：120分钟</span>
+        <span class="testname">{{ testdata.name }}</span><br>
+        <span class="testtime">截至时间：{{ testdata.Deadline }} | {{ testdata.state }} | {{ testdata.type }}</span><br>
+        <span class="teststate">限时：{{ testdata.time }}分钟</span>
       </div>
       <div class="bottoncss">
-        <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" @click="Viewgrades">查看成绩</el-button>
+        <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button>
       </div>
     </div>
     <el-divider />
@@ -17,22 +17,50 @@
 
 <script>
 export default {
+  name: 'Test',
+  props: {
+    testdata: {
+      type: Object,
+      default: function() {
+        return {
+          name: '测试一',
+          Deadline: '2022/12/31 10:30',
+          state: '已结束',
+          type: '考试',
+          time: '120', // 考试时间
+          fraction: '100' // 考试分数
+        }
+      }
+    }
+  },
   data() {
     return {
+      buttonstatic: false,
       buttonloading: false
     }
   },
   methods: {
-    Viewgrades() {
+    Viewgrades(testdata) {
       this.buttonloading = true
-      setTimeout(() => {
-        this.$alert('你的成绩是100分', '提示', {
-          confirmButtonText: '确定',
-          callback: action => {
-            this.buttonloading = false
-          }
-        })
-      }, 1000)
+      if (testdata.state === '已结束') {
+        setTimeout(() => {
+          this.$alert('你的成绩是100分', '提示', {
+            confirmButtonText: '确定',
+            callback: action => {
+              this.buttonloading = false
+            }
+          })
+        }, 1000)
+      } else {
+        setTimeout(() => {
+          this.$alert('考试还未结束，无法查看成绩', '提示', {
+            confirmButtonText: '确定',
+            callback: action => {
+              this.buttonloading = false
+            }
+          })
+        }, 1000)
+      }
     }
   }
 }

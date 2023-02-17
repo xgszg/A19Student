@@ -18,11 +18,6 @@ export default {
       show: true
     }
   },
-  methods: {
-    handleWrite() {
-      this.$store.commit('chapter/CHANGE_TAB', 'report')
-    }
-  },
   computed: {
     ...mapState('chapter', ['chapter']),
     text() {
@@ -36,6 +31,11 @@ export default {
       setTimeout(() => {
         this.show = true
       }, 1000)
+    }
+  },
+  methods: {
+    handleWrite() {
+      this.$store.commit('chapter/CHANGE_TAB', 'report')
     }
   }
 }

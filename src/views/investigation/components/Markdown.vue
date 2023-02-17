@@ -20,6 +20,19 @@ export default {
       show: true
     }
   },
+  computed: {
+    ...mapState('chapter', ['chapter'])
+  },
+  watch: {
+    chapter(newValue) {
+      this.show = false
+      this.currentChapter = parseInt(newValue) - 1
+      this.contentEditor.setValue(experimentChapter.reports[this.currentChapter].content)
+      setTimeout(() => {
+        this.show = true
+      }, 1000)
+    }
+  },
   mounted() {
     this.contentEditor = new Vditor('vditor', { // 4.刚刚声明的变量contentEditor被赋值为一个Vditor实例,
       height: '100%',
@@ -90,19 +103,6 @@ export default {
         this.contentEditor.setValue(experimentChapter.reports[this.currentChapter].content)
       }
     })
-  },
-  computed: {
-    ...mapState('chapter', ['chapter'])
-  },
-  watch: {
-    chapter(newValue) {
-      this.show = false
-      this.currentChapter = parseInt(newValue) - 1
-      this.contentEditor.setValue(experimentChapter.reports[this.currentChapter].content)
-      setTimeout(() => {
-        this.show = true
-      }, 1000)
-    }
   }
 }
 </script>

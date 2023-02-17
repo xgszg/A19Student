@@ -68,5 +68,19 @@ export default {
     last: ' 有向图的拓扑序列(6/10)',
     process: 6,
     type: 'code'
+  }],
+  // 公告数据
+  notice: [{
+    title: '公告一',
+    time: '2022/12/31 10:30',
+    content: '这是公告一的内容'
+  }, {
+    title: '公告二',
+    time: '2022/12/31 10:30',
+    content: '这是公告二的内容'
+  }, {
+    title: '公告三',
+    time: '2022/12/31 10:30',
+    content: '这是公告三的内容'
   }]
 }

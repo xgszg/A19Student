@@ -49,9 +49,9 @@
             <div style="height:30px">
               <span>共3个公告</span>
             </div>
-            <Notice />
-            <Notice />
-            <Notice />
+            <div v-for="(item,index) in noticedata" :key="index">
+              <Notice :noticedata="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="成员" name="people">
             <People />
@@ -71,6 +71,7 @@ import Data from './components/data.vue'
 import Notice from './components/notice.vue'
 import People from './components/people.vue'
 import testInfo from '@/api/test-info'
+import noticedata from '@/api/class-info'
 export default {
   name: 'Class',
   components: { Catalogue, Courseware, Homework, Test, Notice, Data, People },
@@ -93,6 +94,7 @@ export default {
   data() {
     return {
       testdata: testInfo.test,
+      noticedata: noticedata.notice,
       loading: false,
       tabs: 'catalogue',
       imageClass: {

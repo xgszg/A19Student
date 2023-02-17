@@ -7,8 +7,9 @@
       <el-row>
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
           <el-tab-pane label="正在进行" name="first">
-            <Course />
-            <Course />
+            <div v-for="(item,index) in details" :key="index">
+              <Course :detail="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="收藏" name="second">收藏</el-tab-pane>
           <el-tab-pane label="已结束" name="third">已结束</el-tab-pane>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import classInfo from '@/api/class-info'
 import Course from './components/Course.vue'
 export default {
   name: 'Investigation',
@@ -27,7 +29,8 @@ export default {
   },
   data() {
     return {
-      activeName: 'first'
+      activeName: 'first',
+      details: classInfo.investigation
     }
   }
 }

@@ -2,57 +2,24 @@
   <div>
     <div ref="box" class="box">
       <div class="left-container">
-        <Write />
+        <CodeLeftContainer />
       </div>
       <div class="resize" title="关闭侧边栏" />
-      <div v-loading="loading" class="right-container">
-        <Start v-if="!showSSH&&!showVNC" />
-        <WebSSH v-if="showSSH" />
+      <div class="right-container">
+        <CodeRightContainer />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Write from '@/views/investigation/components/Write.vue'
-import WebSSH from '@/views/investigation/components/WebSSH.vue'
-import Start from '@/views/investigation/components/Start.vue'
-import { mapState } from 'vuex'
-
+import CodeLeftContainer from '@/views/investigation/code/components/CodeLeftContainer.vue'
+import CodeRightContainer from '@/views/investigation/code/components/CodeRightContainer.vue'
 export default {
   name: 'Experiment',
   components: {
-    Write,
-    WebSSH,
-    Start
-  },
-  data() {
-    return {
-      showSSH: false,
-      showVNC: false,
-      loading: false
-    }
-  },
-  computed: {
-    ...mapState('chapter', ['environment'])
-  },
-  watch: {
-    environment(newValue) {
-      this.loading = true
-      setTimeout(() => {
-        if (newValue === 'ssh') {
-          this.showSSH = true
-          this.showVNC = false
-        } else if (newValue === 'vnc') {
-          this.showVNC = true
-          this.showSSH = false
-        } else {
-          this.showSSH = false
-          this.showVNC = false
-        }
-        this.loading = false
-      }, 1000)
-    }
+    CodeLeftContainer,
+    CodeRightContainer
   },
   mounted() {
     // 初始化拖拽宽度

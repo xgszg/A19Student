@@ -142,7 +142,14 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Experiment',
         component: () => import('@/views/investigation/experiment/index.vue'),
-        meta: { title: '实验', icon: 'el-icon-data-analysis' }
+        meta: { title: '实验', icon: 'el-icon-data-analysis' },
+        hidden: true
+      },
+      {
+        path: 'code',
+        name: 'Code',
+        component: () => import('@/views/investigation/code/index.vue'),
+        meta: { title: '算法实验', icon: 'el-icon-data-analysis' }
       }
     ]
   },

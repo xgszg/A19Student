@@ -57,13 +57,16 @@ export default {
   }],
   // 实验数据
   investigation: [{
-    id: 2,
-    date: '2021-2022第二学期',
-    name: '操作系统',
-    classrooms: ['软工201', '软工202'],
-    code: '4da15rd',
-    teacher: '刘红林',
-    classification: '实训',
-    url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")'
+    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    name: '操作系统实验',
+    last: 'proc文件系统的实现(7/10)',
+    process: 7,
+    type: 'experiment'
+  }, {
+    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    name: '搜索与图论',
+    last: ' 有向图的拓扑序列(6/10)',
+    process: 6,
+    type: 'code'
   }]
 }

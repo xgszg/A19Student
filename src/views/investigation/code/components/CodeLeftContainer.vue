@@ -7,11 +7,11 @@
         </span>
         <div class="course-container" :style="{height: height+'px'}">
           <!--标题-->
-          <Title />
+          <Title :detail="detail" />
           <!--分割线-->
           <el-divider />
           <!--章节列表-->
-          <Chapter />
+          <CodeChapter />
         </div>
       </el-tab-pane>
       <el-tab-pane name="step">
@@ -21,7 +21,7 @@
         <!--控制高度-->
         <div class="markdown-container" :style="{height: height + 30 +'px'}">
           <!--步骤页-->
-          <ReadMarkDown />
+          <CodeMarkdown />
         </div>
       </el-tab-pane>
       <el-tab-pane name="report">
@@ -31,7 +31,7 @@
         <!--控制高度-->
         <div :style="{height: height - 30 +'px'}">
           <!--MarkDown编辑器，使用Vditor-->
-          <Markdown />
+          <CodeReport />
         </div>
         <!--按钮区域-->
         <div class="markdown-button">
@@ -45,23 +45,29 @@
 
 <script>
 import Title from '@/views/investigation/components/Title.vue'
-import Chapter from '@/views/investigation/components/Chapter.vue'
-// import Read from '@/views/investigation/components/Read.vue'
-import ReadMarkDown from '@/views/investigation/components/ReadMarkDown.vue'
-import Markdown from '@/views/investigation/components/Markdown.vue'
+import CodeChapter from '@/views/investigation/code/components/CodeChapter.vue'
+import CodeMarkdown from '@/views/investigation/code/components/CodeMarkdown.vue'
+import CodeReport from '@/views/investigation/code/components/CodeReport.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Write',
   components: {
+    CodeMarkdown,
     Title,
-    Chapter,
-    ReadMarkDown,
-    Markdown
+    CodeChapter,
+    CodeReport
   },
   data() {
     return {
-      height: 900
+      height: 900,
+      detail: {
+        url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+        name: '搜索与图论',
+        last: ' 有向图的拓扑序列(6/10)',
+        process: 6,
+        type: 'code'
+      }
     }
   },
   computed: {

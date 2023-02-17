@@ -38,7 +38,7 @@ export default {
   name: 'Chapter',
   data() {
     return {
-      tableData: Chapter.chapters
+      tableData: Chapter.codeChapters
     }
   },
   methods: {

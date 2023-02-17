@@ -88,16 +88,16 @@ export const asyncRoutes = [
         name: 'theory',
         hidden: true,
         meta: { title: '理论课程' },
-        component: () => import('@/views/course/theory/index.vue'),
+        component: () => import('@/views/course/theory/index.vue')
       },
-      //直播界面
+      // 直播界面
       {
         path: '/course/theory/liveroom',
         name: 'liveroom',
         hidden: true,
         meta: { title: '课程直播' },
-        component: () => import('@/views/course/components/liveroom.vue'),
-      },
+        component: () => import('@/views/course/components/liveroom.vue')
+      }
     ]
   },
   // 考试管理

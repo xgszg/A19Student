@@ -35,7 +35,7 @@
 <script>
 import Title from '@/views/investigation/components/Title.vue'
 import Chapter from '@/views/investigation/components/Chapter.vue'
-import Read from '@/views/investigation/components/Read.vue'
+// import Read from '@/views/investigation/components/Read.vue'
 import ReadMarkDown from '@/views/investigation/components/ReadMarkDown.vue'
 
 export default {

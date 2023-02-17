@@ -7,7 +7,7 @@
       </div>
       <div class="bottoncss">
         <el-button style="margin-right: 10px;" type="primary" size="medium" plain @click="Saveclouddisk">保存云盘</el-button>
-        <el-button style="margin-right: 10px;" type="primary" size="medium">下载</el-button>
+        <el-button style="margin-right: 10px;" type="primary" size="medium" @click="download">下载</el-button>
       </div>
     </div>
     <span class="coursewaretips">互动课件</span>
@@ -23,6 +23,9 @@ export default {
         message: '保存云盘成功',
         type: 'success'
       })
+    },
+    download() {
+      window.location.href = 'http://localhost:9528/static/ppt/kejian1.ppt'
     }
   }
 }

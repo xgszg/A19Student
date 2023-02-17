@@ -8,7 +8,7 @@
         <span class="teststate">限时：120分钟</span>
       </div>
       <div class="bottoncss">
-        <el-button style="margin-right: 10px;" size="medium">查看成绩</el-button>
+        <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" @click="Viewgrades">查看成绩</el-button>
       </div>
     </div>
     <el-divider />
@@ -17,7 +17,24 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      buttonloading: false
+    }
+  },
+  methods: {
+    Viewgrades() {
+      this.buttonloading = true
+      setTimeout(() => {
+        this.$alert('你的成绩是100分', '提示', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.buttonloading = false
+          }
+        })
+      }, 1000)
+    }
+  }
 }
 </script>
 

@@ -1,64 +1,67 @@
 <template>
   <div class="barrage">
-      <div class="barrage-header">
-        <h4>课堂交流</h4>
+    <div class="barrage-header">
+      <h4>课堂交流</h4>
+    </div>
+    <div class="live-line" />
+    <section id="barrageList" ref="barrageList" class="barrage-body">
+      <div v-for="(battage,battageIndex) in barrageMsgList" :key="battageIndex">
+        {{ battage.user }}:{{ battage.msg }}
       </div>
-      <div class="live-line"></div>
-      <section class="barrage-body" id="barrageList" ref="barrageList">
-          <div v-for="(battage,battageIndex) in barrageMsgList" :key="battageIndex">
-              {{battage.user}}:{{battage.msg}}
-          </div>
-      </section>
-      <div class="live-line"></div>
-      
-      <section class="barrage-msg">
-        <div class="barrage-tool">
-          <Emoji></Emoji>
-        </div>
-        <div class="barrage-msg-input">
-          <el-input 
+    </section>
+    <div class="live-line" />
+
+    <section class="barrage-msg">
+      <div class="barrage-tool">
+        <Emoji />
+      </div>
+      <div class="barrage-msg-input">
+        <el-input
+          v-model="battageMsg"
           class="input"
           type="textarea"
           :rows="5"
-          v-model="battageMsg" 
-          placeholder="请输入内容" 
+          placeholder="请输入内容"
           clearable
-          @on-enter="chatLiveRoom">
-          </el-input>
-          <div class="barrage-msg-button">
-          <el-button type="text" class="sendbutton"
-            @click="chatLiveRoom">发送</el-button>
-          </div>
+          @on-enter="chatLiveRoom"
+        />
+        <div class="barrage-msg-button">
+          <el-button
+            type="text"
+            class="sendbutton"
+            @click="chatLiveRoom"
+          >发送</el-button>
         </div>
-      </section>
+      </div>
+    </section>
   </div>
 </template>
 <script>
-//import {sock,socket} from "@/assets/api/socket.js"
-import Emoji from "./emoji.vue";
-let color = "gray";
+// import {sock,socket} from "@/assets/api/socket.js"
+import Emoji from './emoji.vue'
+const color = 'gray'
 
 export default {
   name: 'Barrage',
   components: {
-    Emoji,
+    Emoji
   },
-  data(){
-      return {
-          battageMsg:"",
-          livingRoom:"",
-          barrageMsgList:[],
-          color
-      }
+  data() {
+    return {
+      battageMsg: '',
+      livingRoom: '',
+      barrageMsgList: [],
+      color
+    }
   },
-  mounted(){
-      //this.livingRoom=common.getUrlParam("room")
+  mounted() {
+    // this.livingRoom=common.getUrlParam("room")
   },
-  methods:{
-      //发送弹幕
-      chatLiveRoom(){
-          console.log(this.currentUser)
-      },
+  methods: {
+    // 发送弹幕
+    chatLiveRoom() {
+      console.log(this.currentUser)
+    }
   }
 }
 </script>
@@ -117,8 +120,6 @@ textarea {
     background-color: #FFFFFF;
   }
 }
-
-
 
 // .barrage-msg-input {
 //   padding: 0px;

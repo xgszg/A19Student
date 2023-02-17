@@ -2,56 +2,54 @@
   <el-card class="room">
     <el-row :gutter="20" type="flex" justify="space-around">
       <el-col :span="28" :xs="24" :sm="24" :md="20">
-        <el-card class="video-content" >
+        <el-card class="video-content">
           <div class="video-content-header">
             <div class="video-content-header-avatar">
-              <img src="@/assets/logoimages/logo.png" class="logoImage"/>
+              <img src="@/assets/logoimages/logo.png" class="logoImage">
             </div>
             <div>
-              <div class="video-content-header-title">{{roomDetail.classname}}</div>
-              <div class="video-content-header-anchor">{{roomDetail.name}}</div>
+              <div class="video-content-header-title">{{ roomDetail.classname }}</div>
+              <div class="video-content-header-anchor">{{ roomDetail.name }}</div>
             </div>
           </div>
           <div class="video-content-main">
             <!-- <video id="videoElement" width="100%" height="100%" controls></video> -->
-            <img src="@/assets/course_images/liveroom.png" width="100%" height="100%"/>
+            <img src="@/assets/course_images/liveroom.png" width="100%" height="100%">
           </div>
         </el-card>
       </el-col>
       <el-col :span="6">
         <el-card class="chat-content">
-          <Barrage></Barrage>
+          <Barrage />
         </el-card>
       </el-col>
     </el-row>
   </el-card>
 </template>
 <script>
-//const flyjs = require("../../assets/js/flv");
-import flvjs from "flv.js";
-import Barrage from "./barrage.vue";
-import Emoji from "./emoji.vue";
+// const flyjs = require("../../assets/js/flv");
+// import flvjs from 'flv.js'
+import Barrage from './barrage.vue'
 
 export default {
+  components: {
+    Barrage
+  },
   data() {
     return {
-      roomDetail: {},
-    };
-  },
-  components: {
-    Barrage,
-    Emoji,
+      roomDetail: {}
+    }
   },
   created() {},
   async mounted() {
-    //let urlData = common.getUrlParams();
-    let urlData = this.$router.history.current.query;
-    this.livingRoom = urlData.room;
+    // let urlData = common.getUrlParams();
+    const urlData = this.$router.history.current.query
+    this.livingRoom = urlData.room
     this.roomDetail = {
-      classname: "学生",
-      type: "theory",
-      name: "小红",
-    };
+      classname: '学生',
+      type: 'theory',
+      name: '小红'
+    }
     // this.$nextTick(() => {
     //   if (flvjs.isSupported()) {
     //     var videoElement = document.getElementById("videoElement");
@@ -68,8 +66,8 @@ export default {
     //     }
     //   }
     // });
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -138,7 +136,7 @@ export default {
       padding: 10px;
     }
   }
-  
+
 }
 .chat-content {
     width: 100%;
@@ -148,7 +146,7 @@ export default {
     box-sizing: border-box;
     position: relative;
     // padding: 20px 0;
-  } 
+  }
 
 @keyframes barrage {
   from {

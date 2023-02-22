@@ -85,6 +85,7 @@ export default {
   },
   mounted() {
     const that = this
+    // 页面加载时调整大小
     window.onload = function() {
       that.heightResize()
     }
@@ -122,7 +123,7 @@ export default {
 }
 // tabs 容器
 .container::v-deep .el-tabs__content{
-  padding: 0px;
+  padding: 0;
 }
 // 课程页
 .course-container{
@@ -131,7 +132,7 @@ export default {
 .markdown-container{
   overflow-y:auto;
   width: 100%;
-  padding: 0px;
+  padding: 0;
   overflow-x: hidden;
 }
 

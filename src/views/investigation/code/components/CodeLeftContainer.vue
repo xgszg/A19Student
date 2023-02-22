@@ -51,7 +51,7 @@ import CodeReport from '@/views/investigation/code/components/CodeReport.vue'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Write',
+  name: 'CodeLeftContainer',
   components: {
     CodeMarkdown,
     Title,
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     heightResize() {
-      console.log(document.body.clientHeight)
+      // console.log(document.body.clientHeight)
       this.height = document.body.clientHeight - 80 // 调整窗口高度
     },
     handleSave() {
@@ -128,7 +128,7 @@ export default {
 }
 // tabs 容器
 .container::v-deep .el-tabs__content{
-  padding: 0px;
+  padding: 0;
 }
 // 课程页
 .course-container{
@@ -137,7 +137,7 @@ export default {
 .markdown-container{
   overflow-y:auto;
   width: 100%;
-  padding: 0px;
+  padding: 0;
   overflow-x: hidden;
 }
 

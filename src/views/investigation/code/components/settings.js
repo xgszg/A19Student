@@ -45,5 +45,7 @@ import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/markdown-fold.js'
 import 'codemirror/addon/fold/xml-fold.js'
 
-// mode
+// mode 代码语言
 import 'codemirror/mode/clike/clike.js'
+import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/mode/python/python.js'

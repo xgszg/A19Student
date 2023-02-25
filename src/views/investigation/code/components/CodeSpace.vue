@@ -54,7 +54,7 @@ export default {
         // codemirror options
         tabSize: 4,
         mode: 'text/x-java',
-        theme: 'monokai',
+        theme: 'eclipse',
         lineNumbers: true,
         line: true
         // more codemirror options, 更多 codemirror 的高级配置...

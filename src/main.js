@@ -21,6 +21,7 @@ import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
 import '@kangc/v-md-editor/lib/theme/style/github.css'
 import hljs from 'highlight.js'
 import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn' // katex语法支持
+import Chat from 'vue-beautiful-chat'
 
 /**
  * If you don't want to use mock-server
@@ -45,6 +46,7 @@ Vue.use(VMdPreview)
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+Vue.use(Chat)
 
 new Vue({
   el: '#app',

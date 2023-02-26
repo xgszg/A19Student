@@ -18,7 +18,7 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <el-card class="chat-content">
           <Barrage />
         </el-card>
@@ -33,7 +33,7 @@ import Barrage from './barrage.vue'
 
 export default {
   components: {
-    Barrage
+    Barrage,
   },
   data() {
     return {
@@ -93,8 +93,6 @@ export default {
         border-radius: 50%;
         overflow: hidden;
         position: relative;
-        // left: 5px;
-        // top: 5px;
         img {
           width: 100%;
           height: 100%;
@@ -120,7 +118,6 @@ export default {
       z-index: 1;
       position: absolute;
       height: 40px;
-      //border-bottom: #fff 1px solid;
       width: calc(100% - 40px);
       color: #fff;
       &-item {
@@ -142,11 +139,9 @@ export default {
     width: 100%;
     height: 100%;
     background: #fff;
-    margin-right: 20px;
     box-sizing: border-box;
     position: relative;
-    // padding: 20px 0;
-  }
+}
 
 @keyframes barrage {
   from {
@@ -158,9 +153,4 @@ export default {
     transform: translateX(-200%);
   }
 }
-
-// .el-row{
-//     display:flex;
-//     flex-wrap: wrap;
-// }
 </style>

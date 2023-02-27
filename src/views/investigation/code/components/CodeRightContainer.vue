@@ -3,10 +3,9 @@
     <el-tabs v-model="activeName" type="card">
       <el-tab-pane label="代码" name="code">
         <CodeSpace />
-
       </el-tab-pane>
       <el-tab-pane label="提交记录" name="submit">
-        提交记录
+        <SubmitHistory />
       </el-tab-pane>
     </el-tabs>
 
@@ -15,11 +14,13 @@
 
 <script>
 import CodeSpace from '@/views/investigation/code/components/CodeSpace.vue'
+import SubmitHistory from '@/views/investigation/code/components/SubmitHistory.vue'
 
 export default {
   name: 'CodeRightContainer',
   components: {
-    CodeSpace
+    CodeSpace,
+    SubmitHistory
   },
   data() {
     return {

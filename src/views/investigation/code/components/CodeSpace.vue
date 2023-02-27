@@ -26,7 +26,7 @@
         <i id="refresh-icon" class="el-icon-refresh-right" @click="handleRefresh" />
       </span>
       <span class="button-container">
-        <el-button>
+        <el-button @click="handleTest">
           测试代码
         </el-button>
         <el-button>
@@ -34,6 +34,80 @@
         </el-button>
       </span>
     </div>
+
+    <el-dialog title="编辑器设置" :visible.sync="dialogVisible" :modal-append-to-body="false">
+      <el-form :model="formData" label-width="150px">
+        <el-form-item label="主题">
+          <el-select v-model="formData.theme" placeholder="请选择主题">
+            <el-option label="eclipse样式" value="eclipse" />
+            <el-option label="sublime样式" value="monokai" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="显示行号">
+          <el-switch v-model="formData.lineNumbers" />
+        </el-form-item>
+        <el-form-item label="显示行">
+          <el-switch v-model="formData.line" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSave">保存</el-button>
+          <el-button @click="dialogVisible=!dialogVisible">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+
+    <el-drawer
+      :visible.sync="drawerVisible"
+      direction="btt"
+      :modal-append-to-body="false"
+      size="50%"
+    >
+      <template v-slot:title>
+        <div style="font-size: 20px">
+          代码运行状态:
+          <span v-if="testData.loading">
+            Loading <icon class="el-icon-loading" />
+          </span>
+          <span v-if="!testData.loading">
+            Finish <icon class="el-icon-success" />
+          </span>
+        </div>
+      </template>
+
+      <el-row>
+        <el-col :span="20" :offset="2" class="test-text">
+          输入数据:
+        </el-col>
+        <el-col :span="20" :offset="2" class="test-text">
+          <el-input
+            v-model="testData.input"
+            type="textarea"
+            :autosize="{ minRows: 2, maxRows: 4}"
+            placeholder="输入"
+            class=""
+          />
+        </el-col>
+        <el-col :span="20" :offset="2" class="test-text">
+          输出数据:
+        </el-col>
+        <el-col :span="20" :offset="2" class="test-text">
+          <el-input
+            v-model="testData.output"
+            type="textarea"
+            :autosize="{ minRows: 2, maxRows: 4}"
+            placeholder="输出"
+            disabled
+          />
+        </el-col>
+        <el-col :span="20" :offset="2" style="text-align: end">
+          <el-button>
+            重新运行
+          </el-button>
+        </el-col>
+      </el-row>
+
+    </el-drawer>
+
   </div>
 </template>
 
@@ -56,7 +130,9 @@ export default {
         mode: 'text/x-java',
         theme: 'eclipse',
         lineNumbers: true,
-        line: true
+        line: true,
+        matchBrackets: true,
+        completeSingle: false
         // more codemirror options, 更多 codemirror 的高级配置...
       },
       height: 800,
@@ -78,7 +154,22 @@ export default {
       }, {
         value: 'text/javascript',
         label: 'JavaScript'
-      }]
+      }],
+      formData: {
+        theme: 'eclipse',
+        lineNumbers: true,
+        line: true
+      },
+      dialogVisible: false,
+      drawerVisible: false,
+      testData: {
+        input: `3 3
+1 2
+2 3
+1 3`,
+        output: '1 2 3',
+        loading: false
+      }
     }
   },
   computed: {
@@ -99,32 +190,50 @@ export default {
     // you can use this.codemirror to do something...
     this.heightResize()
     document.getElementsByClassName('CodeMirror')[0].style.height = this.height + 'px'
-
+    // this.codemirror.on('cursorActivity', () => {
+    //   this.codemirror.showHint()
+    // })
     window.addEventListener('resize', () => {
       this.heightResize()
     })
   },
   methods: {
+    // codemirror准备
     onCmReady(cm) {
       console.log('the editor is readied!', cm)
     },
     onCmFocus(cm) {
       console.log('the editor is focus!', cm)
     },
+    // 编辑器代码变动
     onCmCodeChange(newCode) {
       console.log('this is new code', newCode)
       this.code = newCode
     },
+    // 调整窗口高度
     heightResize() {
       this.height = document.body.clientHeight - 150 // 调整窗口高度
     },
     // 打开设置
     handleSetting() {
       console.log('打开代码设置面板')
+      this.dialogVisible = true
     },
+    // 重置代码
     handleRefresh() {
       console.log('清空代码')
       this.code = ''
+    },
+    // 保存编辑器设置
+    onSave() {
+      this.dialogVisible = false
+      this.cmOptions.theme = this.formData.theme
+      this.cmOptions.lineNumbers = this.formData.lineNumbers
+      this.cmOptions.line = this.formData.line
+    },
+    // 打开测试面板
+    handleTest() {
+      this.drawerVisible = true
     }
   }
 }
@@ -166,6 +275,18 @@ export default {
     }
   }
 
+  .test-loading{
+    color: #20a0ff;
+  }
+
+  ::v-deep .el-textarea__inner{
+    border-radius: 5px;
+    background: rgba(51, 47, 47, 0.04);
+  }
+
+  .test-text{
+    margin-bottom: 20px;
+  }
 }
 
 </style>

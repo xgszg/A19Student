@@ -8,28 +8,29 @@
       <beautiful-chat
         class="chat-container"
         :participants="participants"
-        
-        :onMessageWasSent="onMessageWasSent"
-        :messageList="messageList"
-        :newMessagesCount="newMessagesCount"
-        :isOpen="isChatOpen"
+
+        :on-message-was-sent="onMessageWasSent"
+        :message-list="messageList"
+        :new-messages-count="newMessagesCount"
+        :is-open="isChatOpen"
         :close="closeChat"
 
         :open="openChat"
-        :showEmoji="true"
-        :showFile="true"
-        :showEdition="true"
-        :showDeletion="true"
-        :showTypingIndicator="showTypingIndicator"
-        :showLauncher="false"
-        :showCloseButton="false"
+        :show-emoji="true"
+        :show-file="true"
+        :show-edition="true"
+        :show-deletion="true"
+        :show-typing-indicator="showTypingIndicator"
+        :show-launcher="false"
+        :show-close-button="false"
         :colors="colors"
-        :alwaysScrollToBottom="alwaysScrollToBottom"
-        :disableUserListToggle="false"
-        :messageStyling="messageStyling"
+        :always-scroll-to-bottom="alwaysScrollToBottom"
+        :disable-user-list-toggle="false"
+        :message-styling="messageStyling"
         @onType="handleOnType"
-        @edit="editMessage" />
-      
+        @edit="editMessage"
+      />
+
     </section>
     <div class="live-line" />
   </div>
@@ -60,12 +61,12 @@ export default {
       // titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       // title: "class",
       messageList: [
-          { type: '', author: ``, data: { text: `` } },
-          { type: '', author: ``, data: { text: `` } }
+        { type: '', author: ``, data: { text: `` }},
+        { type: '', author: ``, data: { text: `` }}
       ], // // 要显示的消息列表可以动态地分页和调整
       newMessagesCount: 0,
       isChatOpen: true, // 确定聊天窗口应该打开还是关闭
-      showTypingIndicator: '',  // 当设置为匹配参与者的值时。它显示特定用户的输入指示
+      showTypingIndicator: '', // 当设置为匹配参与者的值时。它显示特定用户的输入指示
       colors: {
         header: {
           bg: '#ffffff',
@@ -95,38 +96,38 @@ export default {
     }
   },
   methods: {
-    sendMessage (text) {
+    sendMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
+        this.onMessageWasSent({ author: 'support', type: 'text', data: { text }})
       }
     },
-    onMessageWasSent (message) {
+    onMessageWasSent(message) {
       // 当用户发送消息时调用
-      this.messageList = [ ...this.messageList, message ]
+      this.messageList = [...this.messageList, message]
     },
-    openChat () {
+    openChat() {
       // 当用户单击fab按钮打开聊天时调用
       this.isChatOpen = true
       this.newMessagesCount = 0
     },
-    closeChat () {
+    closeChat() {
       // // 当用户单击按钮关闭聊天时调用
       this.isChatOpen = false
     },
-    handleScrollToTop () {     
+    handleScrollToTop() {
 
-  // 当用户将消息列表滚动到顶部时调用
-// 利用分页来加载另一个消息页面
+      // 当用户将消息列表滚动到顶部时调用
+      // 利用分页来加载另一个消息页面
 
     },
-    handleOnType () {
+    handleOnType() {
       console.log('Emit typing event')
     },
-    editMessage(message){
-      const m = this.messageList.find(m=>m.id === message.id);
-      m.isEdited = true;
-      m.data.text = message.data.text;
+    editMessage(message) {
+      const m = this.messageList.find(m => m.id === message.id)
+      m.isEdited = true
+      m.data.text = message.data.text
     }
   }
 }
@@ -225,7 +226,6 @@ textarea {
   width: 100%;
   margin: 10px 0 0 0;
 }
-
 
 .chat-container ::v-deep .sc-header {
   // color:#4E8CFF;

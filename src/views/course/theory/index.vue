@@ -26,9 +26,9 @@
             <div style="height:30px">
               <span>共3次作业</span>
             </div>
-            <Homework />
-            <Homework />
-            <Homework />
+            <div v-for="(item,index) in homeworkdata" :key="index">
+              <Homework :homeworkdata="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="测试" name="test">
             <div style="height:30px">
@@ -97,6 +97,7 @@ export default {
       testdata: testInfo.test,
       noticedata: classdata.notice,
       datafile: classdata.data,
+      homeworkdata: classdata.homework,
       loading: false,
       tabs: 'catalogue',
       imageClass: {

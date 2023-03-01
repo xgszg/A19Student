@@ -6,9 +6,9 @@
 <script>
 
 export default {
-  name: 'Exam',
+  name: 'Exam'
 }
-  
+
 </script>
 
 <style scoped>

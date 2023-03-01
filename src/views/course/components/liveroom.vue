@@ -33,7 +33,7 @@ import Barrage from './barrage.vue'
 
 export default {
   components: {
-    Barrage,
+    Barrage
   },
   data() {
     return {

@@ -39,12 +39,16 @@ export default {
     study(datafile) {
       this.studyloading = true
       setTimeout(() => {
-        this.$alert('预留界面', '提示', {
+        this.$confirm('是否下载' + datafile.name, '提示', {
           confirmButtonText: '确定',
-          callback: action => {
-            datafile.state = '已学习'
-            this.studyloading = false
-          }
+          cancelButtonText: '取消',
+          type: 'info'
+        }).then(() => {
+          datafile.state = '已学习'
+          this.studyloading = false
+          window.location.href = 'http://localhost:9528/static/pdf/data1.pdf'
+        }).catch(() => {
+          this.studyloading = false
         })
       }, 1000)
     }

@@ -96,5 +96,31 @@ export default {
     name: '资料三',
     time: '2022/12/31 10:30',
     state: '未学习'
+  }],
+  // 作业数据
+  homework: [{
+    name: '作业一',
+    time: '2022/12/31 10:30',
+    status: '已结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业二',
+    time: '2022/12/31 10:30',
+    status: '已结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业三',
+    time: '2022/12/31 10:30',
+    status: '未结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业四',
+    time: '2022/12/31 10:30',
+    status: '未结束',
+    attribute: '个人作业',
+    state: '未提交'
   }]
 }

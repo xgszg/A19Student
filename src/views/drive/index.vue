@@ -5,20 +5,17 @@
         <el-col :span="22">
           <span class="space">当前空间2.3G/5G</span>
         </el-col>
-        <el-col :span="2">
-          <!-- <el-button type="primary" @click="onSubmit" style="margin-bottom: 10px;">上传</el-button> -->
+        <el-col :span="5">
           <el-upload
             class="upload-demo"
+            ref="upload"
             action="https://jsonplaceholder.typicode.com/posts/"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            multiple
-            :limit="3"
-            :on-exceed="handleExceed"
             :file-list="fileList"
-          >
-            <el-button size="small" type="primary" style="margin-bottom: 10px;">上传</el-button>
+            :auto-upload="false">
+            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+            <el-button style="margin: 0 20px 10px 10px; position: relative;" size="small" type="success" @click="submitUpload">上传文件</el-button>
             <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
           </el-upload>
         </el-col>
@@ -27,9 +24,9 @@
         <el-table
           :data="tableData"
           style="width: 100%"
-          border
           fit
           stripe
+          tooltip-effect="dark"
         >
           <el-table-column
             type="selection"
@@ -41,8 +38,12 @@
             min-width="70%"
           >
             <template slot-scope="scope">
-              <i class="el-icon-document" />
-              <span style="margin-left: 10px">{{ scope.row.filename }}</span>
+              <div style="display: flex; align-items: center;">
+                <el-avatar class="el-icon-document" style="color: #ffffff;"/>
+                <span style="margin-left: 10px;">
+                  {{ scope.row.filename }}
+                </span>
+              </div>
             </template>
           </el-table-column>
           <el-table-column
@@ -55,11 +56,12 @@
             label="操作"
             min-width="10%"
           >
-            <template>
+            <template slot-scope="scope">
+              
               <el-button
                 type="primary"
                 size="mini"
-                @click="loadFile"
+                @click="loadFile(scope.row.filetype)"
               >下载</el-button>
             </template>
           </el-table-column>
@@ -76,30 +78,56 @@ export default {
     return {
       tableData: [{
         filename: '001.word',
+        filetype: 'word',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.word',
+        filename: '001.ppt',
+        filetype: 'ppt',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.word',
+        filename: '001.excel',
+        filetype: 'excel',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.word',
+        filename: '001.jpg',
+        filetype: 'jpg',
         size: '2kb',
         operation: '下载'
-      }]
+      }],
+      fileList:[]
     }
   },
   methods: {
-    onSubmit() {
-      console.log('submit!')
+    submitUpload() {
+        console.log(this.fileList);
+        this.$refs.upload.submit();
+        // renderfileList(this.fileList)
     },
-    loadFile() {
-      console.log('load!')
+    loadFile(filetype) {
+      this.$message({
+        message: '保存云盘成功',
+        type: 'success'
+      });
+      // console.log(String(filetype))
+      if (filetype == 'word'){
+        window.location.href = 'http://localhost:9528/static/word/word.doc';
+      } else if (filetype == 'ppt') {
+        window.location.href = 'http://localhost:9528/static/ppt/kejian.ppt';
+      } else if (filetype == 'excel') {
+        window.location.href = 'http://localhost:9528/static/excel/excel.xls';
+      } else if (filetype == 'jpg') {
+        window.location.href = 'http://localhost:9528/static/jpg/picture.jpg';
+      } else {
+        this.$message({
+        message: '下载失败，文件可能不存在',
+        type: 'error'
+      });
+      }
     },
+
     handleRemove(file, fileList) {
       console.log(file, fileList)
     },
@@ -111,7 +139,13 @@ export default {
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
-    }
+    },
+    // renderfileList(fileList) {
+    //   let Obj = {};
+    //   for (let file in fileList)
+    //     Obj.push(file.name, '15kb', '下载')
+    //   this.tableData.push(Obj)
+    // }
   }
 }
 </script>
@@ -137,6 +171,15 @@ export default {
 
 .el-button {
   font-size: 14px;
+}
+
+.el-avatar{
+    margin: 2px;
+    background: #558FF2;
+}
+
+.el-icon-document{
+    font-size: 20px;
 }
 </style>
 

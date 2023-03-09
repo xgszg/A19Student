@@ -7,13 +7,14 @@
         </el-col>
         <el-col :span="5">
           <el-upload
-            class="upload-demo"
             ref="upload"
+            class="upload-demo"
             action="https://jsonplaceholder.typicode.com/posts/"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
             :file-list="fileList"
-            :auto-upload="false">
+            :auto-upload="false"
+          >
             <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
             <el-button style="margin: 0 20px 10px 10px; position: relative;" size="small" type="success" @click="submitUpload">上传文件</el-button>
             <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
@@ -39,7 +40,7 @@
           >
             <template slot-scope="scope">
               <div style="display: flex; align-items: center;">
-                <el-avatar class="el-icon-document" style="color: #ffffff;"/>
+                <el-avatar class="el-icon-document" style="color: #ffffff;" />
                 <span style="margin-left: 10px;">
                   {{ scope.row.filename }}
                 </span>
@@ -57,7 +58,7 @@
             min-width="10%"
           >
             <template slot-scope="scope">
-              
+
               <el-button
                 type="primary"
                 size="mini"
@@ -97,34 +98,34 @@ export default {
         size: '2kb',
         operation: '下载'
       }],
-      fileList:[]
+      fileList: []
     }
   },
   methods: {
     submitUpload() {
-        console.log(this.fileList);
-        this.$refs.upload.submit();
-        // renderfileList(this.fileList)
+      console.log(this.fileList)
+      this.$refs.upload.submit()
+      // renderfileList(this.fileList)
     },
     loadFile(filetype) {
       this.$message({
         message: '保存云盘成功',
         type: 'success'
-      });
+      })
       // console.log(String(filetype))
-      if (filetype == 'word'){
-        window.location.href = 'http://localhost:9528/static/word/word.doc';
-      } else if (filetype == 'ppt') {
-        window.location.href = 'http://localhost:9528/static/ppt/kejian.ppt';
-      } else if (filetype == 'excel') {
-        window.location.href = 'http://localhost:9528/static/excel/excel.xls';
-      } else if (filetype == 'jpg') {
-        window.location.href = 'http://localhost:9528/static/jpg/picture.jpg';
+      if (filetype === 'word') {
+        window.location.href = 'http://localhost:9528/static/word/word.doc'
+      } else if (filetype === 'ppt') {
+        window.location.href = 'http://localhost:9528/static/ppt/kejian.ppt'
+      } else if (filetype === 'excel') {
+        window.location.href = 'http://localhost:9528/static/excel/excel.xls'
+      } else if (filetype === 'jpg') {
+        window.location.href = 'http://localhost:9528/static/jpg/picture.jpg'
       } else {
         this.$message({
-        message: '下载失败，文件可能不存在',
-        type: 'error'
-      });
+          message: '下载失败，文件可能不存在',
+          type: 'error'
+        })
       }
     },
 
@@ -139,7 +140,7 @@ export default {
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
-    },
+    }
     // renderfileList(fileList) {
     //   let Obj = {};
     //   for (let file in fileList)

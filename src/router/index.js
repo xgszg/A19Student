@@ -105,14 +105,20 @@ export const asyncRoutes = [
     path: '/exam',
     component: Layout,
     redirect: '/exam/index',
-    // name: 'Exam',
-    // meta: { title: '考试管理', icon: 'form' }
+    name: 'Exam',
+    meta: { title: '考试管理', icon: 'form' },
     children: [
       {
         path: 'index',
-        name: 'Exam',
-        component: () => import('@/views/exam/index.vue'),
+        name: 'all',
+        component: () => import('@/views/exam/all/index.vue'),
         meta: { title: '我的考试', icon: 'form' }
+      },
+      {
+        path: 'finish',
+        name: 'Finish',
+        component: () => import('@/views/exam/finish/index.vue'),
+        meta: { title: '已完成', icon: 'form' }
       }
     ]
   },
@@ -148,6 +154,7 @@ export const asyncRoutes = [
       {
         path: 'code',
         name: 'Code',
+        hidden: true,
         component: () => import('@/views/investigation/code/index.vue'),
         meta: { title: '算法实验', icon: 'el-icon-data-analysis' }
       }
@@ -180,6 +187,18 @@ export const asyncRoutes = [
         meta: { title: '个人中心', icon: 'el-icon-user-solid' }
       }
     ]
+  },
+  // 考试页面
+  {
+    path: '/examination',
+    hidden: true,
+    component: () => import('@/views/exam/test/index.vue')
+  },
+  // 考生须知和人脸识别页面
+  {
+    path: '/examination-Notice',
+    hidden: true,
+    component: () => import('@/views/exam/joyexam/index.vue')
   },
 
   // 404 page must be placed at the end !!!

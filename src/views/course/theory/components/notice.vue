@@ -4,14 +4,14 @@
       <el-avatar class="el-icon-bell" />
       <div style="width:24%">
         <div style="margin-top:5px">
-          <span class="testname">公告一</span>
+          <span class="testname">{{ noticedata.title }}</span>
         </div>
         <div style="margin-top:10px">
-          <span class="testtime">发布时间：2022/12/31 10:30</span>
+          <span class="testtime">发布时间：{{ noticedata.time }}</span>
         </div>
       </div>
       <div class="bottoncss">
-        <el-button style="margin-right: 10px;font-size: 18px;" type="text" size="small">查看</el-button>
+        <el-button :loading="noticeloading" style="margin-right: 10px;font-size: 18px;" type="text" size="small" @click="Look(noticedata)">查看</el-button>
       </div>
     </div>
     <el-divider />
@@ -20,7 +20,37 @@
 
 <script>
 export default {
-
+  name: 'Notice',
+  props: {
+    noticedata: {
+      type: Object,
+      default: function() {
+        return {
+          title: '公告一',
+          time: '2022/12/31 10:30',
+          content: '这是公告一的内容'
+        }
+      }
+    }
+  },
+  data: function() {
+    return {
+      noticeloading: false
+    }
+  },
+  methods: {
+    Look(noticedata) {
+      this.noticeloading = true
+      setTimeout(() => {
+        this.$alert(noticedata.content, noticedata.title, {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.noticeloading = false
+          }
+        })
+      }, 1000)
+    }
+  }
 }
 </script>
 

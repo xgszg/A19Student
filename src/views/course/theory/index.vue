@@ -8,7 +8,7 @@
         </div>
         <div class="people">已加入 86人</div>
         <div class="classcode"><i class="el-icon-copy-document" /> 课程码 {{ classInfo.code }}</div>
-        <span><el-button type="primary" style="float: right" icon="el-icon-video-play" :disabled="true" round>加入课堂</el-button></span>
+        <span><el-button type="primary" style="float: right" icon="el-icon-video-play" round @click="gotoroom()">加入课堂</el-button></span>
       </div>
       <template>
         <el-tabs v-model="tabs" v-loading="loading" class="tabscss" @tab-click="openFullScreen1">
@@ -26,33 +26,33 @@
             <div style="height:30px">
               <span>共3次作业</span>
             </div>
-            <Homework />
-            <Homework />
-            <Homework />
+            <div v-for="(item,index) in homeworkdata" :key="index">
+              <Homework :homeworkdata="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="测试" name="test">
             <div style="height:30px">
               <span>共4次测试</span>
             </div>
-            <Test />
-            <Test />
-            <Test />
-            <Test />
+            <div v-for="(item,index) in testdata" :key="index">
+              <Test :testdata="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="资料" name="data">
             <div style="height:30px">
               <span>共2个资料</span>
             </div>
-            <Data />
-            <Data />
+            <div v-for="(item,index) in datafile" :key="index">
+              <Data :datafile="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="公告" name="notice">
             <div style="height:30px">
               <span>共3个公告</span>
             </div>
-            <Notice />
-            <Notice />
-            <Notice />
+            <div v-for="(item,index) in noticedata" :key="index">
+              <Notice :noticedata="item" />
+            </div>
           </el-tab-pane>
           <el-tab-pane label="成员" name="people">
             <People />
@@ -71,7 +71,8 @@ import Test from './components/test.vue'
 import Data from './components/data.vue'
 import Notice from './components/notice.vue'
 import People from './components/people.vue'
-
+import testInfo from '@/api/test-info'
+import classdata from '@/api/class-info'
 export default {
   name: 'Class',
   components: { Catalogue, Courseware, Homework, Test, Notice, Data, People },
@@ -93,6 +94,10 @@ export default {
   },
   data() {
     return {
+      testdata: testInfo.test,
+      noticedata: classdata.notice,
+      datafile: classdata.data,
+      homeworkdata: classdata.homework,
       loading: false,
       tabs: 'catalogue',
       imageClass: {
@@ -122,6 +127,9 @@ export default {
       setTimeout(() => {
         this.loading = false
       }, 1000)
+    },
+    gotoroom() {
+      this.$router.push('/course/theory/liveroom')
     }
   }
 }

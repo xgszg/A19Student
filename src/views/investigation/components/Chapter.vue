@@ -5,6 +5,7 @@
       style="width: 100%"
       :show-header="false"
       class="show-table"
+      @row-click="handleClick"
     >
       <el-table-column
         width="100px"
@@ -39,12 +40,23 @@ export default {
     return {
       tableData: Chapter.chapters
     }
+  },
+  methods: {
+    // 处理行点击
+    handleClick(row, event, colum) {
+      // 更改章节
+      this.$store.commit('chapter/CHANGE_CHAPTER', row.id)
+      console.log(this.$store.state.chapter.chapter)
+      this.$store.commit('chapter/CHANGE_TAB', 'step')
+      console.log(this.$store.state.chapter.tab)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .show-table{
+  cursor: pointer;
   td{
     border-bottom: none;
   }

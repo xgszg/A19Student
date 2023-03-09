@@ -3,12 +3,12 @@
     <div class="name">
       <el-avatar src="https://assets.ketangpai.com/openapiv5/Public/Common/img/fileicon/file_ext_big_pdf.png" shape="square" :size="40" />
       <div style="width:24%">
-        <span class="dataname">资料一</span><br>
-        <span class="datatime">过期时间：2022/12/31 10:30</span><br>
-        <span class="datastate">已学习</span>
+        <span class="dataname">{{ datafile.name }}</span><br>
+        <span class="datatime">过期时间：{{ datafile.time }}</span><br>
+        <span class="datastate">{{ datafile.state }}</span>
       </div>
       <div class="bottoncss">
-        <el-button style="margin-right: 10px;" size="medium" type="primary">开始学习</el-button>
+        <el-button :loading="studyloading" style="margin-right: 10px;" size="medium" type="primary" @click="study(datafile)">开始学习</el-button>
       </div>
     </div>
     <el-divider />
@@ -17,7 +17,42 @@
 
 <script>
 export default {
-
+  name: 'Data',
+  props: {
+    datafile: {
+      type: Object,
+      default: function() {
+        return {
+          name: '资料一',
+          time: '2022/12/31 10:30',
+          state: '未学习'
+        }
+      }
+    }
+  },
+  data: function() {
+    return {
+      studyloading: false
+    }
+  },
+  methods: {
+    study(datafile) {
+      this.studyloading = true
+      setTimeout(() => {
+        this.$confirm('是否下载' + datafile.name, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'info'
+        }).then(() => {
+          datafile.state = '已学习'
+          this.studyloading = false
+          window.location.href = 'http://localhost:9528/static/pdf/data1.pdf'
+        }).catch(() => {
+          this.studyloading = false
+        })
+      }, 1000)
+    }
+  }
 }
 </script>
 

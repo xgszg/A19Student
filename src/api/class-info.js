@@ -57,13 +57,70 @@ export default {
   }],
   // 实验数据
   investigation: [{
-    id: 2,
-    date: '2021-2022第二学期',
-    name: '操作系统',
-    classrooms: ['软工201', '软工202'],
-    code: '4da15rd',
-    teacher: '刘红林',
-    classification: '实训',
-    url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")'
+    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    name: '操作系统实验',
+    last: 'proc文件系统的实现(7/10)',
+    process: 7,
+    type: 'experiment'
+  }, {
+    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    name: '搜索与图论',
+    last: ' 有向图的拓扑序列(6/10)',
+    process: 6,
+    type: 'code'
+  }],
+  // 公告数据
+  notice: [{
+    title: '公告一',
+    time: '2022/12/31 10:30',
+    content: '这是公告一的内容'
+  }, {
+    title: '公告二',
+    time: '2022/12/31 10:30',
+    content: '这是公告二的内容'
+  }, {
+    title: '公告三',
+    time: '2022/12/31 10:30',
+    content: '这是公告三的内容'
+  }],
+  // 资料数据
+  data: [{
+    name: '资料一',
+    time: '2022/12/31 10:30',
+    state: '未学习'
+  }, {
+    name: '资料二',
+    time: '2022/12/31 10:30',
+    state: '未学习'
+  }, {
+    name: '资料三',
+    time: '2022/12/31 10:30',
+    state: '未学习'
+  }],
+  // 作业数据
+  homework: [{
+    name: '作业一',
+    time: '2022/12/31 10:30',
+    status: '已结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业二',
+    time: '2022/12/31 10:30',
+    status: '已结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业三',
+    time: '2022/12/31 10:30',
+    status: '未结束',
+    attribute: '个人作业',
+    state: '已提交'
+  }, {
+    name: '作业四',
+    time: '2022/12/31 10:30',
+    status: '未结束',
+    attribute: '个人作业',
+    state: '未提交'
   }]
 }

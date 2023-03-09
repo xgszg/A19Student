@@ -5,8 +5,9 @@
         <Write />
       </div>
       <div class="resize" title="关闭侧边栏" />
-      <div class="right-container">
-        <WebSSH />
+      <div v-loading="loading" class="right-container">
+        <Start v-if="!showSSH&&!showVNC" />
+        <WebSSH v-if="showSSH" />
       </div>
     </div>
   </div>
@@ -15,12 +16,43 @@
 <script>
 import Write from '@/views/investigation/components/Write.vue'
 import WebSSH from '@/views/investigation/components/WebSSH.vue'
+import Start from '@/views/investigation/components/Start.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Experiment',
   components: {
     Write,
-    WebSSH
+    WebSSH,
+    Start
+  },
+  data() {
+    return {
+      showSSH: false,
+      showVNC: false,
+      loading: false
+    }
+  },
+  computed: {
+    ...mapState('chapter', ['environment'])
+  },
+  watch: {
+    environment(newValue) {
+      this.loading = true
+      setTimeout(() => {
+        if (newValue === 'ssh') {
+          this.showSSH = true
+          this.showVNC = false
+        } else if (newValue === 'vnc') {
+          this.showVNC = true
+          this.showSSH = false
+        } else {
+          this.showSSH = false
+          this.showVNC = false
+        }
+        this.loading = false
+      }, 1000)
+    }
   },
   mounted() {
     // 初始化拖拽宽度

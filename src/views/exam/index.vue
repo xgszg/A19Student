@@ -1,5 +1,5 @@
 <template>
-  <div>考试管理
+  <div>我的考试
   </div>
 </template>
 

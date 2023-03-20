@@ -8,7 +8,7 @@
         <span class="datastate">{{ datafile.state }}</span>
       </div>
       <div class="bottoncss">
-        <el-button :loading="studyloading" style="margin-right: 10px;" size="medium" type="primary" @click="study(datafile)">开始学习</el-button>
+        <el-button :loading="studyloading" style="margin-right: 10px;" size="medium" type="primary" @click="study(datafile)">下载资料</el-button>
       </div>
     </div>
     <el-divider />

@@ -40,7 +40,7 @@
           </el-tab-pane>
           <el-tab-pane label="资料" name="data">
             <div style="height:30px">
-              <span>共2个资料</span>
+              <span>共4个资料</span>
             </div>
             <div v-for="(item,index) in datafile" :key="index">
               <Data :datafile="item" />

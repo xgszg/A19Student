@@ -11,7 +11,7 @@
         <div slot="label">
           <svg-icon icon-class="wechat" />QQ
         </div>
-        <a href="www.wechat.com">点击绑定</a>
+        <a href="https://www.wechat.com">点击绑定</a>
       </el-descriptions-item>
       <el-descriptions-item>
         <div slot="label">

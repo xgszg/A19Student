@@ -134,25 +134,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.barrage{
+.barrage {
   // display: flex;
   height: 100%;
-  &-header{
-      padding: 0 10px;
-      text-align: center;
-      border-bottom: 1px solid gray;
+
+  &-header {
+    padding: 0 10px;
+    text-align: center;
+    border-bottom: 1px solid gray;
   }
-  &-body{
-      height: 100%;
-      overflow-y: auto;
-      // padding: 0 20px;
-      // display: flex;
-      box-sizing: border-box;
+
+  &-body {
+    height: 100%;
+    overflow-y: auto;
+    // padding: 0 20px;
+    // display: flex;
+    box-sizing: border-box;
   }
-  &-msg{
-      margin-top: 10px;
-      padding: 0 20px;
-      box-sizing: border-box;
+
+  &-msg {
+    margin-top: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
 }
 
@@ -179,6 +182,7 @@ textarea {
 
 .barrage-msg {
   background-color: #F5F5F5;
+
   ::v-deep .el-textarea__inner {
     border: 0;
     resize: none;
@@ -222,7 +226,7 @@ textarea {
   right: 0;
   margin: 0;
   bottom: 0;
-  height: 500px;
+  height: 600px;
   width: 100%;
   margin: 10px 0 0 0;
 }

@@ -1,104 +1,65 @@
-# vue-admin-template
+# 待办事项
 
-# 用作test
+❌：尚未完成  
+✅：已经完成  
+完成一项把❌改成✅，都确认无误后，把这一项直接从readme里面删掉
 
-> 这是一个极简的 vue admin 管理后台。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
+## 首页
 
-[线上地址](http://panjiachen.github.io/vue-admin-template)
+- [ ] 日历可以考虑花哨一点，参考ACwing的日历
+	![](./temp_readme_fig/日历.png)
+- [ ] 添加课程表，可以抄acwing的 ，然后稍作改进 
+	![](temp_readme_fig/acwing课程表.png)
+- [ ] final version数据修改 
 
-[国内访问](https://panjiachen.gitee.io/vue-admin-template)
 
-目前版本为 `v4.0+` 基于 `vue-cli` 进行构建，若你想使用旧版本，可以切换分支到[tag/3.11.0](https://github.com/PanJiaChen/vue-admin-template/tree/tag/3.11.0)，它不依赖 `vue-cli`。
+## 我的课程
 
-## Extra
+- [ ] 作业这一块，要显示作业的一些要求，在最上方有详情和提交作业两个子栏，咱们做一块就行了  
+  	![](temp_readme_fig/作业详情.png)  
+  	![](temp_readme_fig/作业.png) 
+- [ ] 把表格线去掉，然后给人的名字前面加一个圆形头像，头像图片先随便弄几个就行  
+  	![](temp_readme_fig/成员列表.png)  
+- [ ] 不用查看成绩了，直接把成绩写这就行了
+  	![](temp_readme_fig/查看成绩.png)
+- [ ] final version数据修改
 
-如果你想要根据用户角色来动态生成侧边栏和 router，你可以使用该分支[permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
+## 考试管理
+- [ ] 尽可能横向填充一下，不然右侧空着的页面太多了，至于下方空页面，多加几条数据填一下就好了。顺便把面包屑上的dashboard改一下  
+	![](temp_readme_fig/考试首页.png)
+- [ ] 不要两个子页面我的考试和已完成考试了，直接合并起来
 
-## 相关项目
 
-- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+### 我的考试
 
-- [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
+- [ ] 在进入考试时，取消设备检测    
+- [ ] 考试工具箱的icon消失   
+	![](temp_readme_fig/考试工具箱.png)  
+- [ ] 本次考试以数据结构为例，将答题卡有顺序的并且做好标注的调整为以下题型
+	`选择`，`判断`，`简答`，`算法设计`  
+	其中，算法设计直接拿本次实验部分的数据结构实验过来
+- [ ] 大规模的final version数据修改从英语考试适配到本次任务上来  
 
-- [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
 
-- [awesome-project](https://github.com/PanJiaChen/vue-element-admin/issues/2312)
+### 已完成考试
 
-写了一个系列的教程配套文章，如何从零构建后一个完整的后台项目:
+- [ ] final version数据修改 
 
-- [手摸手，带你用 vue 撸后台 系列一(基础篇)](https://juejin.im/post/59097cd7a22b9d0065fb61d2)
-- [手摸手，带你用 vue 撸后台 系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac)
-- [手摸手，带你用 vue 撸后台 系列三 (实战篇)](https://juejin.im/post/593121aa0ce4630057f70d35)
-- [手摸手，带你用 vue 撸后台 系列四(vueAdmin 一个极简的后台基础模板,专门针对本项目的文章,算作是一篇文档)](https://juejin.im/post/595b4d776fb9a06bbe7dba56)
-- [手摸手，带你封装一个 vue component](https://segmentfault.com/a/1190000009090836)
+## 我的实验
 
-## Build Setup
+- [ ] 样式方面的改进，换一些图片  
+- [ ] final version数据修改
 
-```bash
-# 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+## 网盘
 
-# 进入项目目录
-cd vue-admin-template
+- [ ] final version数据修改
 
-# 安装依赖
-npm install
 
-# 建议不要直接使用 cnpm 安装以来，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
-npm install --registry=https://registry.npm.taobao.org
+## 个人中心
 
-# 启动服务
-npm run dev
-```
+- [ ] final version数据修改
 
-浏览器访问 [http://localhost:9528](http://localhost:9528)
+## 其他方面
 
-## 发布
+- [ ] 整个系统里，响应圆圈的时间设置的有点太长了，会给人感觉明显的卡顿，没有必要这么做，设置短一点，进入一个页面的时候，平滑地切过去就可以了
 
-```bash
-# 构建测试环境
-npm run build:stage
-
-# 构建生产环境
-npm run build:prod
-```
-
-## 其它
-
-```bash
-# 预览发布环境效果
-npm run preview
-
-# 预览发布环境效果 + 静态资源分析
-npm run preview -- --report
-
-# 代码格式检查
-npm run lint
-
-# 代码格式检查并自动修复
-npm run lint -- --fix
-```
-
-更多信息请参考 [使用文档](https://panjiachen.github.io/vue-element-admin-site/zh/)
-
-## 购买贴纸
-
-你也可以通过 购买[官方授权的贴纸](https://smallsticker.com/product/vue-element-admin) 的方式来支持 vue-element-admin - 每售出一张贴纸，我们将获得 2 元的捐赠。
-
-## Demo
-
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
-
-## Browsers support
-
-Modern browsers and Internet Explorer 10+.
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
-
-## License
-
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
-
-Copyright (c) 2017-present PanJiaChen

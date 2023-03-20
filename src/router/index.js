@@ -106,7 +106,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/exam/index',
     name: 'Exam',
-    meta: { title: '考试管理', icon: 'form' },
+    meta: { title: '我的考试', icon: 'form' },
     children: [
       {
         path: 'index',

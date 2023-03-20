@@ -103,24 +103,28 @@ export default {
     time: '2022/12/31 10:30',
     status: '已结束',
     attribute: '个人作业',
-    state: '已提交'
+    state: '已提交',
+    information: '这是作业一的作业详情'
   }, {
     name: '作业二',
     time: '2022/12/31 10:30',
     status: '已结束',
     attribute: '个人作业',
-    state: '已提交'
+    state: '已提交',
+    information: '这是作业二的作业详情'
   }, {
     name: '作业三',
     time: '2022/12/31 10:30',
     status: '未结束',
     attribute: '个人作业',
-    state: '已提交'
+    state: '已提交',
+    information: '这是作业三的作业详情'
   }, {
     name: '作业四',
     time: '2022/12/31 10:30',
     status: '未结束',
     attribute: '个人作业',
-    state: '未提交'
+    state: '未提交',
+    information: '这是作业四的作业详情'
   }]
 }

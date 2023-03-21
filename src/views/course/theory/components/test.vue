@@ -7,8 +7,13 @@
         <span class="testtime">截至时间：{{ testdata.Deadline }} | {{ testdata.state }} | {{ testdata.type }}</span><br>
         <span class="teststate">限时：{{ testdata.time }}分钟</span>
       </div>
-      <div class="bottoncss">
-        <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button>
+      <div v-show="fractionlook" class="bottoncss">
+        <!-- <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button> -->
+        <span>{{ testdata.fraction }}分</span>
+      </div>
+      <div v-show="!fractionlook" class="bottoncss">
+        <!-- <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button> -->
+        <span>等待考试结束后显示分数</span>
       </div>
     </div>
     <el-divider />
@@ -36,33 +41,41 @@ export default {
   data() {
     return {
       buttonstatic: false,
-      buttonloading: false
+      buttonloading: false,
+      fractionlook: false
     }
   },
+  created() { // 自动加载indexs方法
+    this.fractionlookh()
+  },
   methods: {
-    Viewgrades(testdata) {
-      this.buttonloading = true
-      if (testdata.state === '已结束') {
-        setTimeout(() => {
-          this.$alert('你的成绩是100分', '提示', {
-            confirmButtonText: '确定',
-            callback: action => {
-              this.buttonloading = false
-            }
-          })
-        }, 1000)
-      } else {
-        setTimeout(() => {
-          this.$alert('考试还未结束，无法查看成绩', '提示', {
-            confirmButtonText: '确定',
-            callback: action => {
-              // testdata.state='已结束'预留的状态转化
-              this.buttonloading = false
-            }
-          })
-        }, 1000)
-      }
+    fractionlookh() {
+      if (this.testdata.state === '已结束') this.fractionlook = true
+      else this.fractionlook = false
     }
+    // Viewgrades(testdata) {
+    //   this.buttonloading = true
+    //   if (testdata.state === '已结束') {
+    //     setTimeout(() => {
+    //       this.$alert('你的成绩是100分', '提示', {
+    //         confirmButtonText: '确定',
+    //         callback: action => {
+    //           this.buttonloading = false
+    //         }
+    //       })
+    //     }, 1000)
+    //   } else {
+    //     setTimeout(() => {
+    //       this.$alert('考试还未结束，无法查看成绩', '提示', {
+    //         confirmButtonText: '确定',
+    //         callback: action => {
+    //           // testdata.state='已结束'预留的状态转化
+    //           this.buttonloading = false
+    //         }
+    //       })
+    //     }, 1000)
+    //   }
+    // }
   }
 }
 </script>

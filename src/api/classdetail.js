@@ -5,7 +5,8 @@ export default {
     sex: '女',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
   },
   {
     name: '宇文紫',
@@ -13,7 +14,8 @@ export default {
     sex: '女',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
   },
   {
     name: '张程',
@@ -21,7 +23,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://ts2.cn.mm.bing.net/th?id=OIP-C.BuJECsunhT-sCfSHvx8_8QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
   },
   {
     name: '王涛',
@@ -29,7 +32,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '林天文',
@@ -37,7 +41,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '杨凯',
@@ -45,7 +50,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '范文骁',
@@ -53,7 +59,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '杨可欣',
@@ -61,7 +68,8 @@ export default {
     sex: '女',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '高佳洛',
@@ -69,7 +77,8 @@ export default {
     sex: '女',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '刘赟涛',
@@ -77,7 +86,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '段智亮',
@@ -85,7 +95,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '王鼎',
@@ -93,7 +104,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '王宇墨',
@@ -101,7 +113,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '何宁',
@@ -109,7 +122,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '李梓豪',
@@ -117,7 +131,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '张浩然',
@@ -125,7 +140,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '韩伟',
@@ -133,7 +149,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '汪子晗',
@@ -141,7 +158,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '高婷婷',
@@ -149,7 +167,8 @@ export default {
     sex: '女',
     identity: '学生',
     date: '2022-3-03',
-    class: '软工201'
+    class: '软工201',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   },
   {
     name: '蒋来',
@@ -157,7 +176,8 @@ export default {
     sex: '男',
     identity: '学生',
     date: '2022-3-04',
-    class: '软工202'
+    class: '软工202',
+    img: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
   }
   ]
 }

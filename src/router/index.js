@@ -113,12 +113,6 @@ export const asyncRoutes = [
         name: 'all',
         component: () => import('@/views/exam/all/index.vue'),
         meta: { title: '我的考试', icon: 'form' }
-      },
-      {
-        path: 'finish',
-        name: 'Finish',
-        component: () => import('@/views/exam/finish/index.vue'),
-        meta: { title: '已完成', icon: 'form' }
       }
     ]
   },

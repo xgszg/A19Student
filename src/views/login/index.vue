@@ -1,76 +1,87 @@
 <template>
   <div class="login-container">
     <el-card class="login-card">
-      <el-form
-        ref="loginForm"
-        :model="loginForm"
-        :rules="loginRules"
-        class="login-form"
-        auto-complete="on"
-        label-position="left"
-      >
-
-        <div class="title-container">
-          <h3 class="title">欢迎使用</h3>
-        </div>
-
-        <el-form-item prop="username">
-          <span class="svg-container">
-            <svg-icon icon-class="user" />
-          </span>
-          <el-input
-            ref="username"
-            v-model="loginForm.username"
-            placeholder="Username"
-            name="username"
-            type="text"
-            tabindex="1"
+      <el-row>
+        <el-col :span="12">
+          <div class="login-title">
+            基于云计算平台的教学管理系统
+          </div>
+          <img class="login-img" :src="img()">
+        </el-col>
+        <el-col :span="12">
+          <el-form
+            ref="loginForm"
+            :model="loginForm"
+            :rules="loginRules"
+            class="login-form"
             auto-complete="on"
-          />
-        </el-form-item>
+            label-position="left"
+          >
 
-        <el-form-item prop="password">
-          <span class="svg-container">
-            <svg-icon icon-class="password" />
-          </span>
-          <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            placeholder="Password"
-            name="password"
-            tabindex="2"
-            auto-complete="on"
-            @keyup.enter.native="handleLogin"
-          />
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          </span>
-        </el-form-item>
+            <!--<div class="title-container">-->
+            <!--  <h3 class="title">欢迎使用</h3>-->
+            <!--</div>-->
 
-        <el-row :gutter="20">
-          <el-col :span="12">
-            <el-button
-              :loading="loading"
-              type="primary"
-              style="width:100%;margin-bottom:30px;"
-              @click.native.prevent="handleLogin"
-            >注册
-            </el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-button
-              :loading="loading"
-              type="primary"
-              style="width:100%;margin-bottom:30px;"
-              @click.native.prevent="handleLogin"
-            >登录
-            </el-button>
-          </el-col>
-        </el-row>
+            <el-form-item prop="username">
+              <span class="svg-container">
+                <svg-icon icon-class="user" />
+              </span>
+              <el-input
+                ref="username"
+                v-model="loginForm.username"
+                placeholder="Username"
+                name="username"
+                type="text"
+                tabindex="1"
+                auto-complete="on"
+              />
+            </el-form-item>
 
-      </el-form>
+            <el-form-item prop="password">
+              <span class="svg-container">
+                <svg-icon icon-class="password" />
+              </span>
+              <el-input
+                :key="passwordType"
+                ref="password"
+                v-model="loginForm.password"
+                :type="passwordType"
+                placeholder="Password"
+                name="password"
+                tabindex="2"
+                auto-complete="on"
+                @keyup.enter.native="handleLogin"
+              />
+              <span class="show-pwd" @click="showPwd">
+                <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+              </span>
+            </el-form-item>
+
+            <el-row :gutter="20">
+              <el-col :span="12">
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  style="width:100%;margin-bottom:30px;"
+                  @click.native.prevent="handleLogin"
+                >注册
+                </el-button>
+              </el-col>
+              <el-col :span="12">
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  style="width:100%;margin-bottom:30px;"
+                  @click.native.prevent="handleLogin"
+                >登录
+                </el-button>
+              </el-col>
+            </el-row>
+
+          </el-form>
+        </el-col>
+      </el-row>
+
     </el-card>
   </div>
 </template>
@@ -143,6 +154,9 @@ export default {
           return false
         }
       })
+    },
+    img() {
+      return require('@/assets/images/学习.svg')
     }
   }
 }
@@ -203,7 +217,7 @@ $light_gray: #383838;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background: url("~@/assets/images/login.jpg") no-repeat center;
+  background: url("~@/assets/images/snow-4726119.png") no-repeat center;
   overflow: hidden;
 
   ::v-deep .el-input input {
@@ -211,15 +225,32 @@ $light_gray: #383838;
   }
 
   .login-card {
+
+    //background-image: linear-gradient( 135deg, #ffffff 10%, rgb(250, 241, 241) 100%);
+
     ::v-deep .el-card__body {
       padding: 0;
     }
 
+    .login-img{
+      height: 350px;
+      position: relative;
+      left: 80px;
+    }
+
+    .login-title{
+      margin-top: 20px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 0;
+    }
+
     position: relative;
-    width: 520px;
+    width: 1020px;
     max-width: 100%;
     //padding: 160px 35px 0;
-    margin: 200px auto;
+    margin: 240px auto;
     overflow: hidden;
   }
 
@@ -228,9 +259,8 @@ $light_gray: #383838;
     width: 520px;
     max-width: 100%;
     padding: 30px 35px 0;
-    margin: 0;
+    margin-top: 80px;
     overflow: hidden;
-
   }
 
   .tips {

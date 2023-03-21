@@ -10,9 +10,12 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="8">
-        <el-card class="card-container">
+        <el-card class="card-container calendar-container">
           <!--日历-->
-          <Calendar />
+          <Calendar
+            ref="calendar"
+            style="height: 800px"
+          />
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="16">
@@ -29,9 +32,11 @@
 </template>
 
 <script>
+import Calendar from '@toast-ui/vue-calendar'
+import '@toast-ui/calendar/dist/toastui-calendar.min.css'
 import { mapGetters } from 'vuex'
 import Todos from './components/Todos.vue'
-import Calendar from './components/Calendar.vue'
+// import Calendar from './components/Calendar.vue'
 import Logs from './components/Logs.vue'
 
 export default {
@@ -52,7 +57,13 @@ export default {
     ...mapGetters([
       'name',
       'roles'
-    ])
+    ]),
+    calendarInstance() {
+      return this.$refs.calendar.getInstance()
+    }
+  },
+  mounted() {
+    this.calendarInstance.setDate(new Date())
   }
 }
 </script>
@@ -74,10 +85,16 @@ $card-margin: 10px 0px;
     .card-container{
       margin: $card-margin;
     }
+    .calendar-container {
+      ::v-deep .el-card__body{
+        padding: 0;
+      }
+    }
   }
   &-text {
     font-size: 30px;
     line-height: 46px;
   }
 }
+
 </style>

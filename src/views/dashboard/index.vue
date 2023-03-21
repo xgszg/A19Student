@@ -24,10 +24,18 @@
     </el-row>
 
     <el-row :gutter="20">
-      <!--<el-col :span="6" />-->
-      <el-col :span="24">
+      <el-col :span="6">
+        <!--日历-->
+        <Calendar
+          is-expanded
+          title-position="right"
+          :rows="2"
+          :attributes="attrs"
+        />
+      </el-col>
+      <el-col :span="18">
         <el-card class="calendar-container">
-          <!--日历-->
+          <!--课程表-->
           <vue-cal
             selected-date="2023-03-21 14:54"
             :disable-views="['years', 'year', 'month']"
@@ -51,10 +59,12 @@ import 'vue-cal/dist/i18n/zh-cn.cjs'
 import { mapGetters } from 'vuex'
 import Todos from './components/Todos.vue'
 import Logs from './components/Logs.vue'
+import Calendar from 'v-calendar/lib/components/calendar.umd'
+// import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 
 export default {
   name: 'Dashboard',
-  components: { Todos, Logs, VueCal },
+  components: { Todos, Logs, VueCal, Calendar },
   data() {
     return {
       welcome: {
@@ -100,7 +110,14 @@ export default {
         deletable: false,
         resizable: false,
         draggable: false
-      }]
+      }],
+      attrs: [
+        {
+          key: 'today',
+          highlight: true,
+          dates: new Date()
+        }
+      ]
     }
   },
   computed: {

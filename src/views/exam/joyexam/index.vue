@@ -74,7 +74,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 2000)
+      }, 600)
     },
     next() {
       this.loadinghs()
@@ -145,7 +145,7 @@ export default {
         })
       setTimeout(() => {
         this.joyexam()
-      }, 4000)
+      }, 2000)
     },
     joyexam() {
       this.$confirm('识别成功, 是否进入考试?', '提示', {

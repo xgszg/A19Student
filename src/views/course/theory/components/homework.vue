@@ -92,7 +92,7 @@ export default {
       this.homeworkloading = true
       setTimeout(() => {
         this.homeworkloading = false
-      }, 1000)
+      }, 500)
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
@@ -120,7 +120,7 @@ export default {
             message: '提交成功！',
             type: 'success'
           })
-        }, 1000)
+        }, 500)
       } else {
         this.$confirm('还未提交作业, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -129,6 +129,7 @@ export default {
         }).then(() => {
           this.buttonloading = false
           this.dialogVisible = false
+        }).catch(() => {
         })
       }
     }

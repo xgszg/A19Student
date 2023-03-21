@@ -428,7 +428,7 @@ export default {
         child.countTime(value * 60)
         setTimeout(() => {
           this.timeshow = true
-        }, 1000)
+        }, 500)
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -761,7 +761,7 @@ export default {
               type: 'success',
               message: '提交成功!'
             })
-            this.$router.push({ path: 'index' })
+            this.$router.push({ path: '/exam' })
           }, 2000)
         }).catch(() => {
 

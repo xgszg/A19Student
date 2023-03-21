@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <el-card>
       <el-table
         :data="examInfo"
@@ -53,7 +53,7 @@
               size="mini"
               type="primary"
               :disabled="scope.row.state !=='待参加'"
-              @click="handleEdit(0,scope.row,scope.row.fraction)"
+              @click="handleEdit(0,scope.row.state,scope.row.fraction)"
             >参加考试</el-button>
             <el-button
               v-if="scope.row.state !=='待参加'"
@@ -75,6 +75,7 @@ import examInfo from '@/api/examination'
 export default {
   data() {
     return {
+      loading: false,
       examInfo: examInfo.all
     }
   },
@@ -86,9 +87,9 @@ export default {
     }
   },
   methods: {
-    before(index, row) {
-      if (row.state === '已结束' || row.state === '待批改') { return '查看成绩' } else if (row.state === '待参加') { return '参加考试' }
-    },
+    // before(index, row) {
+    //   if (row.state === '已结束' || row.state === '待批改') { return '查看成绩' } else if (row.state === '待参加') { return '参加考试' }
+    // },
     tagColor(index, row) {
       if (row.state === '已结束') {
         return 'success'
@@ -122,9 +123,10 @@ export default {
                 clearInterval(this.timer)
                 this.timer = null
                 // 跳转的页面写在此处
-                this.$router.push({ path: '/examination-Notice' })
+                // this.$router.push({ path: '/examination-Notice' })
+                this.$router.push({ path: '/examination' })
               }
-            }, 1000)
+            }, 500)
           }
         }).catch(() => {
           this.$message({
@@ -133,23 +135,25 @@ export default {
           })
         })
       } else {
+        this.loading = true
         if (stace === '已结束') {
           setTimeout(() => {
+            this.loading = false
             this.$alert('你的成绩是' + fraction + '分', '提示', {
               confirmButtonText: '确定',
               callback: action => {
               }
             })
-          }, 1000)
+          }, 500)
         } else {
           setTimeout(() => {
+            this.loading = false
             this.$alert('考试还未结束，无法查看成绩', '提示', {
               confirmButtonText: '确定',
               callback: action => {
-                this.buttonloading = false
               }
             })
-          }, 1000)
+          }, 500)
         }
       }
     }

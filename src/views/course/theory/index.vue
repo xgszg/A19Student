@@ -126,7 +126,7 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1000)
+      }, 500)
     },
     gotoroom() {
       this.$router.push('/course/theory/liveroom')

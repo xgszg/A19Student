@@ -48,7 +48,7 @@ export default {
             this.noticeloading = false
           }
         })
-      }, 1000)
+      }, 500)
     }
   }
 }

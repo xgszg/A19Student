@@ -49,8 +49,7 @@ Vue.config.productionTip = false
 Vue.use(Chat)
 
 new Vue({
-  el: '#app',
   router,
   store,
   render: h => h(App)
-})
+}).$mount('#app')

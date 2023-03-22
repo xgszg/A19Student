@@ -7,13 +7,17 @@
         <span class="testtime">截至时间：{{ testdata.Deadline }} | {{ testdata.state }} | {{ testdata.type }}</span><br>
         <span class="teststate">限时：{{ testdata.time }}分钟</span>
       </div>
-      <div v-show="fractionlook" class="bottoncss">
+      <div v-show="testdata.state==='已结束'" class="bottoncss">
         <!-- <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button> -->
         <span>{{ testdata.fraction }}分</span>
       </div>
-      <div v-show="!fractionlook" class="bottoncss">
+      <div v-show="testdata.state==='正在进行'" class="bottoncss">
         <!-- <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button> -->
         <span>等待考试结束后显示分数</span>
+      </div>
+      <div v-show="testdata.state==='待开始'" class="bottoncss">
+        <!-- <el-button :loading="buttonloading" style="margin-right: 10px;" size="medium" :disabled="testdata.state==='待开始'" @click="Viewgrades(testdata)">查看成绩</el-button> -->
+        <el-button type="primary" @click="gotest()">去考试</el-button>
       </div>
     </div>
     <el-divider />
@@ -52,6 +56,41 @@ export default {
     fractionlookh() {
       if (this.testdata.state === '已结束') this.fractionlook = true
       else this.fractionlook = false
+    },
+    gotest() {
+      this.$confirm('即将进入考试, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('app/toggleSideBar')
+        this.$message({
+          type: 'success',
+          message: '正在进入!'
+        })
+        const timejump = 1
+        if (!this.timer) {
+          this.count = timejump
+          this.show = false
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= timejump) {
+              this.count--
+            } else {
+              this.show = true
+              clearInterval(this.timer)
+              this.timer = null
+              // 跳转的页面写在此处
+              // this.$router.push({ path: '/examination-Notice' })
+              this.$router.push({ path: '/examination' })
+            }
+          }, 500)
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消进入'
+        })
+      })
     }
     // Viewgrades(testdata) {
     //   this.buttonloading = true

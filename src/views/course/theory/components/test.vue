@@ -63,7 +63,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('app/toggleSideBar')
+        // this.$store.dispatch('app/toggleSideBar')
         this.$message({
           type: 'success',
           message: '正在进入!'
@@ -81,6 +81,7 @@ export default {
               this.timer = null
               // 跳转的页面写在此处
               // this.$router.push({ path: '/examination-Notice' })
+              this.testdata.state = '正在进行'
               this.$router.push({ path: '/examination' })
             }
           }, 500)

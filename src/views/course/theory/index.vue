@@ -137,7 +137,9 @@ export default {
 
 <style scoped>
 .container{
-  margin:20px
+  margin:20px;
+  justify-content: flex-start;
+
 }
 .tabscss{
   margin-top: 10px;

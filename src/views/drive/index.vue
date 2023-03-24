@@ -2,10 +2,15 @@
   <div class="app-container">
     <el-card>
       <el-row type="flex" align="middle">
-        <el-col :span="22">
+        <el-col :span="3">
           <span class="space">当前空间2.3G/5G</span>
         </el-col>
-        <el-col :span="5">
+        <el-col :span="6">
+          <el-progress :percentage="2.3/5*100" :format="format"></el-progress>
+        </el-col>
+        <el-col :span="12">
+        </el-col>
+        <el-col :span="4">
           <el-upload
             ref="upload"
             class="upload-demo"

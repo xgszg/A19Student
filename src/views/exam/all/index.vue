@@ -19,6 +19,15 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="班级"
+          width="150px"
+        >
+          <template slot-scope="scope">
+            <i class="el-icon-suitcase-1" />
+            <span style="margin-left: 10px">{{ scope.row.class }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
           label="参考人数"
           width="150px"
         >
@@ -28,7 +37,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="日期"
+          label="开始日期"
           width="250"
         >
           <template slot-scope="scope">

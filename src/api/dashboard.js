@@ -13,7 +13,7 @@ export default {
     category: '实验',
     time: '',
     end: '2023-02-19 8:00:00',
-    labels: ['实验报告', '实验成果物', '个人']
+    labels: ['实验报告', '实验课', '个人']
   }, {
     id: '3',
     name: '编译原理',

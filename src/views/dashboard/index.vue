@@ -77,7 +77,7 @@ export default {
       events: [{
         start: '2023-03-20 08:40',
         end: '2023-03-20 12:00',
-        title: '<span class="event-title">移动高级开发寄术</span>',
+        title: '<span class="event-title">移动高级开发技术</span>',
         content: '<br>腾讯会议',
         class: 'event-blue',
         deletable: false,
@@ -86,7 +86,7 @@ export default {
       }, {
         start: '2023-03-20 13:30',
         end: '2023-03-20 16:50',
-        title: '<span class="event-title">移动高级开发寄术</span>',
+        title: '<span class="event-title">移动高级开发技术</span>',
         content: `<br>腾讯会议<br>123-2312-3212`,
         class: 'event-blue',
         deletable: false,
@@ -95,7 +95,7 @@ export default {
       }, {
         start: '2023-03-21 09:35',
         end: '2023-03-21 12:00',
-        title: '<span class="event-title">移动初级开发寄术</span>',
+        title: '<span class="event-title">移动初级开发技术</span>',
         content: '<br>在线直播',
         class: 'event-green',
         deletable: false,
@@ -104,7 +104,7 @@ export default {
       }, {
         start: '2023-03-22 08:40',
         end: '2023-03-22 12:00',
-        title: '<span class="event-title">移动中级开发寄术</span>',
+        title: '<span class="event-title">移动中级开发技术</span>',
         content: '<br>线下课<br>@主校区 JX04-509',
         class: 'event-yellow',
         deletable: false,

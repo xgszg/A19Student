@@ -6,10 +6,9 @@
           <span class="space">当前空间2.3G/5G</span>
         </el-col>
         <el-col :span="6">
-          <el-progress :percentage="2.3/5*100" :format="format"></el-progress>
+          <el-progress :percentage="2.3/5*100" :format="format" />
         </el-col>
-        <el-col :span="12">
-        </el-col>
+        <el-col :span="12" />
         <el-col :span="4">
           <el-upload
             ref="upload"
@@ -45,7 +44,8 @@
           >
             <template slot-scope="scope">
               <div style="display: flex; align-items: center;">
-                <el-avatar class="el-icon-document" style="color: #ffffff;" />
+                <!-- <el-avatar class="el-icon-document" style="color: #ffffff;" /> -->
+                <el-avatar :src="driveicon(scope.row)" />
                 <span style="margin-left: 10px;">
                   {{ scope.row.filename }}
                 </span>
@@ -107,6 +107,9 @@ export default {
     }
   },
   methods: {
+    driveicon(row) {
+      if (row.filetype === 'ppt') { return 'http://localhost:9528/static/ppt/icon-PowerPoint.png' } else if (row.filetype === 'word') { return 'http://localhost:9528/static/word/icon-word.png' } else if (row.filetype === 'excel') { return 'http://localhost:9528/static/excel/icon-Excel.png' } else { return 'https://img.alicdn.com/imgextra/i1/O1CN01mhaPJ21R0UC8s9oik_!!6000000002049-2-tps-80-80.png' }
+    },
     submitUpload() {
       console.log(this.fileList)
       this.$refs.upload.submit()
@@ -181,7 +184,7 @@ export default {
 
 .el-avatar{
     margin: 2px;
-    background: #558FF2;
+    /* background: #558FF2; */
 }
 
 .el-icon-document{

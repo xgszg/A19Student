@@ -4,7 +4,7 @@
     <el-row>
       <el-card>
         <span class="welcome">{{ welcome.words }}{{ welcome.name }}{{ welcome.roles }}，{{ welcome.tips1 }}</span>
-        <span id="number"> 6 </span>
+        <span id="number"> 5 </span>
         <span class="welcome">{{ welcome.tips2 }}</span>
       </el-card>
     </el-row>
@@ -37,7 +37,7 @@
         <el-card class="sayingBoard-card">
           <div class="saying-header">励志名言板</div>
           <div class="saying">
-            你知道吗?每当有人在吐槽区潜水，就有人在基础课刷题
+            我们的征途是星辰大海！
           </div>
         </el-card>
       </el-col>
@@ -77,15 +77,15 @@ export default {
     return {
       welcome: {
         words: '早上好！',
-        name: '小红',
+        name: '张佳佳',
         roles: '同学',
         tips1: '你还有',
-        tips2: '件代办事项件，注意时间安排哦'
+        tips2: '件待办事项，注意时间安排哦'
       },
       events: [{
         start: '2023-03-20 08:40',
         end: '2023-03-20 12:00',
-        title: '<span class="event-title">移动高级开发技术</span>',
+        title: '<span class="event-title">数据结构</span>',
         content: '<br>腾讯会议',
         class: 'event-blue',
         deletable: false,
@@ -94,7 +94,7 @@ export default {
       }, {
         start: '2023-03-20 13:30',
         end: '2023-03-20 16:50',
-        title: '<span class="event-title">移动高级开发技术</span>',
+        title: '<span class="event-title">操作系统</span>',
         content: `<br>腾讯会议<br>123-2312-3212`,
         class: 'event-blue',
         deletable: false,
@@ -103,7 +103,7 @@ export default {
       }, {
         start: '2023-03-21 09:35',
         end: '2023-03-21 12:00',
-        title: '<span class="event-title">移动初级开发技术</span>',
+        title: '<span class="event-title">数据结构实验课</span>',
         content: '<br>在线直播',
         class: 'event-green',
         deletable: false,
@@ -112,7 +112,7 @@ export default {
       }, {
         start: '2023-03-22 08:40',
         end: '2023-03-22 12:00',
-        title: '<span class="event-title">移动中级开发技术</span>',
+        title: '<span class="event-title">操作系统实验课</span>',
         content: '<br>线下课<br>@主校区 JX04-509',
         class: 'event-yellow',
         deletable: false,

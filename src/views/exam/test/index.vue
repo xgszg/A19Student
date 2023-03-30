@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <!--顶栏-->
     <el-card class="header-card">
       <span>2021-2022-2大学英语六级模拟考试（2）</span>
@@ -27,10 +28,10 @@
     <!--题目面板-->
     <el-col :span="18">
       <el-card class="question-container">
-        <!--听力控件-->
-        <transition name="el-fade-in-linear">
-          <aplayer v-if="showListenAnswer" id="audio-player" :music="audioInfo" />
-        </transition>
+        <!--        &lt;!&ndash;听力控件&ndash;&gt;-->
+        <!--        <transition name="el-fade-in-linear">-->
+        <!--          <aplayer v-if="MultipleChoice" id="audio-player" :music="audioInfo" />-->
+        <!--        </transition>-->
         <!--题目-->
         <div ref="tipsViewer" class="pop-tools-parent">
           <transition name="el-fade-in-linear">
@@ -38,22 +39,8 @@
           </transition>
           <div pop-tools="删除" />
         </div>
-        <el-row type="flex" justify="center">
-          <transition name="el-fade-in-linear">
-            <!--作文输入框-->
-            <el-input
-              v-if="showInput"
-              v-model="editorText[question.name]"
-              type="textarea"
-              class="answer-input"
-              :rows="10"
-              placeholder="请输入内容"
-              @change="timu+=1"
-            />
-          </transition>
-        </el-row>
-        <!--听力题目-->
-        <div v-if="showListenAnswer">
+        <!--选择题-->
+        <div v-if="MultipleChoice">
           <div v-for="(item,index) in answers" :key="index">
             <el-row>
               <el-divider />
@@ -64,6 +51,7 @@
                 <span id="answer-number">{{ item.content }}.</span>
               </el-col>
               <el-col :span="22">
+                <p class="question">{{ item.question }}</p>
                 <el-radio-group v-model="totalAnswer[item.content].answer" @change="timu+=1">
                   <el-radio class="answer-radio" :label="item.A">{{ item.A }}</el-radio>
                   <br>
@@ -76,71 +64,84 @@
                 </el-radio-group>
               </el-col>
             </el-row>
-
-          </div>
-        </div>
-        <!--阅读理解-->
-        <div v-if="showReading">
+          </div></div>
+        <!--判断题-->
+        <div v-if="judgement">
           <div v-for="(item,index) in answers" :key="index">
             <el-row>
               <el-divider />
             </el-row>
             <el-row>
-              <el-col :span="24">
-                <el-button id="reading-mark-button" size="small" :plain="!totalAnswer[item.number].mark" type="warning" icon="el-icon-star-off" circle @click="changeReadingMark(item)" />
-                <span id="reading-answer-title">{{ item.content }}</span>
+              <el-col :span="2">
+                <el-button id="listen-mark-button" size="small" :plain="!totalAnswer[item.content].mark" type="warning" icon="el-icon-star-off" circle @click="changeListenMark(item)" />
+                <span id="answer-number">{{ item.content }}.</span>
               </el-col>
-              <el-col :span="24">
-                <div>
-                  <el-radio-group v-model="totalAnswer[item.number].answer" @change="timu+=1">
-                    <el-radio class="reading-choice" :label="item.A">{{ item.A }}</el-radio>
-                    <br>
-                    <el-radio class="reading-choice" :label="item.B">{{ item.B }}</el-radio>
-                    <br>
-                    <el-radio class="reading-choice" :label="item.C">{{ item.C }}</el-radio>
-                    <br>
-                    <el-radio class="reading-choice" :label="item.D">{{ item.D }}</el-radio>
-                    <br>
-                  </el-radio-group>
-                </div>
+              <el-col :span="22">
+                <p class="question">{{ item.question }}</p>
+                <el-radio-group v-model="totalAnswer[item.content].answer" @change="timu+=1">
+                  <el-radio class="answer-radio" :label="item.A">{{ item.A }}</el-radio>
+                  <br>
+                  <el-radio class="answer-radio" :label="item.B">{{ item.B }}</el-radio>
+                  <br>
+                </el-radio-group>
               </el-col>
             </el-row>
-          </div>
-        </div>
-        <!--十五选十-->
-        <div v-if="showBlanks" style="margin-top: 10px">
-          <el-divider style="margin-bottom: 20px" />
-          <el-row v-for="(item,key,index) in answers" :key="index">
-            <el-col id="blank-number" :span="2">
-              <el-button id="blank-mark-button" size="small" :plain="!totalAnswer[item].mark" type="warning" icon="el-icon-star-off" circle @click="changeBlankMark(item)" />
-              {{ item }}.
-            </el-col>
-            <el-col id="blank-answer" :span="4">
-              <el-input v-model="totalAnswer[item].answer" @change="timu+=1" />
-            </el-col>
-          </el-row>
-        </div>
-        <!--信息匹配-->
-        <div v-if="showMatch" style="margin-top: 30px">
-          <el-divider />
-          <el-row v-for="(item,key,index) in answers" :key="index" class="match-question">
-            <el-col id="match-input" :span="1">
-              <el-input v-model="totalAnswer[key].answer" @change="timu+=1" />
-            </el-col>
-            <el-col id="match-text" :span="20">
-              <el-button id="match-mark-button" size="small" :plain="!totalAnswer[key].mark" type="warning" icon="el-icon-star-off" circle @click="changeMatchMark(key)" />
-              {{ key }}. {{ item }}
-            </el-col>
-          </el-row>
-        </div>
+          </div></div>
+        <!--简答题-->
+        <div v-if="ShortAnswer">
+          <div v-for="(item,index) in answers" :key="index">
+            <el-row>
+              <el-divider />
+            </el-row>
+            <el-row>
+              <el-col :span="2">
+                <el-button id="listen-mark-button" size="small" :plain="!totalAnswer[item.content].mark" type="warning" icon="el-icon-star-off" circle @click="changeListenMark(item)" />
+                <span id="answer-number">{{ item.content }}.</span>
+              </el-col>
+              <el-col :span="22">
+                <p class="question">{{ item.question }}</p>
+                <el-input
+                  v-if="showInput"
+                  v-model="editorText[question.name]"
+                  type="textarea"
+                  class="answer-input"
+                  :rows="10"
+                  placeholder="请输入内容"
+                  @change="timu+=1"
+                />
+              </el-col>
+            </el-row>
+          </div></div>
+        <div v-if="programing">
+          <div v-for="(item,index) in answers" :key="index">
+            <el-row>
+              <el-divider />
+            </el-row>
+            <el-row>
+              <el-col :span="2">
+                <el-button id="listen-mark-button" size="small" :plain="!totalAnswer[item.content].mark" type="warning" icon="el-icon-star-off" circle @click="changeListenMark(item)" />
+                <span id="answer-number">{{ item.content }}.</span>
+              </el-col>
+              <el-col :span="22">
+                <p class="question">{{ item.question }}</p>
+              </el-col>
+            </el-row>
+          </div></div>
+        <!--        <el-row type="flex" justify="center">-->
+        <!--          &lt;!&ndash;          <transition name="el-fade-in-linear">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;简答题&ndash;&gt;&ndash;&gt;-->
+
+        <!--          &lt;!&ndash;          </transition>&ndash;&gt;-->
+        <!--        </el-row>-->
+
         <!--按钮控件-->
         <div>
           <span v-if="showInput" id="count-number">当前字数：{{ number }}</span>
           <span id="footer-button">
             <transition name="el-fade-in-linear">
               <el-button-group v-if="showTips">
-                <el-button type="primary" plian icon="el-icon-arrow-left" @click="previousQuestion">上一题</el-button>
-                <el-button type="primary" plian @click="nextQuestion">下一题<i class="el-icon-arrow-right el-icon--right" /></el-button>
+                <el-button type="primary" plian icon="el-icon-arrow-left" @click="previousQuestion">上一页</el-button>
+                <el-button type="primary" plian @click="nextQuestion">下一页<i class="el-icon-arrow-right el-icon--right" /></el-button>
               </el-button-group>
             </transition>
           </span>
@@ -262,6 +263,7 @@ export default {
   },
   data() {
     return {
+      isNoticed: false,
       timeshow: false,
       quanpingloding: false,
       timu: 0,
@@ -282,7 +284,10 @@ export default {
       showTips: false,
       showQuestion: false,
       showInput: false,
-      showListenAnswer: false,
+      MultipleChoice: false, // start here
+      judgement: false,
+      ShortAnswer: false,
+      programing: false, // end here
       showBlanks: false,
       showMatch: false,
       showReading: false,
@@ -398,18 +403,22 @@ export default {
     },
     // 教师端公告函数
     Notice() {
-      setTimeout(() => {
-        this.$alert('第七题的A选项的答案更改为:<br> Welcome to the super star university examination system.', '提示', {
-          dangerouslyUseHTMLString: true,
-          confirmButtonText: '确定',
-          callback: action => {
-            this.$message({
-              type: 'success',
-              message: '已经收到通知'
-            })
-          }
-        })
-      }, 30000)
+      // if (this.isNoticed) {
+      //   return
+      // }
+      // this.isNoticed = true
+      // setTimeout(() => {
+      //   this.$alert('第七题的A选项的答案更改为:<br> Welcome to the super star university examination system.', '提示', {
+      //     dangerouslyUseHTMLString: true,
+      //     confirmButtonText: '确定',
+      //     callback: action => {
+      //       this.$message({
+      //         type: 'success',
+      //         message: '已经收到通知'
+      //       })
+      //     }
+      //   })
+      // }, 30000)
     },
     // 工具箱时间函数
     timeshowhs() {
@@ -550,15 +559,15 @@ export default {
     // },
     createAnswer() {
       const answer = []
-      for (let i = 0; i <= 56; i++) {
+      for (let i = 0; i <= 48; i++) {
         answer[i] = {
           name: i,
           answer: '',
           mark: false
         }
       }
-      answer[0].name = '写作'
-      answer[56].name = '翻译'
+      answer[0].name = '首页'
+      // answer[56].name = '翻译'
       this.totalAnswer = answer
     },
     // 更新题目
@@ -566,22 +575,16 @@ export default {
       this.showTips = false
       this.showInput = false
       this.showQuestion = false
-      this.showListenAnswer = false
+      this.MultipleChoice = false
+      this.judgement = false
+      this.ShortAnswer = false
+      this.programing = false
       this.showBlanks = false
       this.showMatch = false
       this.showReading = false
       // this.question = this.paper.question[this.questionIndex]
 
       switch (this.question.category) {
-        case 'writing':
-          // 写作题
-          this.viewerText = this.question.tip
-          setTimeout(() => {
-            if (this.timeshow === true) this.timeshow = false
-            this.showTips = true
-            this.showInput = true
-          }, 300)
-          break
         case 'tip':
           // 提示
           this.viewerText = this.question.tip
@@ -590,44 +593,83 @@ export default {
             this.showTips = true
           }, 300)
           break
-        case 'listen':
-          // 听力题
+        case 'choice':
+          // 选择题
           this.viewerText = this.question.tip
-          this.audioInfo = this.question.audioInfo
           // this.answers = this.question.answers
           setTimeout(() => {
             this.timeshow = false
             this.showTips = true
-            this.showListenAnswer = true
+            this.MultipleChoice = true
           }, 300)
           break
-        case 'blanks':
-          // 十五选十
+        case 'judge':
+          // 判断题
+          this.viewerText = this.question.tip
           // this.answers = this.question.answers
-          this.viewerText = this.question.tip
           setTimeout(() => {
-            if (this.timeshow === true) this.timeshow = false
+            this.timeshow = false
             this.showTips = true
-            this.showBlanks = true
+            this.judgement = true
           }, 300)
           break
-        case 'match':
-          // 信息匹配
+        case 'ShortAnswer':
           this.viewerText = this.question.tip
           setTimeout(() => {
             if (this.timeshow === true) this.timeshow = false
             this.showTips = true
-            this.showMatch = true
+            this.showInput = true
+            this.ShortAnswer = true
           }, 300)
           break
-        case 'reading':
-          // 阅读理解
+        case 'code':
           this.viewerText = this.question.tip
           setTimeout(() => {
             if (this.timeshow === true) this.timeshow = false
             this.showTips = true
-            this.showReading = true
+            // this.showInput = true
+            this.programing = true
           }, 300)
+          break
+        // case 'listen':
+        //   // 听力题
+        //   this.viewerText = this.question.tip
+        //   this.audioInfo = this.question.audioInfo
+        //   // this.answers = this.question.answers
+        //   setTimeout(() => {
+        //     this.timeshow = false
+        //     this.showTips = true
+        //     this.MultipleChoice = true
+        //   }, 300)
+        //   break
+        // case 'blanks':
+        //   // 十五选十
+        //   // this.answers = this.question.answers
+        //   this.viewerText = this.question.tip
+        //   setTimeout(() => {
+        //     if (this.timeshow === true) this.timeshow = false
+        //     this.showTips = true
+        //     this.showBlanks = true
+        //   }, 300)
+        //   break
+        // case 'match':
+        //   // 信息匹配
+        //   this.viewerText = this.question.tip
+        //   setTimeout(() => {
+        //     if (this.timeshow === true) this.timeshow = false
+        //     this.showTips = true
+        //     this.showMatch = true
+        //   }, 300)
+        //   break
+        // case 'reading':
+        //   // 阅读理解
+        //   this.viewerText = this.question.tip
+        //   setTimeout(() => {
+        //     if (this.timeshow === true) this.timeshow = false
+        //     this.showTips = true
+        //     this.showReading = true
+        //   }, 300)
+        //   break
       }
     },
     nextQuestion() {
@@ -655,32 +697,34 @@ export default {
     jumpToQuestion(key) {
       if (key === 0) {
         this.questionIndex = 0
-      } else if (key >= 1 && key <= 2) {
+      } else if (key >= 1 && key <= 5) { // 选择题
+        this.questionIndex = 1
+      } else if (key >= 6 && key <= 10) {
         this.questionIndex = 2
-      } else if (key >= 3 && key <= 4) {
+      } else if (key >= 11 && key <= 15) {
         this.questionIndex = 3
-      } else if (key >= 5 && key <= 7) {
+      } else if (key >= 16 && key <= 20) {
         this.questionIndex = 4
-      } else if (key >= 8 && key <= 11) {
+      } else if (key >= 21 && key <= 25) { // 判断题
+        this.questionIndex = 5
+      } else if (key >= 26 && key <= 30) {
         this.questionIndex = 6
-      } else if (key >= 12 && key <= 15) {
+      } else if (key >= 31 && key <= 35) {
         this.questionIndex = 7
-      } else if (key >= 16 && key <= 18) {
+      } else if (key >= 36 && key <= 40) {
+        this.questionIndex = 8
+      } else if (key >= 41 && key <= 42) { // 简答题
         this.questionIndex = 9
-      } else if (key >= 19 && key <= 21) {
+      } else if (key >= 43 && key <= 44) {
         this.questionIndex = 10
-      } else if (key >= 22 && key <= 25) {
+      } else if (key === 45) { // 程序设计题
         this.questionIndex = 11
-      } else if (key >= 26 && key <= 35) {
+      } else if (key === 46) {
+        this.questionIndex = 12
+      } else if (key === 47) {
         this.questionIndex = 13
-      } else if (key >= 36 && key <= 45) {
-        this.questionIndex = 15
-      } else if (key >= 46 && key <= 50) {
-        this.questionIndex = 17
-      } else if (key >= 51 && key <= 55) {
-        this.questionIndex = 18
-      } else if (key === 56) {
-        this.questionIndex = 19
+      } else if (key === 48) {
+        this.questionIndex = 14
       }
     },
     timu1() {
@@ -728,7 +772,7 @@ export default {
     },
     // 交卷检测
     submit(item) {
-      if (item >= 57) {
+      if (item >= 48) {
         this.$confirm('全部题目已做完, 是否交卷?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',

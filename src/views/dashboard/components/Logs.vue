@@ -17,7 +17,9 @@
         <el-button type="text" size="small">详情</el-button>
       </el-table-column>
     </el-table>
+    
   </div>
+  
 </template>
 
 <script>

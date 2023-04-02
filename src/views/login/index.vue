@@ -64,7 +64,7 @@
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
                   @click.native.prevent="handleLogin"
-                >注册
+                >登录
                 </el-button>
               </el-col>
               <el-col :span="12">
@@ -72,8 +72,8 @@
                   :loading="loading"
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="handleLogin"
-                >登录
+                  @click.native.prevent="handleRegister"
+                >注册
                 </el-button>
               </el-col>
             </el-row>

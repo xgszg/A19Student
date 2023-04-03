@@ -6,8 +6,13 @@
       </div>
       <div class="resize" title="关闭侧边栏" />
       <div v-loading="loading" class="right-container">
-        <Start v-if="!showSSH&&!showVNC" />
-        <WebSSH v-if="showSSH" />
+        <div v-if="!showSSH&&!showVNC" >
+          <Start v-if="!showSSH&&!showVNC" />
+        </div>
+        <div style="height: 100%;width: 100%;background-color: #282828" v-if="showVNC||showSSH">
+          <WebSSH v-if="showSSH" />
+          <NoVnc v-if="showVNC" />
+        </div>
       </div>
     </div>
   </div>
@@ -18,13 +23,15 @@ import Write from '@/views/investigation/components/Write.vue'
 import WebSSH from '@/views/investigation/components/WebSSH.vue'
 import Start from '@/views/investigation/components/Start.vue'
 import { mapState } from 'vuex'
+import NoVnc from '@/components/NoVnc/index.vue'
 
 export default {
   name: 'Experiment',
   components: {
     Write,
     WebSSH,
-    Start
+    Start,
+    NoVnc
   },
   data() {
     return {

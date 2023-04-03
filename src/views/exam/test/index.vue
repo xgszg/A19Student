@@ -3,7 +3,7 @@
 
     <!--顶栏-->
     <el-card class="header-card">
-      <span>2021-2022-2大学英语六级模拟考试（2）</span>
+      <span>2022-2023-2数据结构考试</span>
       <el-divider direction="vertical" />
       <span>
         考生:{{ $store.state.user.name }}

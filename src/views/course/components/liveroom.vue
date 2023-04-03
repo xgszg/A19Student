@@ -61,9 +61,9 @@ export default {
     const urlData = this.$router.history.current.query
     this.livingRoom = urlData.room
     this.roomDetail = {
-      classname: '大学生创新能力的培养',
+      classname: '数据结构',
       type: 'theory',
-      name: '黄惠明',
+      name: '张强',
       flvConfig: {
         type: 'flv',
         isLive: true,

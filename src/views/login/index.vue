@@ -72,7 +72,7 @@
                   :loading="loading"
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="handleRegister"
+                  @click.native.prevent="toRegister"
                 >注册
                 </el-button>
               </el-col>
@@ -145,6 +145,22 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
+            this.loading = false
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    handleLogin() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('user/login', this.loginForm).then(() => {
+            this.$router.push({ path: this.redirect || '/register' })
             this.loading = false
           }).catch(() => {
             this.loading = false

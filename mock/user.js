@@ -19,7 +19,7 @@ const users = {
     roles: ['student'],
     introduction: '我是一名学生',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: '学生'
+    name: '张佳'
   }
 }
 

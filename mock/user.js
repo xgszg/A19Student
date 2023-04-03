@@ -12,13 +12,13 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    avatar: 'https://cdn.sep.cc/avatar/be9cfff2b27afb56b75eccde7e6e5778?d=identicon',
     name: 'Super Admin'
   },
   'student-token': {
     roles: ['student'],
     introduction: '我是一名学生',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    avatar: 'https://cdn.sep.cc/avatar/be9cfff2b27afb56b75eccde7e6e5778?d=identicon',
     name: '张佳'
   }
 }

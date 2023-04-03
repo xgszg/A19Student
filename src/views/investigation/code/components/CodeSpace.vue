@@ -68,8 +68,8 @@
           <span v-if="testData.loading">
             Loading <icon class="el-icon-loading" />
           </span>
-          <span v-if="!testData.loading">
-            Finish <icon class="el-icon-success" />
+          <span v-if="!testData.loading" style="color: green;">
+            Finished <icon class="el-icon-success" />
           </span>
         </div>
       </template>

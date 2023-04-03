@@ -19,7 +19,7 @@ const users = {
     roles: ['student'],
     introduction: '我是一名学生',
     avatar: 'https://cdn.sep.cc/avatar/be9cfff2b27afb56b75eccde7e6e5778?d=identicon',
-    name: '学生'
+    name: '张佳'
   }
 }
 

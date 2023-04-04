@@ -18,10 +18,6 @@
             label-position="left"
           >
 
-            <!--<div class="title-container">-->
-            <!--  <h3 class="title">欢迎使用</h3>-->
-            <!--</div>-->
-
             <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
@@ -72,12 +68,20 @@
                   :loading="loading"
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="toRegister"
+                  @click="toRegister"
                 >注册
                 </el-button>
               </el-col>
             </el-row>
+            <el-row type="flex" justify="center">
+              <el-col :span="6" :offset="2">
+                <div style="align-items: center;justify-items: center">
+                  <svg-icon icon-class="QQ" class="login-third-part" />
+                  <svg-icon icon-class="wechat-fill" class="login-third-part" />
+                </div>
 
+              </el-col>
+            </el-row>
           </el-form>
         </el-col>
       </el-row>
@@ -155,21 +159,8 @@ export default {
         }
       })
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/register' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+    toRegister() {
+      this.$router.push({ path: '/register' })
     },
     img() {
       return require('@/assets/images/学习.svg')
@@ -248,13 +239,13 @@ $light_gray: #383838;
       padding: 0;
     }
 
-    .login-img{
+    .login-img {
       height: 350px;
       position: relative;
       left: 80px;
     }
 
-    .login-title{
+    .login-title {
       margin-top: 20px;
       text-align: center;
       font-size: 30px;
@@ -320,5 +311,11 @@ $light_gray: #383838;
     cursor: pointer;
     user-select: none;
   }
+}
+
+.login-third-part{
+  font-size: 30px;
+  cursor: pointer;
+
 }
 </style>

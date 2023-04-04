@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@kangc/v-md-editor": "^1.7.11",
+    "@novnc/novnc": "^1.4.0",
     "@toast-ui/vue-editor": "^3.1.3",
     "axios": "0.18.1",
     "core-js": "3.6.5",

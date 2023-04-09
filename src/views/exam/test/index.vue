@@ -246,7 +246,7 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 import '@toast-ui/editor/dist/toastui-editor.css'
 import { Viewer } from '@toast-ui/vue-editor'
 import '@toast-ui/editor/dist/i18n/zh-cn.js'
-import APlayer from 'vue-aplayer'
+// import APlayer from 'vue-aplayer'
 import Highlighter from 'web-highlighter'
 import Face from './components/Face.vue'
 import Timeshow from './components/Timeshow.vue'
@@ -257,7 +257,6 @@ export default {
   components: {
     CountDown,
     Viewer,
-    aplayer: APlayer,
     Face,
     Timeshow
   },

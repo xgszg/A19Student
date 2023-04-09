@@ -3,7 +3,7 @@
 
     <!--顶栏-->
     <el-card class="header-card">
-      <span>2021-2022-2大学英语六级模拟考试（2）</span>
+      <span>2022-2023-2数据结构考试</span>
       <el-divider direction="vertical" />
       <span>
         考生:{{ $store.state.user.name }}
@@ -112,6 +112,7 @@
               </el-col>
             </el-row>
           </div></div>
+        <!--程序設計題-->
         <div v-if="programing">
           <div v-for="(item,index) in answers" :key="index">
             <el-row>
@@ -119,21 +120,25 @@
             </el-row>
             <el-row>
               <el-col :span="2">
-                <el-button id="listen-mark-button" size="small" :plain="!totalAnswer[item.content].mark" type="warning" icon="el-icon-star-off" circle @click="changeListenMark(item)" />
+                <el-button
+                  id="listen-mark-button"
+                  size="small"
+                  :plain="!totalAnswer[item.content].mark"
+                  type="warning"
+                  icon="el-icon-star-off"
+                  circle
+                  @click="changeListenMark(item)"
+                />
                 <span id="answer-number">{{ item.content }}.</span>
               </el-col>
               <el-col :span="22">
-                <p class="question">{{ item.question }}</p>
+                <!--<p class="question">{{ item.question }}</p>-->
+                <v-md-preview :text="item.question"/>
+
               </el-col>
             </el-row>
-          </div></div>
-        <!--        <el-row type="flex" justify="center">-->
-        <!--          &lt;!&ndash;          <transition name="el-fade-in-linear">&ndash;&gt;-->
-        <!--          &lt;!&ndash;            &lt;!&ndash;简答题&ndash;&gt;&ndash;&gt;-->
-
-        <!--          &lt;!&ndash;          </transition>&ndash;&gt;-->
-        <!--        </el-row>-->
-
+          </div>
+        </div>
         <!--按钮控件-->
         <div>
           <span v-if="showInput" id="count-number">当前字数：{{ number }}</span>
@@ -147,6 +152,9 @@
           </span>
 
         </div>
+      </el-card>
+      <el-card v-if="programing" class="code-card">
+        <CodeSpace />
       </el-card>
     </el-col>
 
@@ -196,6 +204,7 @@
           </el-collapse>
         </div>
       </el-card>
+
     </el-col>
     <!--批注-->
     <el-drawer
@@ -250,6 +259,7 @@ import '@toast-ui/editor/dist/i18n/zh-cn.js'
 import Highlighter from 'web-highlighter'
 import Face from './components/Face.vue'
 import Timeshow from './components/Timeshow.vue'
+import CodeSpace from '@/views/exam/test/components/CodeSpace.vue'
 const highlighter = new Highlighter()
 
 export default {
@@ -258,7 +268,8 @@ export default {
     CountDown,
     Viewer,
     Face,
-    Timeshow
+    Timeshow,
+    CodeSpace
   },
   data() {
     return {
@@ -856,6 +867,10 @@ export default {
 .v-enter-active,
 .v-leave-active {
   transition: all 0.5s ease;
+}
+
+.code-card {
+  margin: 10px;
 }
 </style>
 

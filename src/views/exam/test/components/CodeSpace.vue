@@ -123,7 +123,7 @@ export default {
   },
   data() {
     return {
-      code: codeContent.code[1].content,
+      code: codeContent.code[2].content,
       cmOptions: {
         // codemirror options
         tabSize: 4,
@@ -182,20 +182,20 @@ export default {
     // 实时更改高度
     height(newValue) {
       // console.log(newValue)
-      document.getElementsByClassName('CodeMirror')[0].style.height = newValue + 'px'
+      // document.getElementsByClassName('CodeMirror')[0].style.height = newValue + 'px'
     }
   },
   mounted() {
     console.log('this is current codemirror object', this.codemirror)
     // you can use this.codemirror to do something...
-    this.heightResize()
-    document.getElementsByClassName('CodeMirror')[0].style.height = this.height + 'px'
+    // this.heightResize()
+    // document.getElementsByClassName('CodeMirror')[0].style.height = this.height + 'px'
     // this.codemirror.on('cursorActivity', () => {
     //   this.codemirror.showHint()
     // })
-    window.addEventListener('resize', () => {
-      this.heightResize()
-    })
+    // window.addEventListener('resize', () => {
+    //   this.heightResize()
+    // })
   },
   methods: {
     // codemirror准备
@@ -243,6 +243,7 @@ export default {
 .code-mirror{
   height: 100%;
   ::v-deep .CodeMirror{
+    height: 800px;
     font-size: 15px;
     line-height: 20px;
   }

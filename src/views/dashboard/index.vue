@@ -77,7 +77,7 @@ export default {
     return {
       welcome: {
         words: '早上好！',
-        name: '张佳佳',
+        name: '张佳',
         roles: '同学',
         tips1: '你还有',
         tips2: '件待办事项，注意时间安排哦'

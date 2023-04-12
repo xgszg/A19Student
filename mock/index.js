@@ -5,6 +5,7 @@ const user = require('./user')
 const table = require('./table')
 const register = require('./register')
 
+
 const mocks = [
   ...user,
   ...table,

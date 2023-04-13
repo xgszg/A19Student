@@ -14,7 +14,7 @@ export default {
   }, {
     id: '3',
     date: '10分钟前',
-    time: '1253ms',
+    time: '363ms',
     status: 1,
     language: 'java'
   }]

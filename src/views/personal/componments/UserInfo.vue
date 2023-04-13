@@ -55,12 +55,12 @@ export default {
         birthday: '2022-03-22',
         password: '12345567',
         intro: '鱼翔浅底',
-        school: '超星大学',
+        school: '华云大学',
         profession: '信息科学技术学院',
         desc: '这里是个人简介'
       },
       schoolOption: [{
-        name: '超星大学',
+        name: '华云大学',
         value: 'CXU'
       }],
       professionOptions: [{

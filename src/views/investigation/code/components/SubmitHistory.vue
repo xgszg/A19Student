@@ -13,9 +13,9 @@
       width="180"
     >
       <template v-slot:default="scope">
-        <span v-if="scope.row.status===0" class="fail-text status">Fail</span>
-        <span v-if="scope.row.status===2" class="fail-text status">TimeOut</span>
-        <span v-if="scope.row.status===1" class="success-text status">Success</span>
+        <span v-if="scope.row.status===0" class="fail-text status">Wrong Answer</span>
+        <span v-if="scope.row.status===2" class="fail-text status">Time Limit Exceeded</span>
+        <span v-if="scope.row.status===1" class="success-text status">Accepted</span>
       </template>
     </el-table-column>
     <el-table-column

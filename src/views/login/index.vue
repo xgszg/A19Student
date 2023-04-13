@@ -18,10 +18,6 @@
             label-position="left"
           >
 
-            <!--<div class="title-container">-->
-            <!--  <h3 class="title">欢迎使用</h3>-->
-            <!--</div>-->
-
             <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
@@ -64,7 +60,7 @@
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
                   @click.native.prevent="handleLogin"
-                >注册
+                >登录
                 </el-button>
               </el-col>
               <el-col :span="12">
@@ -72,12 +68,22 @@
                   :loading="loading"
                   type="primary"
                   style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="handleLogin"
-                >登录
+                  @click="toRegister"
+                >注册
                 </el-button>
               </el-col>
             </el-row>
-
+            <el-row type="flex" justify="center">
+              <el-col :span="6" :offset="2">
+                <div style="align-items: center;justify-items: center">
+                  <svg-icon icon-class="QQ" class="login-third-part" />
+                  <svg-icon icon-class="wechat-fill" class="login-third-part" />
+                </div>
+              </el-col>
+              <el-col :span="6" :offset="2">
+                <el-link @click="toForget" style="font-size: large;">忘记密码</el-link>
+              </el-col>
+            </el-row>
           </el-form>
         </el-col>
       </el-row>
@@ -88,8 +94,10 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import Link from '@/layout/components/Sidebar/Link.vue'
 
 export default {
+  components: { Link },
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -154,6 +162,12 @@ export default {
           return false
         }
       })
+    },
+    toRegister() {
+      this.$router.push({ path: '/register' })
+    },
+    toForget(){
+      this.$router.push({ path: '/forget' })
     },
     img() {
       return require('@/assets/images/学习.svg')
@@ -232,13 +246,13 @@ $light_gray: #383838;
       padding: 0;
     }
 
-    .login-img{
+    .login-img {
       height: 350px;
       position: relative;
       left: 80px;
     }
 
-    .login-title{
+    .login-title {
       margin-top: 20px;
       text-align: center;
       font-size: 30px;
@@ -304,5 +318,11 @@ $light_gray: #383838;
     cursor: pointer;
     user-select: none;
   }
+}
+
+.login-third-part{
+  font-size: 30px;
+  cursor: pointer;
+
 }
 </style>

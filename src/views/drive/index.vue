@@ -2,14 +2,14 @@
   <div class="app-container">
     <el-card>
       <el-row type="flex" align="middle">
-        <el-col :span="3">
+        <el-col :span="6">
           <span class="space">当前空间2.3G/5G</span>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="10">
           <el-progress :percentage="2.3/5*100" :format="format" />
         </el-col>
-        <el-col :span="12" />
-        <el-col :span="4">
+        <el-col :span="18" />
+        <el-col :span="8">
           <el-upload
             ref="upload"
             class="upload-demo"
@@ -182,6 +182,7 @@ export default {
 }
 
 .space {
+  display: inline-block;
   margin-left: 50px;
   font-size: 18px;
 }

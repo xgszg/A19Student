@@ -63,7 +63,7 @@ export default {
     process: 7,
     type: 'experiment'
   }, {
-    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    url: require('@/assets/course_images/数据结构实验.png'),
     name: '搜索与图论',
     last: ' 有向图的拓扑序列(6/10)',
     process: 6,

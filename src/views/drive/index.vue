@@ -83,22 +83,22 @@ export default {
   data() {
     return {
       tableData: [{
-        filename: '001.word',
+        filename: 'word.doc',
         filetype: 'word',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.ppt',
+        filename: 'kejian.ppt',
         filetype: 'ppt',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.excel',
+        filename: 'excel.xls',
         filetype: 'excel',
         size: '2kb',
         operation: '下载'
       }, {
-        filename: '001.jpg',
+        filename: 'picture.jpg',
         filetype: 'jpg',
         size: '2kb',
         operation: '下载'

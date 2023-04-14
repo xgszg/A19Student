@@ -108,7 +108,15 @@ export default {
   },
   methods: {
     driveicon(row) {
-      if (row.filetype === 'ppt') { return 'http://localhost:9528/static/ppt/icon-PowerPoint.png' } else if (row.filetype === 'word') { return 'http://localhost:9528/static/word/icon-word.png' } else if (row.filetype === 'excel') { return 'http://localhost:9528/static/excel/icon-Excel.png' } else { return 'https://img.alicdn.com/imgextra/i1/O1CN01mhaPJ21R0UC8s9oik_!!6000000002049-2-tps-80-80.png' }
+      if (row.filetype === 'ppt') {
+        return 'http://localhost:9529/static/ppt/icon-PowerPoint.png'
+      } else if (row.filetype === 'word') {
+        return 'http://localhost:9529/static/word/icon-word.png'
+      } else if (row.filetype === 'excel') {
+        return 'http://localhost:9529/static/excel/icon-Excel.png'
+      } else {
+        return 'http://localhost:9529/static/jpg/picture.jpg'
+      }
     },
     submitUpload() {
       console.log(this.fileList)
@@ -122,13 +130,13 @@ export default {
       })
       // console.log(String(filetype))
       if (filetype === 'word') {
-        window.location.href = 'http://localhost:9528/static/word/word.doc'
+        window.location.href = 'http://localhost:9529/static/word/word.doc'
       } else if (filetype === 'ppt') {
-        window.location.href = 'http://localhost:9528/static/ppt/kejian.ppt'
+        window.location.href = 'http://localhost:9529/static/ppt/powerpoint.ppt'
       } else if (filetype === 'excel') {
-        window.location.href = 'http://localhost:9528/static/excel/excel.xls'
+        window.location.href = 'http://localhost:9529/static/excel/excel.xls'
       } else if (filetype === 'jpg') {
-        window.location.href = 'http://localhost:9528/static/jpg/picture.jpg'
+        window.location.href = 'http://localhost:9529/static/jpg/picture.jpg'
       } else {
         this.$message({
           message: '下载失败，文件可能不存在',

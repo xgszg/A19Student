@@ -4,7 +4,7 @@
       <el-descriptions-item label="用户名">13896545641</el-descriptions-item>
       <el-descriptions-item label="姓名">张佳</el-descriptions-item>
       <el-descriptions-item label="学号">2050110732</el-descriptions-item>
-      <el-descriptions-item label="学校">超星大学</el-descriptions-item>
+      <el-descriptions-item label="学校">华云大学</el-descriptions-item>
       <el-descriptions-item label="学院">信息科学技术学院</el-descriptions-item>
       <el-descriptions-item label="状态" style="margin-right:20px;"><el-tag>在校</el-tag></el-descriptions-item>
     </el-descriptions>

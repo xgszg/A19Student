@@ -79,7 +79,9 @@
                   <svg-icon icon-class="QQ" class="login-third-part" />
                   <svg-icon icon-class="wechat-fill" class="login-third-part" />
                 </div>
-
+              </el-col>
+              <el-col :span="6" :offset="2">
+                <el-link @click="toForget" style="font-size: large;">忘记密码</el-link>
               </el-col>
             </el-row>
           </el-form>
@@ -92,8 +94,10 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import Link from '@/layout/components/Sidebar/Link.vue'
 
 export default {
+  components: { Link },
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -161,6 +165,9 @@ export default {
     },
     toRegister() {
       this.$router.push({ path: '/register' })
+    },
+    toForget(){
+      this.$router.push({ path: '/forget' })
     },
     img() {
       return require('@/assets/images/学习.svg')

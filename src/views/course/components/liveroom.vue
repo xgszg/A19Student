@@ -61,7 +61,7 @@ export default {
     const urlData = this.$router.history.current.query
     this.livingRoom = urlData.room
     this.roomDetail = {
-      classname: '数据结构',
+      classname: '动态规划',
       type: 'theory',
       name: '张强',
       flvConfig: {

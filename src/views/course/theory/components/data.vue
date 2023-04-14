@@ -24,7 +24,7 @@ export default {
       default: function() {
         return {
           name: '资料一',
-          time: '2022/12/31 10:30',
+          time: '2023/12/31 10:30',
           state: '未学习'
         }
       }

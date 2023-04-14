@@ -63,7 +63,7 @@ export default {
     process: 7,
     type: 'experiment'
   }, {
-    url: require('@/assets/course_images/uid1-20200406-1586165980776.png'),
+    url: require('@/assets/course_images/数据结构实验.png'),
     name: '搜索与图论',
     last: ' 有向图的拓扑序列(6/10)',
     process: 6,
@@ -72,56 +72,56 @@ export default {
   // 公告数据
   notice: [{
     title: '公告一',
-    time: '2022/12/31 10:30',
+    time: '2023/3/1 10:30',
     content: '这是公告一的内容'
   }, {
     title: '公告二',
-    time: '2022/12/31 10:30',
+    time: '2023/3/2 11:30',
     content: '这是公告二的内容'
   }, {
     title: '公告三',
-    time: '2022/12/31 10:30',
+    time: '2023/3/4 19:14',
     content: '这是公告三的内容'
   }],
   // 资料数据
   data: [{
     name: '资料一',
-    time: '2022/12/31 10:30',
+    time: '2023/12/31 10:30',
     state: '未学习'
   }, {
     name: '资料二',
-    time: '2022/12/31 10:30',
+    time: '2023/12/31 10:30',
     state: '未学习'
   }, {
     name: '资料三',
-    time: '2022/12/31 10:30',
+    time: '2023/12/31 10:30',
     state: '未学习'
   }],
   // 作业数据
   homework: [{
     name: '作业一',
-    time: '2022/12/31 10:30',
+    time: '2023/3/5 10:30',
     status: '已结束',
     attribute: '个人作业',
     state: '已提交',
     information: '这是作业一的作业详情'
   }, {
     name: '作业二',
-    time: '2022/12/31 10:30',
+    time: '2023/3/3 10:30',
     status: '已结束',
     attribute: '个人作业',
     state: '已提交',
     information: '这是作业二的作业详情'
   }, {
     name: '作业三',
-    time: '2022/12/31 10:30',
+    time: '2023/3/31 10:30',
     status: '未结束',
     attribute: '个人作业',
     state: '已提交',
-    information: '这是作业三的作业详情'
+    information: '请自行搜索一道动态规划的算法，完成做题报告并上传（与书本上的题目不同）'
   }, {
     name: '作业四',
-    time: '2022/12/31 10:30',
+    time: '2022/3/15 10:30',
     status: '未结束',
     attribute: '个人作业',
     state: '未提交',

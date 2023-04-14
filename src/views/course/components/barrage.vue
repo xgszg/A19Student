@@ -50,19 +50,19 @@ export default {
         {
           id: 'user1',
           name: 'Matteo',
-          imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
+          imageUrl: 'https://tse1-mm.cn.bing.net/th/id/OIP-C.72WHMpOPTPC6jEvW628seQAAAA?pid=ImgDet&rs=1'
         },
         {
           id: 'user2',
           name: 'Support',
-          imageUrl: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
+          imageUrl: 'https://tupian.qqw21.com/article/UploadPic/2020-5/20205622141367241.jpg'
         }
       ], // 对话的所有参与者的列表。' name '是用户名，' id '用于建立消息的作者，' imageUrl '应该是用户头像。
-      // titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+      titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       // title: "class",
       messageList: [
-        { type: '', author: ``, data: { text: `` }},
-        { type: '', author: ``, data: { text: `` }}
+        { type: 'text', author: `me`, data: { text: `Hello!` }},
+        { type: 'text', author: `user1`, data: { text: `Hi!` }}
       ], // // 要显示的消息列表可以动态地分页和调整
       newMessagesCount: 0,
       isChatOpen: true, // 确定聊天窗口应该打开还是关闭

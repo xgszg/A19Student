@@ -115,7 +115,7 @@ export default {
       } else if (row.filetype === 'excel') {
         return 'http://localhost:9529/static/excel/icon-Excel.png'
       } else {
-        return 'http://localhost:9529/static/jpg/picture.jpg'
+        return 'https://img.alicdn.com/imgextra/i1/O1CN01mhaPJ21R0UC8s9oik_!!6000000002049-2-tps-80-80.png'
       }
     },
     submitUpload() {

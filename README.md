@@ -6,11 +6,11 @@
 
 ## 首页
 
-- [ ] 日历可以考虑花哨一点，参考ACwing的日历
+- ✅ 日历可以考虑花哨一点，参考ACwing的日历
 	![](./temp_readme_fig/日历.png)
-- [x] 添加课程表，可以抄acwing的 ，然后稍作改进 
+- ✅ 添加课程表，可以抄acwing的 ，然后稍作改进 
 	![](temp_readme_fig/acwing课程表.png)
-- [✅] final version数据修改 
+- ✅ final version数据修改 
 
 
 ## 我的课程

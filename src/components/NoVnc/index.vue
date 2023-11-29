@@ -2,12 +2,12 @@
   <div ref="canvas" class="page-home">
     <div id="top_bar">
       <div id="status">{{ status }}</div>
-      <el-button size="mini" id="top_bar-button">
+      <el-button id="top_bar-button" size="mini">
         全屏
       </el-button>
     </div>
     <div id="screen-container">
-      <div id="screen"/>
+      <div id="screen" />
     </div>
   </div>
 </template>

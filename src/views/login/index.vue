@@ -9,45 +9,24 @@
           <img class="login-img" :src="img()">
         </el-col>
         <el-col :span="12">
-          <el-form
-            ref="loginForm"
-            :model="loginForm"
-            :rules="loginRules"
-            class="login-form"
-            auto-complete="on"
-            label-position="left"
-          >
+          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
+            label-position="left">
 
             <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
               </span>
-              <el-input
-                ref="username"
-                v-model="loginForm.username"
-                placeholder="Username"
-                name="username"
-                type="text"
-                tabindex="1"
-                auto-complete="on"
-              />
+              <el-input ref="username" v-model="loginForm.username" placeholder="Username" name="username" type="text"
+                tabindex="1" auto-complete="on" />
             </el-form-item>
 
             <el-form-item prop="password">
               <span class="svg-container">
                 <svg-icon icon-class="password" />
               </span>
-              <el-input
-                :key="passwordType"
-                ref="password"
-                v-model="loginForm.password"
-                :type="passwordType"
-                placeholder="Password"
-                name="password"
-                tabindex="2"
-                auto-complete="on"
-                @keyup.enter.native="handleLogin"
-              />
+              <el-input :key="passwordType" ref="password" v-model="loginForm.password" :type="passwordType"
+                placeholder="Password" name="password" tabindex="2" auto-complete="on"
+                @keyup.enter.native="handleLogin" />
               <span class="show-pwd" @click="showPwd">
                 <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
               </span>
@@ -55,21 +34,12 @@
 
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-button
-                  :loading="loading"
-                  type="primary"
-                  style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="handleLogin"
-                >登录
+                <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
+                  @click.native.prevent="handleLogin">登录
                 </el-button>
               </el-col>
               <el-col :span="12">
-                <el-button
-                  :loading="loading"
-                  type="primary"
-                  style="width:100%;margin-bottom:30px;"
-                  @click="toRegister"
-                >注册
+                <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click="toRegister">注册
                 </el-button>
               </el-col>
             </el-row>
@@ -81,7 +51,7 @@
                 </div>
               </el-col>
               <el-col :span="6" :offset="2">
-                <el-link @click="toForget" style="font-size: large;">忘记密码</el-link>
+                <el-link style="font-size: large;" @click="toForget">忘记密码</el-link>
               </el-col>
             </el-row>
           </el-form>
@@ -94,22 +64,23 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import Link from '@/layout/components/Sidebar/Link.vue'
-
+import { login } from '@/api/user'
+// import Link from '@/layout/components/Sidebar/Link.vue'
+import axios from "axios"
 export default {
-  components: { Link },
   name: 'Login',
+  // components: { Link },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (value.length < 1) {
+        callback(new Error('账号不能为空！'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码至少6位！'))
       } else {
         callback()
       }
@@ -117,7 +88,7 @@ export default {
     return {
       loginForm: {
         username: 'student',
-        password: '124421'
+        password: 'a12345'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -130,7 +101,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -147,26 +118,65 @@ export default {
         this.$refs.password.focus()
       })
     },
+    async getLogs() {
+      let a = await getLogsAPI()
+      this.logs = a
+    },
+    //登录逻辑
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      // this.$refs.loginForm.validate(valid => {
+      //   if (valid) {
+      //     this.loading = true
+      //     this.$store.dispatch('user/login', this.loginForm).then(() => {
+      //       this.$router.push({ path: this.redirect || '/' })
+      //       this.loading = false
+      //     }).catch(() => {
+      //       this.loading = false
+      //     })
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
+
+      console.log("尝试登录");
+      if (this.loginForm.username == '') {
+        this.$message.error('用户名不能为空');
+      } else if (this.loginForm.password == '') {
+        this.$message.error('密码不能为空');
+      } else {
+        axios.get('/api' + '/Login', {
+          params: {
+            username: this.loginForm.username,
+            password: this.loginForm.password
+          }
+        }).then(res => {
+          if (res.data.status == 200) {
+            this.$router.push({
+              path: '/home',
+              query: {
+                name: this.loginForm.username
+              }
+            })
+          } else {
+            this.$alert('用户名或密码错误', '登录失败', {
+              confirmButtonText: '确定',
+              callback: action => {
+                this.loginForm.username = '',
+                  this.loginForm.password = ''
+              }
+            });
+          }
+        }).catch(err => {
+          console.log("登录失败" + err);
+        })
+      }
+
     },
     toRegister() {
       this.$router.push({ path: '/register' })
     },
-    toForget(){
+    toForget() {
       this.$router.push({ path: '/forget' })
     },
     img() {
@@ -320,7 +330,7 @@ $light_gray: #383838;
   }
 }
 
-.login-third-part{
+.login-third-part {
   font-size: 30px;
   cursor: pointer;
 

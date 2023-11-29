@@ -1,11 +1,7 @@
 <template>
   <div>
-    <el-table
-      :data="logs"
-    >
-      <el-table-column
-        label="通知名称"
-      >
+    <el-table :data="logs">
+      <el-table-column label="通知名称">
         <template slot-scope="scope">
           <span v-if="scope.row.top">
             <svg-icon icon-class="ontop" style="fill: #409EFF;font-size: 18px" />
@@ -19,11 +15,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog
-      class="eldalog"
-      :title="detail.title"
-      :visible.sync="showDetail"
-    >
+    <el-dialog class="eldalog" :title="detail.title" :visible.sync="showDetail">
       <div class="detail-content">
         {{ detail.content }}
       </div>
@@ -32,11 +24,12 @@
       </div>
     </el-dialog>
   </div>
-  
 </template>
 
 <script>
-import Dashboard from '@/api/dashboard'
+// import Dashboard from '@/api/dashboard'
+
+import { getLogsAPI } from '@/api/dashboard'
 export default {
   name: 'Logs',
   data() {
@@ -47,8 +40,11 @@ export default {
         origin: ''
       },
       showDetail: false,
-      logs: Dashboard.logs
+      logs: null
     }
+  },
+  created: function () {
+    this.getLogs()
   },
   methods: {
     openDetail(k) {
@@ -56,26 +52,29 @@ export default {
       this.detail.content = k.detail
       this.detail.origin = k.origin
       this.showDetail = true
+    },
+    async getLogs() {
+      let a = await getLogsAPI()
+      this.logs = a
     }
   }
 }
 </script>
 
 <style scoped>
-.eldalog /deep/ .el-dialog{
+.eldalog /deep/ .el-dialog {
   border-radius: 10px
 }
-.detail-content{
+
+.detail-content {
   font-size: 15px;
   line-height: 30px;
 }
-.detail-origin{
-  margin-top:20px;
+
+.detail-origin {
+  margin-top: 20px;
   font-size: 13px;
   display: flex;
   justify-content: flex-end;
 }
-</style>
-
-
 </style>

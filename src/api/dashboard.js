@@ -1,3 +1,23 @@
+import request from '@/utils/http'
+
+export function getTodosAPI() {
+  return request({
+    url: '/getTodos',
+  })
+}
+
+export function getLogsAPI() {
+  return request({
+    url: '/getLogs',
+  })
+}
+
+export function getEventsAPI() {
+  return request({
+    url: '/getEvents',
+  })
+}
+
 export default {
   // 代办事项
   todos: [{
@@ -36,7 +56,7 @@ export default {
     end: '2023-02-20 24:00:00',
     labels: ['提交', '批改']
   }],
-// 日志信息
+  // 日志信息
   logs: [{
     id: '1', // 编号
     name: '关于做好2021级、2022级全日制普通本科生转专业有关工作的通知', // 信息名称

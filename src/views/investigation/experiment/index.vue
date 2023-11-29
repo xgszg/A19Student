@@ -6,10 +6,10 @@
       </div>
       <div class="resize" title="关闭侧边栏" />
       <div v-loading="loading" class="right-container">
-        <div v-if="!showSSH&&!showVNC" >
+        <div v-if="!showSSH&&!showVNC">
           <Start v-if="!showSSH&&!showVNC" />
         </div>
-        <div style="height: 100%;width: 100%;background-color: #282828" v-if="showVNC||showSSH">
+        <div v-if="showVNC||showSSH" style="height: 100%;width: 100%;background-color: #282828">
           <WebSSH v-if="showSSH" />
           <NoVnc v-if="showVNC" />
         </div>

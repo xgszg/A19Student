@@ -4,7 +4,7 @@
     <el-row>
       <el-card>
         <span class="welcome">{{ welcome.words }}{{ welcome.name }}{{ welcome.roles }}，{{ welcome.tips1 }}</span>
-        <span id="number"> 5 </span>
+        <span id="number"> {{ Todos.length }} </span>
         <span class="welcome">{{ welcome.tips2 }}</span>
       </el-card>
     </el-row>
@@ -13,7 +13,7 @@
       <el-col :span="12" :xs="24">
         <!--代办事项-->
         <el-card class="card-container">
-          <Todos />
+          <Todos :data="Todos" />
         </el-card>
       </el-col>
       <el-col :span="12" :xs="24">
@@ -26,13 +26,7 @@
     <el-row :gutter="20">
       <el-col :span="6">
         <!--日历-->
-        <el-calendar
-          is-expanded
-          title-position="right"
-          :rows="2"
-          :attributes="attrs"
-          class="customizedCalendar"
-        />
+        <el-calendar is-expanded title-position="right" :rows="2" :attributes="attrs" class="customizedCalendar" />
         <!--励志板-->
         <el-card class="sayingBoard-card">
           <div class="saying-header">励志名言板</div>
@@ -44,16 +38,8 @@
       <el-col :span="18">
         <el-card class="calendar-container">
           <!--课程表-->
-          <vue-cal
-            selected-date="2023-03-21 14:54"
-            :disable-views="['years', 'year', 'month']"
-            :time-from="8 * 60"
-            :time-to="19 * 60"
-            :time-step="60"
-            hide-weekends
-            locale="zh-cn"
-            :events="events"
-          />
+          <vue-cal selected-date="2023-11-29 14:54" :disable-views="['years', 'year', 'month']" :time-from="8 * 60"
+            :time-to="19 * 60" :time-step="60" hide-weekends locale="zh-cn" :events="events" />
         </el-card>
       </el-col>
     </el-row>
@@ -67,8 +53,8 @@ import 'vue-cal/dist/i18n/zh-cn.cjs'
 import { mapGetters } from 'vuex'
 import Todos from './components/Todos.vue'
 import Logs from './components/Logs.vue'
-// import Calendar from 'v-calendar/lib/components/calendar.umd'
-// import DatePicker from 'v-calendar/lib/components/date-picker.umd'
+
+import { getTodosAPI, getEventsAPI } from '@/api/dashboard'
 
 export default {
   name: 'Dashboard',
@@ -82,50 +68,52 @@ export default {
         tips1: '你还有',
         tips2: '件待办事项，注意时间安排哦'
       },
-      events: [{
-        start: '2023-03-20 08:40',
-        end: '2023-03-20 12:00',
-        title: '<span class="event-title">数据结构</span>',
-        content: '<br>腾讯会议',
-        class: 'event-blue',
-        deletable: false,
-        resizable: false,
-        draggable: false
-      }, {
-        start: '2023-03-20 13:30',
-        end: '2023-03-20 16:50',
-        title: '<span class="event-title">操作系统</span>',
-        content: `<br>腾讯会议<br>123-2312-3212`,
-        class: 'event-blue',
-        deletable: false,
-        resizable: false,
-        draggable: false
-      }, {
-        start: '2023-03-21 09:35',
-        end: '2023-03-21 12:00',
-        title: '<span class="event-title">数据结构实验课</span>',
-        content: '<br>在线直播',
-        class: 'event-green',
-        deletable: false,
-        resizable: false,
-        draggable: false
-      }, {
-        start: '2023-03-22 08:40',
-        end: '2023-03-22 12:00',
-        title: '<span class="event-title">操作系统实验课</span>',
-        content: '<br>线下课<br>@主校区 JX04-509',
-        class: 'event-yellow',
-        deletable: false,
-        resizable: false,
-        draggable: false
-      }],
+      // events: [{
+      //   start: '2023-11-27 08:40',
+      //   end: '2023-11-27 12:00',
+      //   title: '<span class="event-title">数据结构</span>',
+      //   content: '<br>腾讯会议',
+      //   class: 'event-blue',
+      //   deletable: false,
+      //   resizable: false,
+      //   draggable: false
+      // }, {
+      //   start: '2023-11-27 13:30',
+      //   end: '2023-11-27 16:50',
+      //   title: '<span class="event-title">操作系统</span>',
+      //   content: `<br>腾讯会议<br>123-2312-3212`,
+      //   class: 'event-blue',
+      //   deletable: false,
+      //   resizable: false,
+      //   draggable: false
+      // }, {
+      //   start: '2023-11-28 09:35',
+      //   end: '2023-11-28 12:00',
+      //   title: '<span class="event-title">数据结构实验课</span>',
+      //   content: '<br>在线直播',
+      //   class: 'event-green',
+      //   deletable: false,
+      //   resizable: false,
+      //   draggable: false
+      // }, {
+      //   start: '2023-11-30 08:40',
+      //   end: '2023-11-30 12:00',
+      //   title: '<span class="event-title">操作系统实验课</span>',
+      //   content: '<br>线下课<br>@主校区 JX04-509',
+      //   class: 'event-yellow',
+      //   deletable: false,
+      //   resizable: false,
+      //   draggable: false
+      // }],
       attrs: [
         {
           key: 'today',
           highlight: true,
           dates: new Date()
         }
-      ]
+      ],
+      Todos: [],
+      events: []
     }
   },
   computed: {
@@ -133,12 +121,31 @@ export default {
       'name',
       'roles'
     ])
+  },
+  created: function () {
+    this.getTodos()
+    this.getEvents()
+  },
+  methods: {
+    async getTodos() {
+      const a = await getTodosAPI()
+      this.Todos = a
+    },
+    async getEvents() {
+      const a = await getEventsAPI()
+      a.forEach(a => {
+        a.class = a.style;
+        delete a.style;
+      });
+      this.events = a
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 $card-margin: 10px 0px;
+
 .dashboard {
   &-container {
     margin: 20px 20px 10px 20px;
@@ -164,19 +171,22 @@ $card-margin: 10px 0px;
         padding: 0;
       }
 
-      ::v-deep .event-title{
+      ::v-deep .event-title {
         font-weight: bold;
       }
-      ::v-deep .event{
-        &-green{
+
+      ::v-deep .event {
+        &-green {
           background-color: rgba(164, 230, 210, 0.9);
           border: 1px solid rgb(144, 210, 190);
         }
-        &-blue{
+
+        &-blue {
           background-color: rgb(79, 195, 247, 0.9);
           border: 1px solid rgb(79, 195, 247);
         }
-        &-yellow{
+
+        &-yellow {
           background-color: rgb(255, 241, 118, 0.9);
           border: 1px solid rgb(255, 241, 118);
         }
@@ -198,6 +208,7 @@ $card-margin: 10px 0px;
   background-image: url(../../assets/images/calendar.jpg);
   background-position: center center;
   background-size: cover;
+
   ::v-deep .el-calendar__header {
     // 修改头部背景颜色
     background-color: rgba(51, 51, 51, 0.4);
@@ -262,18 +273,23 @@ $card-margin: 10px 0px;
   }
 
   ::v-deep .el-calendar-table__row {
-    .prev, .next {
+
+    .prev,
+    .next {
+
       // 修改非本月
       .el-calendar-day {
         p {
-          color: #f0d9d5!important;
+          color: #f0d9d5 !important;
         }
       }
     }
 
     td {
+
       // 修改每一个日期td标签
-      &:nth-child(6), &:last-child {
+      &:nth-child(6),
+      &:last-child {
         background-color: rgba(51, 51, 51, 0.25);
         color: white;
       }
@@ -289,6 +305,7 @@ $card-margin: 10px 0px;
   background-position: center center;
   background-size: cover;
   box-sizing: content-box;
+
   .saying {
     height: 150px;
     font-size: 20px;
@@ -317,5 +334,4 @@ $card-margin: 10px 0px;
     margin-bottom: 10px;
   }
 }
-
 </style>

@@ -1,7 +1,5 @@
 <template>
-  <div class="calendar">
-
-  </div>
+  <div class="calendar" />
 </template>
 
 <script>
@@ -11,8 +9,4 @@ export default ({
 })
 </script>
 
-<style lang="scss" scoped>
-.calendar {
-  
-}
-</style>
+<style lang="scss" scoped></style>

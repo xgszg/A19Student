@@ -117,7 +117,7 @@ public class Main {
         writer.flush();
     }
 }`
-  },{
+  }, {
     id: '2',
     content: `import java.io.*;
 import java.util.Arrays;

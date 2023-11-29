@@ -133,7 +133,7 @@
               </el-col>
               <el-col :span="22">
                 <!--<p class="question">{{ item.question }}</p>-->
-                <v-md-preview :text="item.question"/>
+                <v-md-preview :text="item.question" />
 
               </el-col>
             </el-row>

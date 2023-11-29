@@ -48,29 +48,48 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({
+    commit,
+    state
+  }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
-
-        if (!data) {
-          reject('Verification failed, please Login again.')
+      const {
+        data
+      } = {
+        data: {
+          roles: ['admin'],
+          introduction: 'Administrator',
+          avatar: 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573',
+          name: 'administrator'
         }
+      }
 
-        const { roles, name, avatar } = data
+      if (!data) {
+        reject('Verification failed, please Login again.')
+      }
 
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
+      const {
+        roles,
+        name,
+        avatar,
+        introduction,
+        token
+      } = data
 
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+      // roles must be a non-empty array
+      if (!roles || roles.length <= 0) {
+        reject('getInfo: roles must be a non-null array!')
+      }
+
+      commit('SET_ROLES', roles)
+      commit('SET_NAME', name)
+      commit('SET_AVATAR', avatar)
+      // commit('SET_INTRODUCTION', introduction)
+      commit('SET_TOKEN', token)
+      resolve(data)
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
 

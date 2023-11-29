@@ -7,7 +7,9 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="'https://snz04pap001files.storage.live.com/y4m-AveJOL6Bt7kQQEWolmDjUa3tezMydmpNlhGjxB464X3XQUyYZw-AqtFIfbrJfnJ02v4eb-8Jt0GwkeQZCc7WRsrQua8FG2SPSfnqJ0evyAuWpd3gFFWugncVNOzmuUVdGFiPiBaTwOCH0z_duK0hAPGQoJRAtQgB4jtpJv7lZmqqw3wQXSF7zWFCxrOvQxp?width=700&height=700&cropmode=none'" class="user-avatar">
+          <img
+            :src="'https://snz04pap001files.storage.live.com/y4m-AveJOL6Bt7kQQEWolmDjUa3tezMydmpNlhGjxB464X3XQUyYZw-AqtFIfbrJfnJ02v4eb-8Jt0GwkeQZCc7WRsrQua8FG2SPSfnqJ0evyAuWpd3gFFWugncVNOzmuUVdGFiPiBaTwOCH0z_duK0hAPGQoJRAtQgB4jtpJv7lZmqqw3wQXSF7zWFCxrOvQxp?width=700&height=700&cropmode=none'"
+            class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -29,7 +31,8 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import { removeToken } from '@/utils/auth'
+import { resetRouter } from '@/router'
 export default {
   components: {
     Breadcrumb,
@@ -46,7 +49,9 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
+      // await this.$store.dispatch('user/logout')
+      removeToken() // must remove  token  first
+      resetRouter()
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
@@ -59,7 +64,7 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 
   .hamburger-container {
     line-height: 46px;
@@ -67,7 +72,7 @@ export default {
     float: left;
     cursor: pointer;
     transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       background: rgba(0, 0, 0, .025)

@@ -64,7 +64,8 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { login } from '@/api/user'
+// import { login } from '@/api/user'
+import { setToken } from '@/utils/auth'
 // import Link from '@/layout/components/Sidebar/Link.vue'
 import axios from "axios"
 export default {
@@ -138,26 +139,23 @@ export default {
       //     return false
       //   }
       // })
-
-      console.log("尝试登录");
+      this.loading = true
       if (this.loginForm.username == '') {
         this.$message.error('用户名不能为空');
       } else if (this.loginForm.password == '') {
         this.$message.error('密码不能为空');
       } else {
-        axios.get('/api' + '/Login', {
+        axios.get(this.HOME + '/Login', {
           params: {
             username: this.loginForm.username,
             password: this.loginForm.password
           }
         }).then(res => {
-          if (res.data.status == 200) {
-            this.$router.push({
-              path: '/home',
-              query: {
-                name: this.loginForm.username
-              }
-            })
+          if (res.data.code == 200) {
+            // commit('SET_TOKEN', data.token)
+            setToken(res.data.data.token)
+            this.$router.push({ path: this.redirect || '/' })
+            this.loading = false
           } else {
             this.$alert('用户名或密码错误', '登录失败', {
               confirmButtonText: '确定',
@@ -166,9 +164,11 @@ export default {
                   this.loginForm.password = ''
               }
             });
+            this.loading = false
           }
         }).catch(err => {
           console.log("登录失败" + err);
+          this.loading = false
         })
       }
 

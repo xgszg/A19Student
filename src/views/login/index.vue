@@ -9,24 +9,45 @@
           <img class="login-img" :src="img()">
         </el-col>
         <el-col :span="12">
-          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
-            label-position="left">
+          <el-form
+            ref="loginForm"
+            :model="loginForm"
+            :rules="loginRules"
+            class="login-form"
+            auto-complete="on"
+            label-position="left"
+          >
 
             <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
               </span>
-              <el-input ref="username" v-model="loginForm.username" placeholder="Username" name="username" type="text"
-                tabindex="1" auto-complete="on" />
+              <el-input
+                ref="username"
+                v-model="loginForm.username"
+                placeholder="Username"
+                name="username"
+                type="text"
+                tabindex="1"
+                auto-complete="on"
+              />
             </el-form-item>
 
             <el-form-item prop="password">
               <span class="svg-container">
                 <svg-icon icon-class="password" />
               </span>
-              <el-input :key="passwordType" ref="password" v-model="loginForm.password" :type="passwordType"
-                placeholder="Password" name="password" tabindex="2" auto-complete="on"
-                @keyup.enter.native="handleLogin" />
+              <el-input
+                :key="passwordType"
+                ref="password"
+                v-model="loginForm.password"
+                :type="passwordType"
+                placeholder="Password"
+                name="password"
+                tabindex="2"
+                auto-complete="on"
+                @keyup.enter.native="handleLogin"
+              />
               <span class="show-pwd" @click="showPwd">
                 <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
               </span>
@@ -34,8 +55,12 @@
 
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-                  @click.native.prevent="handleLogin">登录
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  style="width:100%;margin-bottom:30px;"
+                  @click.native.prevent="handleLogin"
+                >登录
                 </el-button>
               </el-col>
               <el-col :span="12">
@@ -63,11 +88,10 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 // import { login } from '@/api/user'
 import { setToken } from '@/utils/auth'
 // import Link from '@/layout/components/Sidebar/Link.vue'
-import axios from "axios"
+import axios from 'axios'
 export default {
   name: 'Login',
   // components: { Link },
@@ -102,7 +126,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -119,31 +143,12 @@ export default {
         this.$refs.password.focus()
       })
     },
-    async getLogs() {
-      let a = await getLogsAPI()
-      this.logs = a
-    },
-    //登录逻辑
+    // 登录逻辑
     handleLogin() {
-      // this.$refs.loginForm.validate(valid => {
-      //   if (valid) {
-      //     this.loading = true
-      //     this.$store.dispatch('user/login', this.loginForm).then(() => {
-      //       this.$router.push({ path: this.redirect || '/' })
-      //       this.loading = false
-      //     }).catch(() => {
-      //       this.loading = false
-      //     })
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
-      this.loading = true
-      if (this.loginForm.username == '') {
-        this.$message.error('用户名不能为空');
-      } else if (this.loginForm.password == '') {
-        this.$message.error('密码不能为空');
+      if (this.loginForm.username === '') {
+        this.$message.error('用户名不能为空')
+      } else if (this.loginForm.password === '') {
+        this.$message.error('密码不能为空')
       } else {
         axios.get(this.HOME + '/Login', {
           params: {
@@ -151,27 +156,24 @@ export default {
             password: this.loginForm.password
           }
         }).then(res => {
-          if (res.data.code == 200) {
+          if (res.data.code === 200) {
             // commit('SET_TOKEN', data.token)
-            setToken(res.data.data.token)
+            setToken(res.data.data.token, res.data.data.username)
             this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
           } else {
             this.$alert('用户名或密码错误', '登录失败', {
               confirmButtonText: '确定',
               callback: action => {
-                this.loginForm.username = '',
-                  this.loginForm.password = ''
+                this.loginForm.username = ''
+                this.loginForm.password = ''
               }
-            });
-            this.loading = false
+            })
           }
         }).catch(err => {
-          console.log("登录失败" + err);
+          console.log('登录失败' + err)
           this.loading = false
         })
       }
-
     },
     toRegister() {
       this.$router.push({ path: '/register' })
@@ -187,9 +189,6 @@ export default {
 </script>
 
 <style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
 $bg: #283443;
 $light_gray: #fff;
 $cursor: #fff;

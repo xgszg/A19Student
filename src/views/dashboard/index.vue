@@ -38,8 +38,16 @@
       <el-col :span="18">
         <el-card class="calendar-container">
           <!--课程表-->
-          <vue-cal selected-date="2023-11-29 14:54" :disable-views="['years', 'year', 'month']" :time-from="8 * 60"
-            :time-to="19 * 60" :time-step="60" hide-weekends locale="zh-cn" :events="events" />
+          <vue-cal
+            selected-date="2023-11-29 14:54"
+            :disable-views="['years', 'year', 'month']"
+            :time-from="8 * 60"
+            :time-to="19 * 60"
+            :time-step="60"
+            hide-weekends
+            locale="zh-cn"
+            :events="events"
+          />
         </el-card>
       </el-col>
     </el-row>
@@ -68,7 +76,6 @@ export default {
         tips1: '你还有',
         tips2: '件待办事项，注意时间安排哦'
       },
-      // events: [{
       //   start: '2023-11-27 08:40',
       //   end: '2023-11-27 12:00',
       //   title: '<span class="event-title">数据结构</span>',
@@ -122,7 +129,7 @@ export default {
       'roles'
     ])
   },
-  created: function () {
+  created: function() {
     this.getTodos()
     this.getEvents()
   },
@@ -134,9 +141,9 @@ export default {
     async getEvents() {
       const a = await getEventsAPI()
       a.forEach(a => {
-        a.class = a.style;
-        delete a.style;
-      });
+        a.class = a.style
+        delete a.style
+      })
       this.events = a
     }
   }

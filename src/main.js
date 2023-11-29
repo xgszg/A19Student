@@ -24,9 +24,9 @@ import createKatexPlugin from '@kangc/v-md-editor/lib/plugins/katex/cdn' // kate
 import Chat from 'vue-beautiful-chat'
 import axios from 'axios'
 
-Vue.prototype.$axios = axios    //把axios挂载到vue的原型中，在vue中每个组件都可以使用axios发送请求
-Vue.prototype.HOME = '/api'    //重要在于这里，Vue.prototype.HOME = '/api'是一个定值，默认指向localhost，所有修改指向路径为'/api'，配置文件index.js定义的可跨域路径
-// 注意 在配置后一定要更改此处 否则跨域不生效   
+Vue.prototype.$axios = axios // 把axios挂载到vue的原型中，在vue中每个组件都可以使用axios发送请求
+Vue.prototype.HOME = '/api' // 重要在于这里，Vue.prototype.HOME = '/api'是一个定值，默认指向localhost，所有修改指向路径为'/api'，配置文件index.js定义的可跨域路径
+// 注意 在配置后一定要更改此处 否则跨域不生效
 
 /**
  * If you don't want to use mock-server

@@ -9,7 +9,8 @@
         <div class="avatar-wrapper">
           <img
             :src="'https://snz04pap001files.storage.live.com/y4m-AveJOL6Bt7kQQEWolmDjUa3tezMydmpNlhGjxB464X3XQUyYZw-AqtFIfbrJfnJ02v4eb-8Jt0GwkeQZCc7WRsrQua8FG2SPSfnqJ0evyAuWpd3gFFWugncVNOzmuUVdGFiPiBaTwOCH0z_duK0hAPGQoJRAtQgB4jtpJv7lZmqqw3wQXSF7zWFCxrOvQxp?width=700&height=700&cropmode=none'"
-            class="user-avatar">
+            class="user-avatar"
+          >
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -48,11 +49,12 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
-    async logout() {
+    logout() {
       // await this.$store.dispatch('user/logout')
       removeToken() // must remove  token  first
       resetRouter()
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.$router.push('/login')
     }
   }
 }

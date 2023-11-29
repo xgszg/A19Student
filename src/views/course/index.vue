@@ -9,7 +9,7 @@
         <el-button type="text" class="header-button" @click="joyclass">加入新的班级</el-button>
       </template>
       <el-row :gutter="20">
-        <el-col v-for="(item,index) in classrooms" :key="index" :xs="24" :sm="12" :md="6" :lg="6" :xl="6">
+        <el-col v-for="(item, index) in classrooms" :key="index" :xs="24" :sm="12" :md="6" :lg="6" :xl="6">
           <Class :class-info="item" class="class-card" @deleteid="deleteid" />
         </el-col>
       </el-row>
@@ -19,8 +19,8 @@
 
 <script>
 import Class from '@/views/course/components/Class'
-import ClassInfo from '@/api/class-info'
-
+import { getClassesAPI } from '@/api/class-info'
+import jsCookie from 'js-cookie'
 export default {
   name: 'Course',
   components: {
@@ -28,8 +28,11 @@ export default {
   },
   data() {
     return {
-      classrooms: ClassInfo.classrooms
+      classrooms: null
     }
+  },
+  created: function() {
+    this.getClasses()
   },
   methods: {
     deleteid(deleteid) {
@@ -62,20 +65,27 @@ export default {
           message: '取消输入'
         })
       })
+    },
+    async getClasses() {
+      const username = jsCookie.get('username')
+      const a = await getClassesAPI(username)
+      this.classrooms = a
     }
   }
 }
 </script>
 
 <style scoped>
-.container{
-  margin:20px
+.container {
+  margin: 20px
 }
-.header-button{
-  float:right;
+
+.header-button {
+  float: right;
   padding: 2px;
 }
-.class-card{
+
+.class-card {
   margin-bottom: 20px;
 }
 </style>

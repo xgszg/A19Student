@@ -9,8 +9,13 @@
       <el-table-column label="名称">
         <template slot-scope="scope">
           {{ scope.row.name }}
-          <el-tag v-for="(label, index) in scope.row.labels" :key="index" style="margin-left: 5px" type="info"
-            size="small">{{ label }}</el-tag>
+          <el-tag
+            v-for="(label, index) in scope.row.labels"
+            :key="index"
+            style="margin-left: 5px"
+            type="info"
+            size="small"
+          >{{ label }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="time" label="开始日期" width="180" />
@@ -23,7 +28,13 @@
 // import todos from '@/api/dashboard'
 export default {
   name: 'Todos',
-  props: ['data'],
+  props: {
+    'data': {
+      type: Array,
+      default: () => []
+    }
+  },
+
   data() {
     return {
       // data: null
@@ -37,7 +48,7 @@ export default {
       if (category === '考试') {
         return 'warning'
       } else if (category === '课程') { return 'success' }
-    },
+    }
     // async getTodos() {
     //   let a = await getTodosAPI()
     //   this.data = a

@@ -43,7 +43,7 @@ export default {
       logs: null
     }
   },
-  created: function () {
+  created: function() {
     this.getLogs()
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
       this.showDetail = true
     },
     async getLogs() {
-      let a = await getLogsAPI()
+      const a = await getLogsAPI()
       this.logs = a
     }
   }

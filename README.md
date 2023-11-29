@@ -1,91 +1,64 @@
-# vue-admin-template
+# 待办事项
 
-English | [简体中文](./README-zh.md)
+❌：尚未完成  
+✅：已经完成  
+完成一项把❌改成✅
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+## 首页
 
-**Live demo:** http://panjiachen.github.io/vue-admin-template
+- ✅ 日历可以考虑花哨一点，参考ACwing的日历
+	![](./temp_readme_fig/日历.png)
+- ✅ 添加课程表，可以抄acwing的 ，然后稍作改进 
+	![](temp_readme_fig/acwing课程表.png)
+- ✅ final version数据修改 
 
 
-**The current version is `v4.0+` build on `vue-cli`. If you want to use the old version , you can switch branch to [tag/3.11.0](https://github.com/PanJiaChen/vue-admin-template/tree/tag/3.11.0), it does not rely on `vue-cli`**
+## 我的课程
 
-## Build Setup
+- ✅ 作业这一块，要显示作业的一些要求，在最上方有详情和提交作业两个子栏，咱们做一块就行了  
+  	![](temp_readme_fig/作业详情.png)  
+  	![](temp_readme_fig/作业.png) 
+- ✅ 把表格线去掉，然后给人的名字前面加一个圆形头像，头像图片先随便弄几个就行  
+  	![](temp_readme_fig/成员列表.png)  
+- ✅ 不用查看成绩了，直接把成绩写这就行了
+  	![](temp_readme_fig/查看成绩.png)
+- ✅ final version数据修改
+
+## 考试管理
+- ✅ 尽可能横向填充一下，不然右侧空着的页面太多了，至于下方空页面，多加几条数据填一下就好了。顺便把面包屑上的dashboard改一下  
+	![](temp_readme_fig/考试首页.png)
+- ✅ 不要两个子页面我的考试和已完成考试了，直接合并起来
 
 
-```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+### 我的考试
 
-# enter the project directory
-cd vue-admin-template
+- ✅在进入考试时，取消设备检测    
+- ✅ 考试工具箱的icon消失   
+	![](temp_readme_fig/考试工具箱.png)  
+- ✅ 本次考试以数据结构为例，将答题卡有顺序的并且做好标注的调整为以下题型
+	`选择`，`判断`，`简答`，`算法设计`  
+	其中，算法设计直接拿本次实验部分的数据结构实验过来
+- ✅ 大规模的final version数据修改从英语考试适配到本次任务上来  
 
-# install dependency
-npm install
 
-# develop
-npm run dev
-```
+### 已完成考试
 
-This will automatically open http://localhost:9528
+- ✅ final version数据修改 
 
-## Build
+## 我的实验
 
-```bash
-# build for test environment
-npm run build:stage
+- ✅ 样式方面的改进，换一些图片  
+- ✅ final version数据修改
 
-# build for production environment
-npm run build:prod
-```
+## 网盘
 
-## Advanced
+- ✅ final version数据修改
 
-```bash
-# preview the release environment effect
-npm run preview
 
-# preview the release environment effect + static resource analysis
-npm run preview -- --report
+## 个人中心
 
-# code format check
-npm run lint
+- ✅ final version数据修改
 
-# code format check and auto fix
-npm run lint -- --fix
-```
+## 其他方面
 
-Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
-
-## Demo
-
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
-
-## Extra
-
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-For `typescript` version, you can use [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-
-## Related Project
-
-- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-- [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-
-- [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
-
-- [awesome-project](https://github.com/PanJiaChen/vue-element-admin/issues/2312)
-
-## Browsers support
-
-Modern browsers and Internet Explorer 10+.
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
-
-## License
-
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
-
-Copyright (c) 2017-present PanJiaChen
+- ✅ 整个系统里，响应圆圈的时间设置的有点太长了，会给人感觉明显的卡顿，没有必要这么做，设置短一点，进入一个页面的时候，平滑地切过去就可以了

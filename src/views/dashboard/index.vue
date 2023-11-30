@@ -76,42 +76,6 @@ export default {
         tips1: '你还有',
         tips2: '件待办事项，注意时间安排哦'
       },
-      //   start: '2023-11-27 08:40',
-      //   end: '2023-11-27 12:00',
-      //   title: '<span class="event-title">数据结构</span>',
-      //   content: '<br>腾讯会议',
-      //   class: 'event-blue',
-      //   deletable: false,
-      //   resizable: false,
-      //   draggable: false
-      // }, {
-      //   start: '2023-11-27 13:30',
-      //   end: '2023-11-27 16:50',
-      //   title: '<span class="event-title">操作系统</span>',
-      //   content: `<br>腾讯会议<br>123-2312-3212`,
-      //   class: 'event-blue',
-      //   deletable: false,
-      //   resizable: false,
-      //   draggable: false
-      // }, {
-      //   start: '2023-11-28 09:35',
-      //   end: '2023-11-28 12:00',
-      //   title: '<span class="event-title">数据结构实验课</span>',
-      //   content: '<br>在线直播',
-      //   class: 'event-green',
-      //   deletable: false,
-      //   resizable: false,
-      //   draggable: false
-      // }, {
-      //   start: '2023-11-30 08:40',
-      //   end: '2023-11-30 12:00',
-      //   title: '<span class="event-title">操作系统实验课</span>',
-      //   content: '<br>线下课<br>@主校区 JX04-509',
-      //   class: 'event-yellow',
-      //   deletable: false,
-      //   resizable: false,
-      //   draggable: false
-      // }],
       attrs: [
         {
           key: 'today',

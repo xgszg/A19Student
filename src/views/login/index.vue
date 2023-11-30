@@ -171,7 +171,10 @@ export default {
           }
         }).catch(err => {
           console.log('登录失败' + err)
-          this.loading = false
+          this.$message({
+            type: 'error',
+            message: '登录服务器错误！请稍后再试'
+          })
         })
       }
     },
@@ -210,6 +213,7 @@ $cursor: #fff;
       background: transparent;
       border: 0px;
       -webkit-appearance: none;
+      appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: $light_gray;

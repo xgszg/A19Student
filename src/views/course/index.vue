@@ -19,7 +19,7 @@
 
 <script>
 import Class from '@/views/course/components/Class'
-import { getClassesAPI } from '@/api/class-info'
+import { getClassesAPI, addClassroomAPI } from '@/api/class-info'
 import jsCookie from 'js-cookie'
 export default {
   name: 'Course',
@@ -42,28 +42,36 @@ export default {
       this.$prompt('请输入课程码', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
-      }).then(({ value }) => {
+      }).then(async({ value }) => {
         if (value) {
           this.$message({
             type: 'success',
             message: '正在加入...'
           })
           /* this.classrooms=ClassInfo.newclassrooms */
-          var l = { id: this.classrooms.length + 1, date: '2021-2022第二学期', name: '大学英语（四）', classrooms: ['软嵌201', '软嵌202'], code: value, teacher: '方慧敏', classification: '理论', url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")' }
-          this.classrooms.push(l)
+          // var l = { id: this.classrooms.length + 1, date: '2021-2022第二学期', name: '大学英语（四）', classrooms: ['软嵌201', '软嵌202'], code: value, teacher: '方慧敏', classification: '理论', url: 'url("https://snz04pap001files.storage.live.com/y4mNLXhPRp0ec47--pQFSdtqUvtov20OblVpMjvTToXDiaYbvfcs1n7ittT8CvGbEuTyUWcie17TBQJPFemTcjWr5YhR6Eq8pHE-Dv2vPSbAd7_OaJiHpAEE5K01rBZnr1b6_-QCHaiFpTWk1K0gCEIHND5GqbgHZwX6HALjBjTAZyF0QlX-8WclZ9q6AgPC61r?width=968&height=645&cropmode=none")' }
+          // this.classrooms.push(l)
           /* this.classrooms[6].code=value */
+          const username = jsCookie.get('username')
+          const a = await addClassroomAPI(username, value)
+          if (a.code === 200) {
+            this.$message({
+              type: 'success',
+              message: a.msg
+            })
+            this.getClasses()
+          } else {
+            this.$message({
+              type: 'error',
+              message: a.msg
+            })
+          }
         } else {
           this.$message({
             type: 'error',
             message: '输入为空'
           })
-          this.joyclass()
         }
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消输入'
-        })
       })
     },
     async getClasses() {

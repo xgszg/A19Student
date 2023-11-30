@@ -9,6 +9,15 @@ export function getClassesAPI(username) {
   })
 }
 
+export function addClassroomAPI(username, classroomCode) {
+  return request({
+    url: '/addClassroom',
+    params: {
+      username: username,
+      classroomCode: classroomCode
+    }
+  })
+}
 export default {
   // 课程数据
   // classrooms: [{

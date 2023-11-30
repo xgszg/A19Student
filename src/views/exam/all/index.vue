@@ -20,11 +20,12 @@
         </el-table-column>
         <el-table-column
           label="班级"
-          width="150px"
+          width="200px"
         >
           <template slot-scope="scope">
             <i class="el-icon-suitcase-1" />
-            <span style="margin-left: 10px">{{ scope.row.class }}</span>
+            <span v-for="(item, index) in scope.row.classrooms" :key="index" style="margin-left: 10px">{{ item }}</span>
+
           </template>
         </el-table-column>
         <el-table-column
@@ -69,7 +70,7 @@
               size="mini"
               type="primary"
               :disabled="scope.row.state =='待参加'"
-              @click="handleEdit(1,scope.row.state,scope.row.fraction)"
+              @click="handleEdit(1,scope.row.state,scope.row.id)"
             >查看成绩</el-button>
           </template>
         </el-table-column>
@@ -80,12 +81,13 @@
 
 <script>
 import moment from 'moment'
-import examInfo from '@/api/examination'
+import { getAllExamAPI, getFractionAPI } from '@/api/examination'
+import jsCookie from 'js-cookie'
 export default {
   data() {
     return {
       loading: false,
-      examInfo: examInfo.all
+      examInfo: null
     }
   },
   computed: {
@@ -95,10 +97,19 @@ export default {
       return moment(timeData).format('YYYY-MM-DD')
     }
   },
+  created: function() {
+    this.getAllExam()
+  },
   methods: {
-    // before(index, row) {
-    //   if (row.state === '已结束' || row.state === '待批改') { return '查看成绩' } else if (row.state === '待参加') { return '参加考试' }
-    // },
+    async getAllExam() {
+      const a = await getAllExamAPI()
+      this.examInfo = a.data
+    },
+    async getFraction(examId) {
+      const username = jsCookie.get('username')
+      const a = await getFractionAPI(username, examId)
+      return a.data
+    },
     tagColor(index, row) {
       if (row.state === '已结束') {
         return 'success'
@@ -108,7 +119,7 @@ export default {
         return ''
       }
     },
-    handleEdit(temp, stace, fraction) {
+    async handleEdit(temp, stace, examId) {
       if (temp === 0) {
         this.$confirm('即将进入考试, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -146,12 +157,11 @@ export default {
       } else {
         this.loading = true
         if (stace === '已结束') {
+          const fraction = await this.getFraction(examId)
           setTimeout(() => {
             this.loading = false
             this.$alert('你的成绩是' + fraction + '分', '提示', {
-              confirmButtonText: '确定',
-              callback: action => {
-              }
+              confirmButtonText: '确定'
             })
           }, 500)
         } else {

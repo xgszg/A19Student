@@ -1,3 +1,19 @@
+import request from '@/utils/http'
+
+export function getAllExamAPI() {
+  return request({
+    url: '/getAllExam'
+  })
+}
+export function getFractionAPI(username, examId) {
+  return request({
+    url: '/getFraction',
+    params: {
+      username: username,
+      examId: examId
+    }
+  })
+}
 
 export default {
   all: [{

@@ -82,14 +82,14 @@ export default {
           path: '/course/experiment',
           name: 'experiment',
           params: {
-            classInfo: classInfo }
+            classInfo1: classInfo }
         })
       } else {
         this.$router.push({
           path: '/course/theory',
           name: 'theory',
           params: {
-            classInfo: classInfo }
+            classInfo1: classInfo }
         })
       }
     },

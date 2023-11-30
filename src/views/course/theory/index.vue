@@ -13,7 +13,7 @@
       <template>
         <el-tabs v-model="tabs" v-loading="loading" class="tabscss" @tab-click="openFullScreen1">
           <el-tab-pane label="目录" name="catalogue">
-            <Catalogue />
+            <Catalogue :catalogue-data="catalogueData" :chapter-sum="chapterSum" :time-num-sum="timeNumSum" />
           </el-tab-pane>
           <el-tab-pane label="互动课件" name="courseware">
             <div style="height:30px">
@@ -73,11 +73,12 @@ import Notice from './components/notice.vue'
 import People from './components/people.vue'
 import testInfo from '@/api/test-info'
 import classdata from '@/api/class-info'
+import { getCatalogueByClassroomIdAPI } from '@/api/class-info'
 export default {
   name: 'Class',
   components: { Catalogue, Courseware, Homework, Test, Notice, Data, People },
   props: {
-    classInfo: {
+    classInfo1: {
       type: Object,
       default: function() {
         return {
@@ -87,13 +88,14 @@ export default {
           code: '课程码',
           teacher: '教师名称',
           classification: '课程分类',
-          url: 'url("https://lsky-picture.stdcdn.com/uploads/2022/04/eb5c30a0ce1ac0429ceb43dd6103814a.png")'
+          url: 'url("https://snz04pap001files.storage.live.com/y4mxbI_YUQrlmKkkotfrICpyBjV1Wii_HYkJ8LXDK0X2LwEaBgp9gcWHQcn9gI4FjfkJUxZ3xfOxsj3SQo5GC2Z8gRD-WOudLLLKD2BSjWToRrr3WLzD7cRNd74xtQZhiXU0tWBR-xewbpWlyl2Xzb5P_2BrEe57OsAAqUy0ivMXlkJTbe3mPyy4mNg48VTt6pB?width=938&height=626&cropmode=none&quot")'
         }
       }
     }
   },
   data() {
     return {
+      classInfo: null,
       testdata: testInfo.test,
       noticedata: classdata.notice,
       datafile: classdata.data,
@@ -106,7 +108,10 @@ export default {
         backgroundSize: 'cover',
         padding: '30px',
         width: ' 100%'
-      }
+      },
+      catalogueData: null,
+      chapterSum: null,
+      timeNumSum: null
     }
   },
   watch: {
@@ -114,12 +119,15 @@ export default {
       immediate: true,
       deep: true,
       handler(newValue) {
-        this.imageClass.backgroundImage = newValue.url
+        if (newValue && newValue.url) {
+          this.imageClass.backgroundImage = newValue.url
+        }
       }
     }
   },
   created() {
-    this.classInfo = this.$route.params.classInfo // 接收上个页面传过来的参数。
+    this.classInfo = this.$route.params.classInfo1 // 接收上个页面传过来的参数。
+    this.getCatalogueByClassroomId(this.classInfo.id)
   },
   methods: {
     openFullScreen1() {
@@ -130,6 +138,12 @@ export default {
     },
     gotoroom() {
       this.$router.push('/course/theory/liveroom')
+    },
+    async getCatalogueByClassroomId(classroomId) {
+      const a = await getCatalogueByClassroomIdAPI(classroomId)
+      this.catalogueData = a.data
+      this.chapterSum = a.chapterSum
+      this.timeNumSum = a.timeNumSum
     }
   }
 }

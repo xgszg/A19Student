@@ -1,9 +1,9 @@
 <template>
   <div>
-    <span>共22个章节 48学时</span>
+    <span>共{{ chapterSum }}个章节 {{ timeNumSum }}学时</span>
     <el-tree
       class="coursetree"
-      :data="data"
+      :data="catalogueData"
       node-key="id"
       :render-content="renderContent"
     />
@@ -12,28 +12,22 @@
 
 <script>
 export default {
+  props: {
+    'catalogueData': {
+      type: Array,
+      default: () => []
+    },
+    'chapterSum': {
+      type: Number,
+      default: 0
+    },
+    'timeNumSum': {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
-      data: [{
-        label: '一级 1',
-        children: [{
-          label: '二级 1-1'
-        }]
-      }, {
-        label: '一级 2',
-        children: [{
-          label: '二级 2-1'
-        }, {
-          label: '二级 2-2'
-        }]
-      }, {
-        label: '一级 3',
-        children: [{
-          label: '二级 3-1'
-        }, {
-          label: '二级 3-2'
-        }]
-      }],
       defaultProps: {
         children: 'children',
         label: 'label'
@@ -46,8 +40,8 @@ export default {
         <span class='custom-tree-node'>
           <span>{node.label} </span>
           <span>
-            <el-tag type='info' size='mini' effect='dark'>线上</el-tag>
-            <el-tag size='mini' effect='plain'>5学时</el-tag>
+            <el-tag type='info' size='mini' effect='dark'>{data.state}</el-tag>
+            <el-tag size='mini' effect='plain'>{data.timeNum}学时</el-tag>
           </span>
         </span>)
     }

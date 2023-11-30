@@ -18,6 +18,15 @@ export function addClassroomAPI(username, classroomCode) {
     }
   })
 }
+
+export function getCatalogueByClassroomIdAPI(classroomId) {
+  return request({
+    url: '/getCatalogueByClassroomId',
+    params: {
+      classroomId: classroomId
+    }
+  })
+}
 export default {
   // 课程数据
   // classrooms: [{
